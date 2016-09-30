@@ -18,7 +18,4 @@ return array(
     'DB_USER' => 'root',
     'DB_PASS' => '',
     'DB_PORT' => '3306',
-
-
-
 );
