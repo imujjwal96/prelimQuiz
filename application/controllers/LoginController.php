@@ -10,8 +10,12 @@ class LoginController extends Controller {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $this->View->render('login/index');
 
-        } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+        } else {
+            // error
         }
+    }
+
+    public function action() {
+
     }
 }

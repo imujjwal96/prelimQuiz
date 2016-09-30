@@ -30,6 +30,7 @@ class RegisterController extends Controller {
 
                 if (RegisterModel::registerNewUser($name, $email, $userName,  $password)) {
                     $message = 'Registered Successfully';
+                    return true;
                 } else {
                     $message = 'Error with the database.';
                 }
@@ -40,7 +41,7 @@ class RegisterController extends Controller {
         } else {
             // redirect
         }
-
+        return false;
     }
 
 }
