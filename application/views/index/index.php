@@ -1,1 +1,1 @@
-<?php
+<h1>prelimQuiz</h1>
