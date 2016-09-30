@@ -1,0 +1,22 @@
+{	"error":"false",
+	"questions":[{"id":"1",
+				  "statement:"Whats your name?",
+				  "type":"general",
+				  "choices":[{"option_id":"a","ans":"Hello"},
+							 {"option_id":"b","ans":"Hello2"},
+							 {"option_id":"c","ans":"Hello3"},
+							 {"option_id":"d","ans":"Hello4"}
+							],
+				  "coorect_ans":"a"
+				  },
+				  {"id":"2",
+				  "statement:"Whats your name?",
+				  "type":"general",
+				  "choices":[{"option_id":"a","ans":"Hello"},
+							 {"option_id":"b","ans":"Hello2"},
+							 {"option_id":"c","ans":"Hello3"},
+							 {"option_id":"d","ans":"Hello4"}
+							],
+				  "coorect_ans":"b"
+				  }]
+}
