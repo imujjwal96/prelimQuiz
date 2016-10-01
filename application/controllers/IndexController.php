@@ -17,4 +17,10 @@ class IndexController extends Controller {
         $this->View->render('index/instructions');
     }
 
+    public function leaderboard() {
+        $this->View->render('index/leaderboard', array(
+            'users' => UserModel::getUsersByPoints()
+        ));
+    }
+
 }

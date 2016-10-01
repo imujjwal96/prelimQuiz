@@ -1,6 +1,21 @@
 <?php
 
 class UserModel {
+
+    public static function getUsersByPoints() {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT * FROM info ORDER BY points DESC";
+        $query = $database->prepare($sql);
+        $query->execute();
+
+        if ($query->rowCount() != 0) {
+            return $query->fetch();
+        }
+        return false;
+
+    }
+
     public static function getUserByID($userID) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
