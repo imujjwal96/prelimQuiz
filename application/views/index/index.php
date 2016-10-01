@@ -10,6 +10,7 @@
             </li>
             <li>
                 <a href="/register" class="btn btn-default btn-rounded">Register</a></li>
+                <a href="/login" class="btn btn-default btn-rounded">Login</a></li>
             </li>
 
         </ul>

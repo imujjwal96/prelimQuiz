@@ -47,7 +47,7 @@
                 </li>
                 <li>
                     <div class="md-form">
-                        <button type="submit" class="btn btn-default btn-rounded">Start</button></li>
+                        <button type="submit" class="btn btn-default btn-rounded">Login</button></li>
     </div>
 
     </li>

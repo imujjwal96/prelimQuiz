@@ -33,4 +33,10 @@ class LoginController extends Controller {
 
         }
     }
+
+    public function logout() {
+        LoginModel::logout();
+        Redirect::to('index');
+        exit();
+    }
 }

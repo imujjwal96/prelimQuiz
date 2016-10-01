@@ -10,6 +10,10 @@ class LoginModel {
 
         $result = self::validateAndGetUser($userName, $userPhone);
 
+        if (!$result) {
+            return false;
+        }
+
         self::setSuccessfulLoginIntoSession(
             $result->id, $result->username, $result->email
         );

@@ -61,7 +61,7 @@
                 </li>
                 <li>
                     <div class="md-form">
-                        <button type="submit" class="btn btn-default btn-rounded">Start</button></li>
+                        <button type="submit" class="btn btn-default btn-rounded">Register</button></li>
     </div>
 
     </li>
