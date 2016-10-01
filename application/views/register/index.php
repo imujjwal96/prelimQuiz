@@ -27,7 +27,7 @@
 <!--Mask-->
 <div class="view hm-black-light">
     <div class="full-bg-img flex-center" >
-        <form>
+        <form action="/register/action" method="POST">
             <ul  style="margin: 40px">
                 <li style="margin: 40px">
                     <h1 class="h1-responsive wow fadeInUp title" >Hey, Start your CodeRush Test Level 0</h1></li>
@@ -61,7 +61,7 @@
                 </li>
                 <li>
                     <div class="md-form">
-                        <a href="home.html" class="btn btn-default btn-rounded">Start</a></li>
+                        <button type="submit" class="btn btn-default btn-rounded">Start</button></li>
     </div>
 
     </li>

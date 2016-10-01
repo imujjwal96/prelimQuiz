@@ -6,6 +6,6 @@ class LevelController extends Controller {
     }
 
     public function index($id) {
-
+        echo 'Level: '. $id;
     }
 }

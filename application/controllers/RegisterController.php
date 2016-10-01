@@ -21,24 +21,24 @@ class RegisterController extends Controller {
             $phone = strip_tags($_POST['phone']);
 
             if (!RegisterModel::formValidation($userName, $email)) {
-                return false;
+                echo 'Invalid Credentials';
             }
             if (!UserModel::getUserByEmail($email)) {
-
                 if (RegisterModel::registerNewUser($name, $email, $userName,  $phone)) {
-                    $message = 'Registered Successfully';
-                    return true;
+                    if (LoginModel::login($userName, $phone)) {
+                        Redirect::to('level/index/0');
+                    }
+
+                    echo 'Registered Successfully';
                 } else {
-                    $message = 'Error with the database.';
+                    echo 'Error with the DB';
                 }
             } else {
-                $message = 'User with email: ' . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . ' already exists.';
+                echo 'User with email: ' . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . ' already exists.';
             }
 
         } else {
             // redirect
         }
-        return false;
     }
-
 }

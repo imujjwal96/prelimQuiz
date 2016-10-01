@@ -6,14 +6,13 @@ class RegisterModel {
 
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "INSERT INTO info (name, email, username, phone, level, datetime) VALUES (:name, :email, :username, :phone, :level, NOW())";
+        $sql = "INSERT INTO info (name, email, username, phone, points, level, datetime) VALUES (:name, :email, :username, :phone, '0', '0', NOW())";
         $query = $database->prepare($sql);
         $query->execute(array(
             'name' => $name,
             ':email' => $email,
             ':username' => $userName,
-            ':password' => $phone,
-            ':level' => 0,
+            ':phone' => $phone
             ));
 
         $count =  $query->rowCount();

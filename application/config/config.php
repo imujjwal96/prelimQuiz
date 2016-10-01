@@ -18,4 +18,5 @@ return array(
     'DB_USER' => 'root',
     'DB_PASS' => '',
     'DB_PORT' => '3306',
+    'DB_CHARSET' => 'utf8'
 );

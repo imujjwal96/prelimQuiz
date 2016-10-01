@@ -12,4 +12,5 @@ class IndexController extends Controller {
     public function instructions() {
         $this->View->render('index/instructions');
     }
+
 }
