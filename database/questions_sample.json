@@ -14,7 +14,7 @@
 		"points": 2
 	},
 	{
-		"id": 2
+		"id": 2,
 		"error": false,
 		"type": "general",
 		"statement": "This is the Statement of the Second Question",

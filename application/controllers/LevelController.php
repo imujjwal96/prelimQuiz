@@ -7,18 +7,22 @@ class LevelController extends Controller {
 
     public function index($id=null) {
         if (LoginModel::isUserLoggedIn()) {
-            $result = UserModel::getUserByUsername(Session::get('user_name'));
-            if (!$result) {
-                echo 'error';
+            $level = LevelModel::getUserLevel();
+            if ($id == null) {
+                Redirect::to('level/index/' . $level);
             } else {
-                if ($id == null) {
-                    Redirect::to('level/index/' . $result->level);
+                if ($id != $level) {
+                    Redirect::to('level/index/'.$level);
                 } else {
-                    if ($id != $result->level) {
-                        Redirect::to('level/index/'.$result->level);
-                    } else {
-                        echo 'You\'re are level: ' . $id;
-                    }
+
+                    echo 'You\'re are level: ' . $id . '<br />';
+
+                    $question = LevelModel::getCurrentQuestion();
+                    echo $question->statement. '<br />';
+                    echo $question->options->a. '<br />';
+                    echo $question->options->b. '<br />';
+                    echo $question->options->c. '<br />';
+                    echo $question->options->d. '<br />';
                 }
             }
         } else {

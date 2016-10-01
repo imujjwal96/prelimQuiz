@@ -11,3 +11,4 @@ require_once 'core/Redirect.php';
 require_once 'models/RegisterModel.php';
 require_once 'models/LoginModel.php';
 require_once 'models/UserModel.php';
+require_once 'models/LevelModel.php';
