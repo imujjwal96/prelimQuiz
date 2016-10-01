@@ -2,19 +2,17 @@
 
 class RegisterModel {
 
-    public static function registerNewUser($name, $email, $userName,  $password) {
-
-        $password = password_hash($password, PASSWORD_DEFAULT);
+    public static function registerNewUser($name, $email, $userName,  $phone) {
 
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "INSERT INTO info (name, email, username, password, level, datetime) VALUES (:name, :email, :username, :password, :level, NOW())";
+        $sql = "INSERT INTO info (name, email, username, phone, level, datetime) VALUES (:name, :email, :username, :phone, :level, NOW())";
         $query = $database->prepare($sql);
         $query->execute(array(
             'name' => $name,
             ':email' => $email,
             ':username' => $userName,
-            ':password' => $password,
+            ':password' => $phone,
             ':level' => 0,
             ));
 
@@ -26,8 +24,8 @@ class RegisterModel {
         return false;
     }
 
-    public static function formValidation($userName, $email, $password, $passwordRepeat) {
-        if (self::validateUserName($userName) AND self::validateEmail($email) AND self::validateUserPassword($password, $passwordRepeat)) {
+    public static function formValidation($userName, $email) {
+        if (self::validateUserName($userName) AND self::validateEmail($email)) {
             return true;
         }
 
@@ -52,22 +50,6 @@ class RegisterModel {
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public static function validateUserPassword($password, $passwordRepeat) {
-        if (empty($password) OR empty($passwordRepeat)) {
-            return false;
-        }
-
-        if ($password !== $passwordRepeat) {
-            return false;
-        }
-
-        if (strlen($password) < 6) {
             return false;
         }
 

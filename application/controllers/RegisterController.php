@@ -18,17 +18,14 @@ class RegisterController extends Controller {
             $name = strip_tags($_POST['name']);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $userName = strip_tags($_POST['username']);
-            $password = strip_tags($_POST['password']);
-            $passwordRepeat = strip_tags($_POST['passwordRepeat']);
+            $phone = strip_tags($_POST['phone']);
 
-            if (!RegisterModel::formValidation($userName, $email, $password, $passwordRepeat)) {
+            if (!RegisterModel::formValidation($userName, $email)) {
                 return false;
             }
             if (!UserModel::getUserByEmail($email)) {
-                $hash = md5(sha1(md5(sha1($email))));
-                $password = password_hash($password, PASSWORD_BCRYPT);
 
-                if (RegisterModel::registerNewUser($name, $email, $userName,  $password)) {
+                if (RegisterModel::registerNewUser($name, $email, $userName,  $phone)) {
                     $message = 'Registered Successfully';
                     return true;
                 } else {

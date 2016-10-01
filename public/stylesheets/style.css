@@ -1,7 +1,7 @@
 /* YOUR CUSTOM STYLES */
 
 .view {
-	background: url("../img/back2.jpg")no-repeat center center;
+	background: url("/images/back2.jpg")no-repeat center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
