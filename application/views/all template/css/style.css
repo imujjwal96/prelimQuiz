@@ -1,0 +1,97 @@
+/* YOUR CUSTOM STYLES */
+
+.view {
+	background: url("../img/back2.jpg")no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100vh;
+}
+
+.full-bg-img {
+	color: #fff;
+}
+
+.title {
+	font-weight:100;
+}
+
+.payment .fa:not(:first-child) {
+	margin-left:10px;
+	color:rgba(255,255,255,.8);
+}
+input[type="text"]{
+	color: #eee;
+}
+input[type="text"]:focus:not([readonly]) {
+	border-color:#2BBBAD	;
+	box-shadow:0 1px 0 0 #2BBBAD;
+	color:#fff;
+}
+
+input[type="text"]:not([readonly])+label {
+	color:rgba(255,255,255,.9);
+}
+
+input[type="text"]:focus:not([readonly])+label {
+	color:#fff;
+}
+.infinite_text{
+	color: #ffe276;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+.bg-transparent{
+	background: none;
+	box-shadow: none;
+}
+.btn-rounded{
+	border-radius: 150px;
+}
+footer.page-footer{
+	margin-top: 0px;
+	padding-top: 0px;
+}
+.blue-23{
+	background: #1b2940;
+}
+.grey23 > li{
+color: #aaa;
+}
+.card-title{
+color: #75beba;
+text-align: center;	
+}
+.card-text{
+	color: #aaa;
+	font-size: 20px;
+	font-weight: 400;
+}
+.top-80{
+	margin-top: 80px;
+}
+label {
+	color: #aaa;
+	font-size: 18px;
+	padding: 4px;
+}
+.md-form>label{
+	color: #aaa;
+}
+.ss-form input[type="text"]{
+	color: #aaa;
+}
+.ss-form input[type="text"]:focus:not([readonly]) {
+	border-color:#2BBBAD	;
+	box-shadow:0 1px 0 0 #2BBBAD;
+	color:#aaa;
+}
+.ss-form input[type="text"]:not([readonly])+label {
+	color:#aaa;
+}
+
+
+.ss-form input[type="text"]:focus:not([readonly])+label {
+	color:#aaa;
+}
