@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2ca600c-dca2-4850-af25-d956324a8fb5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/index/leaderboard.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/IndexController.php" afterPath="$PROJECT_DIR$/application/controllers/IndexController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/LevelController.php" afterPath="$PROJECT_DIR$/application/controllers/LevelController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/UserModel.php" afterPath="$PROJECT_DIR$/application/models/UserModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/index/leaderboard.php" afterPath="$PROJECT_DIR$/application/views/index/leaderboard.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/questions_sample.json" afterPath="$PROJECT_DIR$/database/questions_sample.json" />
     </list>
     <ignored path="prelimQuiz.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,8 +37,8 @@
       <file leaf-file-name="IndexController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/IndexController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="357">
+              <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -47,8 +47,8 @@
       <file leaf-file-name="leaderboard.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/index/leaderboard.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            <state relative-caret-position="34">
+              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -87,8 +87,8 @@
       <file leaf-file-name="LevelController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/LevelController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+            <state relative-caret-position="357">
+              <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -97,8 +97,8 @@
       <file leaf-file-name="questions_sample.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/questions_sample.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+            <state relative-caret-position="1411">
+              <caret line="83" column="19" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -117,13 +117,13 @@
       <file leaf-file-name="UserModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/UserModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+            <state relative-caret-position="204">
+              <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
               <folding>
-                <marker date="1475349950573" expanded="true" signature="159:198" ph="SELECT * FRO... info" />
-                <marker date="1475349950573" expanded="true" signature="522:559" ph="SELECT * FRO... info" />
-                <marker date="1475349950573" expanded="true" signature="911:950" ph="SELECT * FRO... info" />
-                <marker date="1475349950573" expanded="true" signature="1306:1351" ph="SELECT * FRO... info" />
+                <marker date="1475352289004" expanded="true" signature="159:198" ph="SELECT * FRO... info" />
+                <marker date="1475352289004" expanded="true" signature="525:562" ph="SELECT * FRO... info" />
+                <marker date="1475352289004" expanded="true" signature="914:953" ph="SELECT * FRO... info" />
+                <marker date="1475352289004" expanded="true" signature="1309:1354" ph="SELECT * FRO... info" />
               </folding>
             </state>
           </provider>
@@ -169,11 +169,11 @@
         <option value="$PROJECT_DIR$/application/core/Controller.php" />
         <option value="$PROJECT_DIR$/application/controllers/LoginController.php" />
         <option value="$PROJECT_DIR$/application/init.php" />
-        <option value="$PROJECT_DIR$/database/questions_sample.json" />
         <option value="$PROJECT_DIR$/application/models/LevelModel.php" />
+        <option value="$PROJECT_DIR$/application/controllers/IndexController.php" />
+        <option value="$PROJECT_DIR$/database/questions_sample.json" />
         <option value="$PROJECT_DIR$/application/controllers/LevelController.php" />
         <option value="$PROJECT_DIR$/application/models/UserModel.php" />
-        <option value="$PROJECT_DIR$/application/controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/application/views/index/leaderboard.php" />
       </list>
     </option>
@@ -186,10 +186,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="695" />
+    <option name="width" value="1233" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -534,18 +533,18 @@
       <updated>1475252787524</updated>
       <workItem from="1475252789592" duration="8371000" />
       <workItem from="1475316173427" duration="2464000" />
-      <workItem from="1475332737854" duration="15768000" />
+      <workItem from="1475332737854" duration="17781000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26603000" />
+    <option name="totallyTimeSpent" value="28616000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="695" y="0" width="1233" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1358754" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21866897" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -620,10 +619,10 @@
         <state relative-caret-position="119">
           <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
           <folding>
-            <marker date="1475349950573" expanded="true" signature="159:198" ph="SELECT * FRO... info" />
-            <marker date="1475349950573" expanded="true" signature="522:559" ph="SELECT * FRO... info" />
-            <marker date="1475349950573" expanded="true" signature="911:950" ph="SELECT * FRO... info" />
-            <marker date="1475349950573" expanded="true" signature="1306:1351" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="159:198" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="525:562" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="914:953" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="1309:1354" ph="SELECT * FRO... info" />
           </folding>
         </state>
       </provider>
@@ -689,10 +688,10 @@
         <state relative-caret-position="119">
           <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
           <folding>
-            <marker date="1475349950573" expanded="true" signature="159:198" ph="SELECT * FRO... info" />
-            <marker date="1475349950573" expanded="true" signature="522:559" ph="SELECT * FRO... info" />
-            <marker date="1475349950573" expanded="true" signature="911:950" ph="SELECT * FRO... info" />
-            <marker date="1475349950573" expanded="true" signature="1306:1351" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="159:198" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="525:562" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="914:953" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="1309:1354" ph="SELECT * FRO... info" />
           </folding>
         </state>
       </provider>
@@ -960,14 +959,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/questions_sample.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/LevelModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -984,19 +975,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/UserModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-          <folding>
-            <marker date="1475349950573" expanded="true" signature="159:198" ph="SELECT * FRO... info" />
-            <marker date="1475349950573" expanded="true" signature="522:559" ph="SELECT * FRO... info" />
-            <marker date="1475349950573" expanded="true" signature="911:950" ph="SELECT * FRO... info" />
-            <marker date="1475349950573" expanded="true" signature="1306:1351" ph="SELECT * FRO... info" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/init.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1005,26 +983,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/questions_sample.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="83" column="19" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/UserModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+          <folding>
+            <marker date="1475352289004" expanded="true" signature="159:198" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="525:562" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="914:953" ph="SELECT * FRO... info" />
+            <marker date="1475352289004" expanded="true" signature="1309:1354" ph="SELECT * FRO... info" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/LevelController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+        <state relative-caret-position="357">
+          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="357">
+          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/index/leaderboard.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        <state relative-caret-position="34">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
           <folding />
         </state>
       </provider>

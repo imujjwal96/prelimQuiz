@@ -3,22 +3,116 @@
 		"id": 1,
 		"error": false,
 		"type": "MCQ",
-		"statement": "This is the Statement of the First Question",
+		"statement": "Which spanish city is famous for its annual \"running of the bulls\"?",
 		"options": {
-			"a": "option1",
-			"b": "option2",
-			"c": "option3",
-			"d": "option4"
+			"a": "Barcelona",
+			"b": "Pamplona",
+			"c": "Valencia",
+			"d": "Madrid"
 		},
-		"answer": "a",
+		"answer": "c",
 		"points": 2
 	},
 	{
 		"id": 2,
 		"error": false,
+		"type": "MCQ",
+		"statement": "What is the surname of the Wayne family butler, Alfred ?",
+		"options": {
+			"a": "Montoya",
+			"b": "Pennyworth",
+			"c": "Bullock",
+			"d": "Falcone"
+		},
+		"answer": "b",
+		"points": 2
+	},
+	{
+		"id": 3,
+		"error": false,
+		"type": "MCQ",
+		"statement": "After Cobblepot returned to Gotham, he got a job in the restaurant of a Mob boss, but what job did he get ?",
+		"options": {
+			"a": "Waiter",
+			"b": "Chef",
+			"c": "Manager",
+			"d": "Dishwasher"
+		},
+		"answer": "a",
+		"points": 2
+	},
+	{
+		"id": 4,
+		"error": false,
+		"type": "MCQ",
+		"statement": "What friend of Jay's did Mitchell say was gay?",
+		"options": {
+			"a": "Shortie",
+			"b": "LeMichael",
+			"c": "Leftie",
+			"d": "Rightie"
+		},
+		"answer": "c",
+		"points": 2
+	},
+	{
+		"id": 5,
+		"error": false,
+		"type": "MCQ",
+		"statement": "Who teaches Gloria how to ride a bike?",
+		"options": {
+			"a": "Jay",
+			"b": "Luke",
+			"c": "Phil",
+			"d": "Gloria"
+		},
+		"answer": "b",
+		"points": 2
+	},
+	{
+		"id": 6,
+		"error": false,
+		"type": "MCQ",
+		"statement": "What present did Dylan give Haley on Valentine's Day?",
+		"options": {
+			"a": "Rose",
+			"b": "Jar of his tears",
+			"c": "A picture of him and Haley in bed together",
+			"d": "Nothing"
+		},
+		"answer": "b",
+		"points": 2
+	},
+	{
+		"id": 7,
+		"error": false,
 		"type": "general",
-		"statement": "This is the Statement of the Second Question",
-		"answer": "answer",
+		"statement": "Who's afraid of clowns probably because they found one dead in the woods?",
+		"answer": "Phil",
+		"points": 4
+	},
+	{
+		"id": 8,
+		"error": false,
+		"type": "general",
+		"statement": "What did Mitchell dress up as on Halloween at the office?",
+		"answer": "Spiderman",
+		"points": 4
+	},
+	{
+		"id": 9,
+		"error": false,
+		"type": "general",
+		"statement": "What is Phil's role play name on Valentine's Day?",
+		"answer": "Clive Bixby",
+		"points": 4
+	},
+	{
+		"id": 10,
+		"error": false,
+		"type": "general",
+		"statement": "What is Cameron's alter ego clown's name?",
+		"answer": "fizbo",
 		"points": 4
 	}
 ]

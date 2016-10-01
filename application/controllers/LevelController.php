@@ -19,10 +19,12 @@ class LevelController extends Controller {
 
                     $question = LevelModel::getCurrentQuestion();
                     echo $question->statement. '<br />';
-                    echo $question->options->a. '<br />';
-                    echo $question->options->b. '<br />';
-                    echo $question->options->c. '<br />';
-                    echo $question->options->d. '<br />';
+                    if ($question->type == "MCQ") {
+                        echo $question->options->a. '<br />';
+                        echo $question->options->b. '<br />';
+                        echo $question->options->c. '<br />';
+                        echo $question->options->d. '<br />';
+                    }
                 }
             }
         } else {

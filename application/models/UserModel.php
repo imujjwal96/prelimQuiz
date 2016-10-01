@@ -10,7 +10,7 @@ class UserModel {
         $query->execute();
 
         if ($query->rowCount() != 0) {
-            return $query->fetch();
+            return $query->fetchAll();
         }
         return false;
 
