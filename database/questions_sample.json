@@ -44,7 +44,7 @@
 	{
 		"id": 4,
 		"error": false,
-		"type": "MCQ",
+		"type": "general",
 		"statement": "What friend of Jay's did Mitchell say was gay?",
 		"options": {
 			"a": "Shortie",
@@ -88,7 +88,7 @@
 		"error": false,
 		"type": "general",
 		"statement": "Who's afraid of clowns probably because they found one dead in the woods?",
-		"answer": "Phil",
+		"answer": "phil",
 		"points": 4
 	},
 	{

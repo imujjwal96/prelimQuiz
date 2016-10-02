@@ -20,7 +20,22 @@ class LevelModel {
                 return $item;
             }
         }
+    }
 
+    public static function getQuestionType() {
+        return self::getCurrentQuestion()->type;
+    }
+
+    public static function getQuestionStatement() {
+        return self::getCurrentQuestion()->statement;
+    }
+
+    public static function getQuestionPoints() {
+        return self::getCurrentQuestion()->points;
+    }
+
+    public static function getAnswer() {
+        return self::getCurrentQuestion()->answer;
     }
 
 }

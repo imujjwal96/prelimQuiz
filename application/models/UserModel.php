@@ -54,4 +54,33 @@ class UserModel {
         }
         return false;
     }
+
+    public static function incrementPoints($points) {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $query = $database->prepare("UPDATE info SET points = points + :points WHERE username = :user_name LIMIT 1");
+        $query->execute(array(
+            ':points' => $points,
+            ':user_name' => Session::get('user_name')
+        ));
+        $count = $query->rowCount();
+        if ($count == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function incrementLevel() {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $query = $database->prepare("UPDATE info SET level = level + 1 WHERE username = :user_name LIMIT 1");
+        $query->execute(array(
+            ':user_name' => Session::get('user_name')
+        ));
+        $count = $query->rowCount();
+        if ($count == 1) {
+            return true;
+        }
+        return false;
+    }
 }

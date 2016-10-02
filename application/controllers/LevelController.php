@@ -15,16 +15,18 @@ class LevelController extends Controller {
                     Redirect::to('level/index/'.$level);
                 } else {
 
-                    echo 'You\'re are level: ' . $id . '<br />';
-
                     $question = LevelModel::getCurrentQuestion();
-                    echo $question->statement. '<br />';
-                    if ($question->type == "MCQ") {
-                        echo $question->options->a. '<br />';
-                        echo $question->options->b. '<br />';
-                        echo $question->options->c. '<br />';
-                        echo $question->options->d. '<br />';
+
+                    if (LevelModel::getQuestionType() == "MCQ") {
+                        $this->View->render('level/mcq', array(
+                            "question" => $question
+                        ));
+                    } else {
+                        $this->View->render('level/general', array(
+                            "question" => $question
+                        ));
                     }
+
                 }
             }
         } else {
@@ -36,6 +38,24 @@ class LevelController extends Controller {
     public function submit() {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             Redirect::to('/level/index');
+        } else {
+            if (isset($_POST["input"]) AND !empty($_POST["input"])) {
+                $input = str_replace(' ', '', strtolower(strip_tags($_POST["input"])));
+                if (LevelModel::getAnswer() == $input) {
+                    if (!UserModel::incrementPoints(LevelModel::getQuestionPoints())) {
+                        echo 'error points';
+                        exit();
+                    }
+                } else{
+                    echo $_POST["input"];
+                    exit();
+                }
+                if (!UserModel::incrementLevel()) {
+                    echo 'error level';
+                    exit();
+                }
+                Redirect::to('/level/index');
+            }
         }
     }
 }
