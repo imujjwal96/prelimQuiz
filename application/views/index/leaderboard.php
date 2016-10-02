@@ -13,6 +13,7 @@
 <div class="view hm-black-light">
     <div class="full-bg-img flex-center" >
         <div class="card col-md-8" style="color: black;">
+            <h4 class="card-title animated tada infinite_text" style="padding: 30px 2px 10px 2px;font-weight: 400;">LEADERBOARD</h4>
             <table class = "table table-hover text-xs-center">
                 <thead>
                 <tr>
