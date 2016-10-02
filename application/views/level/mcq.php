@@ -7,30 +7,34 @@
                     <hr />
                     <div class="row" style="color: black;">
                         <div class="col-md-6">
-                            <label class="btn btn-primary">
-                                <input type="radio" name="input" id="a" value="a" /> <?= $this->question->options->a; ?>
-                            </label>
+                        <label class="radio">
+                            <input type="radio" name="input" id="a" value="a" /> 
+                            <span class="outer"><span class="inner"></span></span><?= $this->question->options->a; ?>
+                        </label>
                         </div>
                         <div class="col-md-6">
-                            <label class="btn btn-primary">
-                                <input type="radio" name="input" id="b" value="b" /> <?= $this->question->options->b; ?>
+                            <label class="radio">
+                            <input type="radio" name="input" id="b" value="b" />
+                            <span class="outer"><span class="inner"></span></span><?= $this->question->options->b; ?>
                             </label>
                         </div>
                     </div>
                     <div class="row" style="color: black;">
                         <div class="col-md-6">
-                            <label class="btn btn-primary">
-                                <input type="radio" name="input" id="c" value="c" /> <?= $this->question->options->c; ?>
+                            <label class="radio">
+                            <input type="radio" name="input" id="c" value="c" />
+                            <span class="outer"><span class="inner"></span></span><?= $this->question->options->c; ?>
                             </label>
                         </div>
                         <div class="col-md-6">
-                            <label class="btn btn-primary">
-                                <input type="radio" name="input" id="d" value="d" /> <?= $this->question->options->d; ?>
+                            <label class="radio">
+                            <input type="radio" name="input" id="d" value="d" />
+                            <span class="outer"><span class="inner"></span></span><?= $this->question->options->d; ?>
                             </label>
                         </div>
                     </div>
                     <hr />
-                    <button type="submit" class="btn btn-elegant">Submit</button>
+                    <button type="submit" class="btn btn-default">Submit</button>
                 </div>
             </form>
         </div>

@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <hr />
-                <button type="submit" class="btn btn-elegant">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>
             </div>
         </div>
         </form>
