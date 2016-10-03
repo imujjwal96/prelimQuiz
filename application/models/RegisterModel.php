@@ -9,11 +9,17 @@ class RegisterModel {
         $sql = "INSERT INTO info (name, email, username, phone, points, level, datetime) VALUES (:name, :email, :username, :phone, '0', '0', NOW())";
         $query = $database->prepare($sql);
         $query->execute(array(
-            'name' => $name,
+            ':name' => $name,
             ':email' => $email,
             ':username' => $userName,
             ':phone' => $phone
             ));
+
+        $sql2 = "INSERT INTO answers (username) VALUES (:username)";
+        $query2 = $database->prepare($sql2);
+        $query2->execute(array(
+            ':username' => $userName
+        ));
 
         $count =  $query->rowCount();
         if ($count == 1) {

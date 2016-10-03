@@ -20,6 +20,17 @@ class LevelModel {
                 return $item;
             }
         }
+        return false;
+    }
+
+    public static function getTotalQuestions() {
+        $str = file_get_contents('../database/questions_sample.json');
+        $json = json_decode($str);
+        $i = 0;
+        foreach ($json as $item) {
+            $i++;
+        }
+        return $i;
     }
 
     public static function getQuestionType() {
@@ -36,6 +47,23 @@ class LevelModel {
 
     public static function getAnswer() {
         return self::getCurrentQuestion()->answer;
+    }
+
+    public static function storeUserAnswer($input, $level) {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $level = $level + 1;
+        $query = $database->prepare("UPDATE answers SET `$level` = :input WHERE username = :username LIMIT 1");
+        $query->execute(array(
+            ':input' => $input,
+            ':username' => Session::get('user_name')
+        ));
+
+
+        $count = $query->rowCount();
+        if ($count == 1) {
+            return true;
+        }
+        return false;
     }
 
 }

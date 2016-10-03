@@ -3,9 +3,8 @@
         <form type="form" method="POST" action="/level/submit">
         <div class="card" style="color: black">
             <div class="card-block">
-                <h4 class="card-title"><?= $this->question->statement; ?></h4>
+                <h4 class="card-title">Question <?= $this->question->id . '/' . $this->total;?>: <strong> <?= $this->question->statement; ?></strong></h4>
                 <hr />
-
                 <div class="row" style="color: black;">
                     <div class="col-md-6 offset-md-3" >
                         <input type="text" name="input" />

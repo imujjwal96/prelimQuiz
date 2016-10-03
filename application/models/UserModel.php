@@ -83,4 +83,19 @@ class UserModel {
         }
         return false;
     }
+
+    public static function getUserLevel() {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT level FROM info WHERE username = :username";
+        $query = $database->prepare($sql);
+        $query->execute(array(
+            ':username' => Session::get('user_name')
+        ));
+
+        if ($query->rowCount() == 1) {
+            return $query->fetch()->level;
+        }
+        return false;
+    }
 }

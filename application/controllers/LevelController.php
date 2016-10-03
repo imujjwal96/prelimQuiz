@@ -16,14 +16,19 @@ class LevelController extends Controller {
                 } else {
 
                     $question = LevelModel::getCurrentQuestion();
-
+                    if (!$question) {
+                        $this->View->render('level/end');
+                        exit();
+                    }
                     if (LevelModel::getQuestionType() == "MCQ") {
                         $this->View->render('level/mcq', array(
-                            "question" => $question
+                            "question" => $question,
+                            "total" => LevelModel::getTotalQuestions()
                         ));
                     } else {
                         $this->View->render('level/general', array(
-                            "question" => $question
+                            "question" => $question,
+                            "total" => LevelModel::getTotalQuestions()
                         ));
                     }
 
@@ -41,14 +46,12 @@ class LevelController extends Controller {
         } else {
             if (isset($_POST["input"]) AND !empty($_POST["input"])) {
                 $input = str_replace(' ', '', strtolower(strip_tags($_POST["input"])));
+                LevelModel::storeUserAnswer($input, UserModel::getUserLevel());
                 if (LevelModel::getAnswer() == $input) {
                     if (!UserModel::incrementPoints(LevelModel::getQuestionPoints())) {
                         echo 'error points';
                         exit();
                     }
-                } else{
-                    echo $_POST["input"];
-                    exit();
                 }
                 if (!UserModel::incrementLevel()) {
                     echo 'error level';

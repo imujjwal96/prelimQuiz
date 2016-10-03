@@ -3,7 +3,7 @@
         <div class="card">
             <form action="/level/submit" method="POST">
                 <div class="card-block">
-                    <h4 class="card-title"><?= $this->question->statement; ?></h4>
+                    <h4 class="card-title">Question <?= $this->question->id . '/' . $this->total;?>: <strong> <?= $this->question->statement; ?></strong></h4>
                     <hr />
                     <div class="row" style="color: black;">
                         <div class="col-md-6">

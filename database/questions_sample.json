@@ -44,7 +44,7 @@
 	{
 		"id": 4,
 		"error": false,
-		"type": "general",
+		"type": "MCQ",
 		"statement": "What friend of Jay's did Mitchell say was gay?",
 		"options": {
 			"a": "Shortie",
@@ -96,7 +96,7 @@
 		"error": false,
 		"type": "general",
 		"statement": "What did Mitchell dress up as on Halloween at the office?",
-		"answer": "Spiderman",
+		"answer": "spiderman",
 		"points": 4
 	},
 	{
@@ -104,7 +104,7 @@
 		"error": false,
 		"type": "general",
 		"statement": "What is Phil's role play name on Valentine's Day?",
-		"answer": "Clive Bixby",
+		"answer": "clivebixby",
 		"points": 4
 	},
 	{
