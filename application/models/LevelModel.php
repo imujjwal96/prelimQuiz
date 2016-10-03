@@ -58,6 +58,10 @@ class LevelModel {
             ':username' => Session::get('user_name')
         ));
 
+        $query = $database->prepare("UPDATE info SET datetime = NOW() WHERE username = :username LIMIT 1");
+        $query->execute(array(
+            ':username' => Session::get('user_name')
+        ));
 
         $count = $query->rowCount();
         if ($count == 1) {

@@ -10,7 +10,7 @@
 			"c": "Valencia",
 			"d": "Madrid"
 		},
-		"answer": "c",
+		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
 		"points": 2
 	},
 	{
@@ -24,7 +24,7 @@
 			"c": "Bullock",
 			"d": "Falcone"
 		},
-		"answer": "b",
+		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
 		"points": 2
 	},
 	{
@@ -38,7 +38,7 @@
 			"c": "Manager",
 			"d": "Dishwasher"
 		},
-		"answer": "a",
+		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
 		"points": 2
 	},
 	{
@@ -52,7 +52,7 @@
 			"c": "Leftie",
 			"d": "Rightie"
 		},
-		"answer": "c",
+		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
 		"points": 2
 	},
 	{
@@ -66,7 +66,7 @@
 			"c": "Phil",
 			"d": "Gloria"
 		},
-		"answer": "b",
+		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
 		"points": 2
 	},
 	{
@@ -80,7 +80,7 @@
 			"c": "A picture of him and Haley in bed together",
 			"d": "Nothing"
 		},
-		"answer": "b",
+		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
 		"points": 2
 	},
 	{
@@ -88,7 +88,7 @@
 		"error": false,
 		"type": "general",
 		"statement": "Who's afraid of clowns probably because they found one dead in the woods?",
-		"answer": "phil",
+		"answer": "e888d2bd6f13f82caa51a37c03d034c76f661ba3",
 		"points": 4
 	},
 	{
@@ -96,7 +96,7 @@
 		"error": false,
 		"type": "general",
 		"statement": "What did Mitchell dress up as on Halloween at the office?",
-		"answer": "spiderman",
+		"answer": "368f976940775c710aec525fe1e349f8a1fb9a39",
 		"points": 4
 	},
 	{
@@ -104,7 +104,7 @@
 		"error": false,
 		"type": "general",
 		"statement": "What is Phil's role play name on Valentine's Day?",
-		"answer": "clivebixby",
+		"answer": "f88df5f6fe3ea0c02285fd6c01ad7ca2fc12fd71",
 		"points": 4
 	},
 	{
@@ -112,7 +112,7 @@
 		"error": false,
 		"type": "general",
 		"statement": "What is Cameron's alter ego clown's name?",
-		"answer": "fizbo",
+		"answer": "ed9e911531cb00cceb657af8c1c9ae010df8853f",
 		"points": 4
 	}
 ]

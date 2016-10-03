@@ -47,7 +47,7 @@ class LevelController extends Controller {
             if (isset($_POST["input"]) AND !empty($_POST["input"])) {
                 $input = str_replace(' ', '', strtolower(strip_tags($_POST["input"])));
                 LevelModel::storeUserAnswer($input, UserModel::getUserLevel());
-                if (LevelModel::getAnswer() == $input) {
+                if (LevelModel::getAnswer() == sha1($input)) {
                     if (!UserModel::incrementPoints(LevelModel::getQuestionPoints())) {
                         echo 'error points';
                         exit();
