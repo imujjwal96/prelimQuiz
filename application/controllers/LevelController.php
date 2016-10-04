@@ -58,6 +58,8 @@ class LevelController extends Controller {
                     exit();
                 }
                 Redirect::to('/level/index');
+            } else {
+                Redirect::to('/level/index');
             }
         }
     }

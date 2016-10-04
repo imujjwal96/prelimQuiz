@@ -5,6 +5,9 @@
                 <div class="card-block">
                     <h4 class="card-title">Question <?= $this->question->id . '/' . $this->total;?>: <strong> <?= $this->question->statement; ?></strong></h4>
                     <hr />
+                    <?php if (isset($this->question->image) && !empty($this->question->image)) {
+                        echo '<img src="'. $this->question->image . '"/>';
+                    } ?>
                     <div class="row" style="color: black;">
                         <div class="col-md-6">
                         <label class="radio">

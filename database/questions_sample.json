@@ -3,41 +3,44 @@
 		"id": 1,
 		"error": false,
 		"type": "MCQ",
-		"statement": "Which spanish city is famous for its annual \"running of the bulls\"?",
+		"statement": "WHITESPACES",
 		"options": {
-			"a": "Barcelona",
-			"b": "Pamplona",
-			"c": "Valencia",
-			"d": "Madrid"
+			"a": "For the second programmer, the indentation disagrees with the block structure indicated by the curly braces",
+			"b": "For both programmers, line 2 is indented to column 8",
+			"c": "For the second programmer, the else if on line 3 aligns with the if on line 1",
+			"d": "For the second programmer, all four lines look aligned with each other"
 		},
-		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
+		"answer": "3c363836cf4e16666669a25da280a1865c2d2874",
+        "image": "/images/questions/image1.png",
 		"points": 2
 	},
 	{
 		"id": 2,
 		"error": false,
 		"type": "MCQ",
-		"statement": "What is the surname of the Wayne family butler, Alfred ?",
+		"statement": "SPIT IT OUT",
 		"options": {
-			"a": "Montoya",
-			"b": "Pennyworth",
-			"c": "Bullock",
-			"d": "Falcone"
+			"a": "1",
+			"b": "2",
+			"c": "6",
+			"d": "7"
 		},
 		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
+		"image": "/images/questions/image2.png",
 		"points": 2
 	},
 	{
 		"id": 3,
 		"error": false,
 		"type": "MCQ",
-		"statement": "After Cobblepot returned to Gotham, he got a job in the restaurant of a Mob boss, but what job did he get ?",
+		"statement": "SHOULDN'T HAVE REPEATED",
 		"options": {
-			"a": "Waiter",
-			"b": "Chef",
-			"c": "Manager",
-			"d": "Dishwasher"
+			"a": "8",
+			"b": "7",
+			"c": "9",
+			"d": "4"
 		},
+		"image": "/images/questions/image3.png",
 		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
 		"points": 2
 	},
@@ -45,74 +48,87 @@
 		"id": 4,
 		"error": false,
 		"type": "MCQ",
-		"statement": "What friend of Jay's did Mitchell say was gay?",
+		"statement": "Which of the following operators has the lowest precedence?",
 		"options": {
-			"a": "Shortie",
-			"b": "LeMichael",
-			"c": "Leftie",
-			"d": "Rightie"
+			"a": "!=",
+			"b": "&&",
+			"c": "?:",
+			"d": ","
 		},
-		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
+		"answer": "3c363836cf4e16666669a25da280a1865c2d2874",
 		"points": 2
 	},
 	{
 		"id": 5,
 		"error": false,
 		"type": "MCQ",
-		"statement": "Who teaches Gloria how to ride a bike?",
+		"statement": "OUTPUT",
 		"options": {
-			"a": "Jay",
-			"b": "Luke",
-			"c": "Phil",
-			"d": "Gloria"
+			"a": "1",
+			"b": "10",
+			"c": "20",
+			"d": "No output"
 		},
-		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
+		"image": "/images/questions/image5.png",
+		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
 		"points": 2
 	},
 	{
 		"id": 6,
 		"error": false,
 		"type": "MCQ",
-		"statement": "What present did Dylan give Haley on Valentine's Day?",
+		"statement": "What is the size of uint8_t?",
 		"options": {
-			"a": "Rose",
-			"b": "Jar of his tears",
-			"c": "A picture of him and Haley in bed together",
-			"d": "Nothing"
+			"a": "1 Byte",
+			"b": "4 Bytes",
+			"c": "8 Bytes",
+			"d": "16 Bytes"
 		},
-		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
+		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
 		"points": 2
 	},
 	{
 		"id": 7,
 		"error": false,
-		"type": "general",
-		"statement": "Who's afraid of clowns probably because they found one dead in the woods?",
-		"answer": "e888d2bd6f13f82caa51a37c03d034c76f661ba3",
-		"points": 4
+		"type": "MCQ",
+		"statement": "TRUE/FALSE",
+		"options": {
+			"a": "T, F, T",
+			"b": "T, T, F",
+			"c": "F, T, F",
+			"d": "F, T, T"
+		},
+		"image": "/images/questions/image7.png",
+		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
+		"points": 2
 	},
 	{
 		"id": 8,
 		"error": false,
-		"type": "general",
-		"statement": "What did Mitchell dress up as on Halloween at the office?",
-		"answer": "368f976940775c710aec525fe1e349f8a1fb9a39",
-		"points": 4
+		"type": "MCQ",
+		"statement": "SORTING SCENARIOS",
+		"options": {
+			"a": "Quick Sort",
+			"b": "Insertion Sort",
+			"c": "Merge Sort",
+			"d": "Heap Sort"
+		},
+		"image": "/images/questions/image8.png",
+		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
+		"points": 2
 	},
 	{
 		"id": 9,
 		"error": false,
-		"type": "general",
-		"statement": "What is Phil's role play name on Valentine's Day?",
-		"answer": "f88df5f6fe3ea0c02285fd6c01ad7ca2fc12fd71",
-		"points": 4
-	},
-	{
-		"id": 10,
-		"error": false,
-		"type": "general",
-		"statement": "What is Cameron's alter ego clown's name?",
-		"answer": "ed9e911531cb00cceb657af8c1c9ae010df8853f",
-		"points": 4
+		"type": "MCQ",
+		"statement": "Which of the following is NOT possible with any 2 operators in C?",
+		"options": {
+			"a": "Different precedence, same associativity",
+			"b": "Different precedence, different associativity",
+			"c": "Same precedence, different associativity",
+			"d": "All of the mentioned"
+		},
+		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
+		"points": 2
 	}
 ]
