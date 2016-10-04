@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2016 at 06:36 PM
+-- Generation Time: Oct 04, 2016 at 04:55 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -23,6 +23,36 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `answers`
+--
+
+CREATE TABLE `answers` (
+  `username` varchar(128) NOT NULL,
+  `1` varchar(64) NOT NULL,
+  `2` varchar(64) NOT NULL,
+  `3` varchar(64) NOT NULL,
+  `4` varchar(64) NOT NULL,
+  `5` varchar(64) NOT NULL,
+  `6` varchar(64) NOT NULL,
+  `7` varchar(64) NOT NULL,
+  `8` varchar(64) NOT NULL,
+  `9` varchar(64) NOT NULL,
+  `10` varchar(64) NOT NULL,
+  `11` varchar(64) NOT NULL,
+  `12` varchar(64) NOT NULL,
+  `13` varchar(64) NOT NULL,
+  `14` varchar(64) NOT NULL,
+  `15` varchar(64) NOT NULL,
+  `16` varchar(64) NOT NULL,
+  `17` varchar(64) NOT NULL,
+  `18` varchar(64) NOT NULL,
+  `19` varchar(64) NOT NULL,
+  `20` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `info`
 --
 
@@ -36,13 +66,6 @@ CREATE TABLE `info` (
   `level` int(11) NOT NULL,
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `info`
---
-
-INSERT INTO `info` (`id`, `name`, `email`, `username`, `phone`, `points`, `level`, `datetime`) VALUES
-(3, 'Ujjwal Bhardwaj', 'ujjwalb1996@gmail.com', 'ujjwalbhardwaj', '8800370395', 0, 0, '2016-10-01 22:05:01');
 
 --
 -- Indexes for dumped tables
@@ -64,7 +87,7 @@ ALTER TABLE `info`
 -- AUTO_INCREMENT for table `info`
 --
 ALTER TABLE `info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
