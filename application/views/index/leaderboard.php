@@ -10,9 +10,10 @@
         </div>
     </div>
 </nav>
-<div class="view hm-black-light">
-    <div class="full-bg-img flex-center" >
-        <div class="card col-md-8" style="color: black;">
+<div class="container-fluid">
+    <div class="row"  >
+	<div class="col-md-12">
+        <div class="card" style="color: black;margin:70px 80px;">
             <h4 class="card-title animated tada infinite_text" style="padding: 30px 2px 10px 2px;font-weight: 400;">LEADERBOARD</h4>
             <table class = "table table-hover text-xs-center">
                 <thead>
@@ -40,4 +41,5 @@
             </table>
         </div>
     </div>
+	</div>
 </div>

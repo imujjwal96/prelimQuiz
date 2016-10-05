@@ -1,6 +1,7 @@
-<div class="view hm-black-light">
-    <div class="full-bg-img flex-center" >
-        <div class="card">
+<div class="container-fluid">
+    <div class="row"  >
+	<div class="col-md-12">
+        <div class="card" style="margin:50px 80px;">
             <form action="/level/submit" method="POST">
                 <div class="card-block">
                     <h4 class="card-title">Question <?= $this->question->id . '/' . $this->total;?>: <strong> <?= $this->question->statement; ?></strong></h4>
@@ -42,4 +43,5 @@
             </form>
         </div>
     </div>
+</div>
 </div>

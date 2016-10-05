@@ -12,10 +12,24 @@
 		},
 		"answer": "3c363836cf4e16666669a25da280a1865c2d2874",
         "image": "/images/questions/image1.png",
-		"points": 2
+		"points": 4
 	},
 	{
 		"id": 2,
+		"error": false,
+		"type": "MCQ",
+		"statement": "The negative numbers in the binary system can be represented by ?",
+		"options": {
+			"a": "Sign magnitude",
+			"b": "2s complement",
+			"c": "1s Complement",
+			"d": "All of the above"
+		},
+		"answer": "3c363836cf4e16666669a25da280a1865c2d2874",
+		"points": 2
+	},
+	{
+		"id": 3,
 		"error": false,
 		"type": "MCQ",
 		"statement": "SPIT IT OUT",
@@ -27,10 +41,24 @@
 		},
 		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
 		"image": "/images/questions/image2.png",
-		"points": 2
+		"points": 3
 	},
 	{
-		"id": 3,
+		"id": 4,
+		"error": false,
+		"type": "MCQ",
+		"statement": "A man has a job, which requires him to work 8 straight days and rest on the ninth day.  If he started work on Monday, find the day of the week on which he gets his 12th rest day",
+		"options": {
+			"a": "Thursday",
+			"b": "Wednesday",
+			"c": "Tuesday",
+			"d": "Friday"
+		},
+		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
+		"points": 4
+	},
+	{
+		"id": 5,
 		"error": false,
 		"type": "MCQ",
 		"statement": "SHOULDN'T HAVE REPEATED",
@@ -42,10 +70,10 @@
 		},
 		"image": "/images/questions/image3.png",
 		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
-		"points": 2
+		"points": 3
 	},
 	{
-		"id": 4,
+		"id": 6,
 		"error": false,
 		"type": "MCQ",
 		"statement": "Which of the following operators has the lowest precedence?",
@@ -56,10 +84,10 @@
 			"d": ","
 		},
 		"answer": "3c363836cf4e16666669a25da280a1865c2d2874",
-		"points": 2
+		"points": 4
 	},
 	{
-		"id": 5,
+		"id": 7,
 		"error": false,
 		"type": "MCQ",
 		"statement": "OUTPUT",
@@ -71,10 +99,10 @@
 		},
 		"image": "/images/questions/image5.png",
 		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
-		"points": 2
+		"points": 4
 	},
 	{
-		"id": 6,
+		"id": 8,
 		"error": false,
 		"type": "MCQ",
 		"statement": "What is the size of uint8_t?",
@@ -85,10 +113,24 @@
 			"d": "16 Bytes"
 		},
 		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
+		"points": 3
+	},
+	{
+		"id": 9,
+		"error": false,
+		"type": "MCQ",
+		"statement": "If Reena says, Anjali's father Raman is the only son of my father-in-law Ramanand, then how is Piyu, who is the sister of Anjali, related to Ramanand ?",
+		"options": {
+			"a": "Wife",
+			"b": "Sister",
+			"c": "Grand-Daughter",
+			"d": "Daughter"
+		},
+		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
 		"points": 2
 	},
 	{
-		"id": 7,
+		"id": 10,
 		"error": false,
 		"type": "MCQ",
 		"statement": "TRUE/FALSE",
@@ -100,10 +142,25 @@
 		},
 		"image": "/images/questions/image7.png",
 		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
+		"points": 3
+	},
+	{
+		"id": 11,
+		"error": false,
+		"type": "MCQ",
+		"statement": "The figure shown can be folded into the shape of a cube.  In the resulting cube, which of the lettered faces is opposite the face marked x?",
+		"options": {
+			"a": "c",
+			"b": "a",
+			"c": "d",
+			"d": "b"
+		},
+		"image": "/images/questions/image9.png",
+		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
 		"points": 2
 	},
 	{
-		"id": 8,
+		"id": 12,
 		"error": false,
 		"type": "MCQ",
 		"statement": "SORTING SCENARIOS",
@@ -115,10 +172,10 @@
 		},
 		"image": "/images/questions/image8.png",
 		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
-		"points": 2
+		"points": 3
 	},
 	{
-		"id": 9,
+		"id": 13,
 		"error": false,
 		"type": "MCQ",
 		"statement": "Which of the following is NOT possible with any 2 operators in C?",
@@ -129,6 +186,104 @@
 			"d": "All of the mentioned"
 		},
 		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
+		"points": 3
+	},
+	{
+		"id": 14,
+		"error": false,
+		"type": "MCQ",
+		"statement": "Which of the following cannot be checked in a switch-case statement? ",
+		"options": {
+			"a": "Char",
+			"b": "Float",
+			"c": "Int",
+			"d": " Enum"
+		},
+		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
+		"points": 3
+	},
+	{
+		"id": 15,
+		"error": false,
+		"type": "MCQ",
+		"statement": "Three numbers are in the ratio 4 : 5 : 6 and their average is 30 . The largest number is:",
+		"options": {
+			"a": "28",
+			"b": "32",
+			"c": "42",
+			"d": "36"
+		},
+		"answer": "3c363836cf4e16666669a25da280a1865c2d2874",
+		"points": 2
+	},
+	{
+		"id": 16,
+		"error": false,
+		"type": "MCQ",
+		"statement": "Given that 0 < a < b < c < d, which of the following the largest ?",
+		"options": {
+			"a": "(c+d) / (a+b)",
+			"b": "(a+d) / (b+c)",
+			"c": "(b+c) / (a+d)",
+			"d": "(b+d) / (a+c)"
+		},
+		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
+		"points": 4
+	},
+	{
+		"id": 17,
+		"error": false,
+		"type": "MCQ",
+		"statement": "On a 26 question test, five points were deducted for each wrong answer and eight points were added for each correct answer.  If all the questions were answered, how many were correct, if the score was zero ?",
+		"options": {
+			"a": "12",
+			"b": "10",
+			"c": "11",
+			"d": "13"
+		},
+		"answer": "e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98",
+		"points": 4
+	},
+	{
+		"id": 18,
+		"error": false,
+		"type": "MCQ",
+		"statement": "If one-third of one-fourth of a number is 15, then three-tenth of that number is:",
+		"options": {
+			"a": "35",
+			"b": "36",
+			"c": "45",
+			"d": "54"
+		},
+		"answer": "3c363836cf4e16666669a25da280a1865c2d2874",
+		"points": 3
+	},
+	{
+		"id": 19,
+		"error": false,
+		"type": "MCQ",
+		"statement": "If GOODNESS is coded as HNPCODTR then, GREATNESS would be coded as ?",
+		"options": {
+			"a": "HQFZUODTR",
+			"b": "HQFZUMFRT",
+			"c": "HQFZSMFRT",
+			"d": "FSDBSODTR"
+		},
+		"answer": "84a516841ba77a5b4648de2cd0dfcb30ea46dbb4",
+		"points": 2
+	},
+	{
+		"id": 20,
+		"error": false,
+		"type": "MCQ",
+		"statement": "Shell is the exclusive feature of ?",
+		"options": {
+			"a": "UNIX",
+			"b": "DOS",
+			"c": "System Software",
+			"d": "Application Software"
+		},
+		"answer": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
 		"points": 2
 	}
 ]
