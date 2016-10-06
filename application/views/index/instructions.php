@@ -25,11 +25,6 @@
 
         <!--Card Light-->
         <div class="card">
-
-
-            <!--Social shares button-->
-            <a class="activator"><i class="fa fa-share-alt"></i></a>
-
             <!--Card content-->
             <div class="card-block">
                 <!--Title-->
