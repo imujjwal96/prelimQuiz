@@ -17,6 +17,7 @@
             </li>
 			<li>
 				<a href="index/instructions" class="btn btn-default btn-rounded">Instruction</a>
+				<a href="index/leaderboard" class="btn btn-default btn-rounded">Leaderboard</a>
 				</li>
 
         </ul>
