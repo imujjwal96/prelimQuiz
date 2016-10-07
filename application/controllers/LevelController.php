@@ -42,7 +42,7 @@ class LevelController extends Controller {
 
     public function submit() {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            Redirect::to('/level/index');
+            Redirect::to('level/index');
         } else {
             if (isset($_POST["input"]) AND !empty($_POST["input"])) {
                 $input = str_replace(' ', '', strtolower(strip_tags($_POST["input"])));
@@ -57,9 +57,9 @@ class LevelController extends Controller {
                     echo 'error level';
                     exit();
                 }
-                Redirect::to('/level/index');
+                Redirect::to('level/index');
             } else {
-                Redirect::to('/level/index');
+                Redirect::to('level/index');
             }
         }
     }

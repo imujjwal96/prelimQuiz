@@ -27,15 +27,16 @@
                 <tbody>
                 <?php
                     $i = 1;
-                    foreach ($this->users as $user) {
-                        echo '<tr>
+                    if ($this->users) {
+                        foreach ($this->users as $user) {
+                            echo '<tr>
                                     <td>' . $i++ . '</td>
                                     <td>' . $user->name . '</td>
                                     <td>' . $user->username . '</td>
                                     <td>' . $user->points . '</td>
                               </tr>';
+                        }
                     }
-
                 ?>
                 </tbody>
             </table>

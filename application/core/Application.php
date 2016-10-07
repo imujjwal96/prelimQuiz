@@ -32,10 +32,10 @@ class Application {
                     $this->controller->{$this->method}();
                 }
             } else {
-                // Error 404
+                require Config::get('PATH_VIEW') . '404.php';
             }
         } else {
-            // Error 404
+            require Config::get('PATH_VIEW') . '404.php';
         }
     }
 

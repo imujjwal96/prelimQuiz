@@ -9,7 +9,9 @@ class IndexController extends Controller {
         if (LoginModel::isUserLoggedIn()) {
             Redirect::to('level');
         } else {
-            $this->View->render('index/index');
+            $this->View->render('index/index', array(
+                "quizName" => Config::get("QUIZ_NAME")
+            ));
         }
     }
 
@@ -22,5 +24,4 @@ class IndexController extends Controller {
             'users' => UserModel::getUsersByPoints()
         ));
     }
-
 }
