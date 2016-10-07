@@ -62,22 +62,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>CodeRush2016</title>
+    <title>prelimQuiz</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png">
 </head>
 
 <body>
     <div class="container">
-        <h1>prelimQuiz</h1>
-        <h4>Installation</h4>
+
+        <div class="row" style="width: 200px; margin: 0 auto">
+            <img src="images/logo.png" class="img-responsive" width="200px"/>
+
+        </div>
         <div class="row">
+
             <div class="col-md-6 offset-md-3">
                 <form role="form" method="POST" action="install.php">
                     <hr />
-                    <h4>Basic Quiz Information</h4>
+                    <h4 style="text-align: center">Installation</h4>
                     <hr />
                     <div class="form-group">
                         <label class="control-label" for="quiz_name">Name of the Quiz</label>
@@ -92,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </select>
                     </div>
                     <hr />
-                    <h4>Database Information</h4>
+                    <h4 style="text-align: center">Database Information</h4>
                     <hr />
                     <div class="form-group">
                         <label class="control-label" for="db_name">Name of the Database</label>
