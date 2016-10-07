@@ -1,5 +1,7 @@
 <?php
 
+require_once '../application/core/DatabaseFactory.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["quiz_name"], $_POST["quiz_type"], $_POST["db_name"], $_POST["db_type"],
         $_POST["db_user"], $_POST["db_pass"], $_POST["db_port"])) {
@@ -43,9 +45,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
 ';
         if (fwrite($config_file, $content)) {
+            $servername = "127.0.0.1";
+            $username = "username";
+            $password = "password";
+            $dbname = "myDB";
+
+            $database = mysqli_connect($servername, $db_user, $db_pass);
+            if (!$database) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+
+            $create_db_query = "CREATE DATABASE " . $db_name;
+            if (!mysqli_query($database, $create_db_query)) {
+                die(mysqli_error($database));
+            }
+
+            $create_table_query = "CREATE TABLE {$db_name}.`info` ( `id` int(11) NOT NULL,
+                                  `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+                                  `email` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+                                  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+                                  `phone` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+                                  `points` int(11) NOT NULL,
+                                  `level` int(11) NOT NULL,
+                                  `datetime` datetime NOT NULL
+                                   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+            if (!mysqli_query($database, $create_table_query)) {
+                die(mysqli_error($database));
+            }
+            $table_update_query1 = "ALTER TABLE {$db_name}.`info`
+                                   ADD PRIMARY KEY (`id`),
+                                   ADD UNIQUE KEY `email` (`email`,`username`),
+                                   ADD KEY `level` (`points`);";
+            if (!mysqli_query($database, $table_update_query1)) {
+                die(mysqli_error($database));
+            }
+            $table_update_query2 = " ALTER TABLE {$db_name}.`info`
+                                   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;";
+            if (!mysqli_query($database, $table_update_query2)) {
+                die(mysqli_error($database));
+            }
             header('Location: /');
         } else {
-            die('couldnot write file.');
+            die('could not write file.');
         }
     } else {
         die("not set");
