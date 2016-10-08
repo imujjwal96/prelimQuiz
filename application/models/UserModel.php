@@ -1,7 +1,16 @@
 <?php
 
+
+/**
+ * Class UserModel
+ * Handles all the User Profile stuff
+ */
 class UserModel {
 
+    /**
+     * Checks if there is any user in the database
+     * @return bool true if users exist else false
+     */
     public static function doesUsersExist() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -15,6 +24,10 @@ class UserModel {
         return false;
     }
 
+    /**
+     * Get user in an order of descresing points
+     * @return array|bool array of user objects if users exist else false
+     */
     public static function getUsersByPoints() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -29,6 +42,11 @@ class UserModel {
 
     }
 
+    /**
+     * Gets a user by ID
+     * @param int $userID. The user's id
+     * @return bool|mixed object of user's details if user found else false
+     */
     public static function getUserByID($userID) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -42,6 +60,11 @@ class UserModel {
         return false;
     }
 
+    /**
+     * Gets a user by email
+     * @param string $email. User's email address
+     * @return bool|mixed object of user's details if user is found else false
+     */
     public static function getUserByEmail($email) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -55,6 +78,11 @@ class UserModel {
         return false;
     }
 
+    /**
+     * Gets a user by username
+     * @param string $userName. The user's username
+     * @return bool|mixed object of user's details if user is found else false
+     */
     public static function getUserByUsername($userName) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -68,6 +96,11 @@ class UserModel {
         return false;
     }
 
+    /**
+     * Increments points of a user (after each correct answer)
+     * @param int $points Value by which the points are to be incremented
+     * @return bool true if successfully incremented else false
+     */
     public static function incrementPoints($points) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -83,6 +116,10 @@ class UserModel {
         return false;
     }
 
+    /**
+     * Increments Level of a user.
+     * @return bool true if incremented successfully else false.
+     */
     public static function incrementLevel() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -97,6 +134,10 @@ class UserModel {
         return false;
     }
 
+    /**
+     * Gets a user's level.
+     * @return bool|int The current level of the user else false.
+     */
     public static function getUserLevel() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -112,6 +153,10 @@ class UserModel {
         return false;
     }
 
+    /**
+     * Checks if a user is admin
+     * @return bool true if admin else false
+     */
     public static function isAdmin() {
         $database = DatabaseFactory::getFactory()->getConnection();
 

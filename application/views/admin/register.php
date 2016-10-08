@@ -1,15 +1,3 @@
-<nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar bg-transparent">
-    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
-        <i class="fa fa-bars"></i>
-    </button>
-    <div class="container">
-        <div class="collapse navbar-toggleable-xs" id="collapseEx2">
-            <a class="navbar-brand" href="/" style="font-weight: 100"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp Back </a>
-            <a class="navbar-brand" style="float: right;font-weight: 100 " href="/index/instructions"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp Instruction</a>
-        </div>
-    </div>
-</nav>
-
 <div class="view hm-black-light">
     <div class="full-bg-img flex-center" >
         <form action="/admin/register" method="POST">

@@ -9,9 +9,14 @@ class IndexController extends Controller {
         if (LoginModel::isUserLoggedIn()) {
             Redirect::to('level');
         } else {
-            $this->View->render('index/index', array(
-                "quizName" => Config::get("QUIZ_NAME")
-            ));
+            if (UserModel::doesUsersExist()) {
+                $this->View->render('index/index', array(
+                    "quizName" => Config::get("QUIZ_NAME")
+                ));
+            } else {
+                Redirect::to('admin');
+            }
+
         }
     }
 
