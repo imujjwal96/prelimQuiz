@@ -2,30 +2,31 @@
 
 class RegisterModel {
 
-    public static function registerNewUser($name, $email, $userName,  $phone) {
+    public static function registerNewUser($name, $email, $userName,  $phone, $role = 'contestant') {
 
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "INSERT INTO info (name, email, username, phone, points, level, datetime) VALUES (:name, :email, :username, :phone, '0', '0', NOW())";
+        $sql = "INSERT INTO info (name, email, username, phone, points, level, role, datetime) VALUES (:name, :email, :username, :phone, '0', '0', :role, NOW())";
         $query = $database->prepare($sql);
         $query->execute(array(
             ':name' => $name,
             ':email' => $email,
             ':username' => $userName,
-            ':phone' => $phone
+            ':phone' => $phone,
+            ':role' => $role
             ));
 
-        $sql2 = "INSERT INTO answers (username) VALUES (:username)";
-        $query2 = $database->prepare($sql2);
-        $query2->execute(array(
-            ':username' => $userName
-        ));
-
+        if ($role != 'admin') {
+            $sql2 = "INSERT INTO answers (username) VALUES (:username)";
+            $query2 = $database->prepare($sql2);
+            $query2->execute(array(
+                ':username' => $userName
+            ));
+        }
         $count =  $query->rowCount();
         if ($count == 1) {
             return true;
         }
-
         return false;
     }
 

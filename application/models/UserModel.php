@@ -165,7 +165,7 @@ class UserModel {
             ':username' => Session::get('user_name')
         ));
 
-        if ($query->role == "admin") {
+        if ($query->fetch()->role == "admin") {
             return true;
         }
         return false;

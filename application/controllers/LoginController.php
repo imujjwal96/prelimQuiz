@@ -23,8 +23,12 @@ class LoginController extends Controller {
             $loginSuccessful = LoginModel::login($userName, $phone);
 
             if ($loginSuccessful) {
-                $result = UserModel::getUserByUsername($userName);
-                Redirect::to('level/index/'.$result->level);
+                if (UserModel::isAdmin()) {
+                    Redirect::to('admin/dashboard');
+                } else {
+                    $result = UserModel::getUserByUsername($userName);
+                    Redirect::to('level/index/'.$result->level);
+                }
             } else {
                 echo 'Failed to login';
             }

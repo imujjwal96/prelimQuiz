@@ -7,7 +7,11 @@ class IndexController extends Controller {
 
     public function index() {
         if (LoginModel::isUserLoggedIn()) {
-            Redirect::to('level');
+            if (UserModel::isAdmin()) {
+                Redirect::to('admin/dashboard');
+            } else {
+                Redirect::to('level');
+            }
         } else {
             if (UserModel::doesUsersExist()) {
                 $this->View->render('index/index', array(
