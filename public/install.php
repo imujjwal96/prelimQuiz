@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                   `phone` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
                                   `points` int(11) NOT NULL,
                                   `level` int(11) NOT NULL,
+                                  `role` varchar(11) COLLATE utf_unicode_ci NOT NULL,
                                   `datetime` datetime NOT NULL
                                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
             if (!mysqli_query($database, $create_table_query)) {

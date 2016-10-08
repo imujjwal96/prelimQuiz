@@ -2,6 +2,19 @@
 
 class UserModel {
 
+    public static function doesUsersExist() {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT * FROM info";
+        $query = $database->prepare($sql);
+        $query->execute();
+
+        if ($query->rowCount() != 0) {
+            return true;
+        }
+        return false;
+    }
+
     public static function getUsersByPoints() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -95,6 +108,20 @@ class UserModel {
 
         if ($query->rowCount() == 1) {
             return $query->fetch()->level;
+        }
+        return false;
+    }
+
+    public static function isAdmin() {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $query = $database->prepare("SELECT role FROM info WHERE username = :username");
+        $query->execute(array(
+            ':username' => Session::get('user_name')
+        ));
+
+        if ($query->role == "admin") {
+            return true;
         }
         return false;
     }
