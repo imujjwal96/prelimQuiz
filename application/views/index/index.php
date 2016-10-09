@@ -1,5 +1,3 @@
-
-<!--Mask-->
 <div class="view hm-black-light">
     <div class="full-bg-img flex-center">
         <ul>
@@ -21,4 +19,3 @@
         </ul>
     </div>
 </div>
-<!--/.Mask-->

@@ -1,0 +1,15 @@
+{
+    "name": "imujjwal96/prelim-quiz",
+    "description": "prelimQuiz is an open source, simple and powerful self-hosted quiz platform with the backend of Object Oriented PHP that lets an organiser host a quiz either on a local server or in the cloud.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ujjwal Bhardwaj",
+            "email": "ujjwalb1996@gmail.com"
+        }
+    ],
+    "require": {
+        "mongodb/mongodb": "^1.0"
+    }
+}

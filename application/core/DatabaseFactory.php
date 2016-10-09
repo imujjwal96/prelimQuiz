@@ -3,6 +3,7 @@
 class DatabaseFactory {
     private static $factory;
     private $database;
+    private $databaseMongo;
 
     public static function getFactory() {
         if (!self::$factory) {
@@ -33,6 +34,10 @@ class DatabaseFactory {
             }
         }
         return $this->database;
+    }
+
+    public function getConnectionMongo() {
+
     }
 
 

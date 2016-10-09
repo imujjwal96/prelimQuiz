@@ -1,2 +1,3 @@
 .idea/
 application/config/config.php
+vendor/

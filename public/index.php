@@ -2,7 +2,7 @@
 
 
 if (!file_exists('../application/config/config.php')) {
-    header('Location: install.php');
+    header('Location: /install.php');
     die;
 }
 
