@@ -65,4 +65,10 @@ class AdminController extends Controller
             $this->View->render('admin/dashboard');
         }
     }
+
+    public function question($action) {
+        if ($action == "add") {
+            $this->View->render('admin/questions/add');
+        }
+    }
 }

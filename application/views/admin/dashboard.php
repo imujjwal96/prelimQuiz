@@ -5,8 +5,8 @@
                 <h1 class="h1-responsive wow fadeInUp title"><?= Config::get('QUIZ_NAME') ?></h1>
             </li>
             <li>
-                <a href="/register" class="btn btn-default btn-rounded">Add Instructions</a>
-                <a href="/login" class="btn btn-default btn-rounded">Add a Question</a>
+                <a href="/admin/instructions" class="btn btn-default btn-rounded">Add Instructions</a>
+                <a href="/admin/question/add" class="btn btn-default btn-rounded">Add a Question</a>
             </li>
             <li>
                 <a href="index/instructions" class="btn btn-default btn-rounded">Edit a Question</a>

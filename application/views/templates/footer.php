@@ -14,7 +14,11 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/js/mdb.min.js"></script>
 
-
+<script>
+    $("#question_type").on("change", function() {
+        $("#" + $(this).val()).show().siblings().hide();
+    })
+</script>
 </body>
 
 </html>
