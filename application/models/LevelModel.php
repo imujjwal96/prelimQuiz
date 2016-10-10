@@ -70,4 +70,28 @@ class LevelModel {
         return false;
     }
 
+    public static function storeMCQQuestion($questionStatement, $optionA, $optionB, $optionC, $optionD, $answer) {
+        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+
+        $questions = $databaseMongo->selectCollection("questions");
+
+        $document = array(
+            "type" => "MCQ",
+            "statement" => $questionStatement,
+            "options" => [
+                "a" => $optionA,
+                "b" => $optionB,
+                "c" => $optionC,
+                "d" => $optionD
+            ],
+            "answer" => $answer
+        );
+
+        $questions->insertOne($document);
+    }
+
+    public static function storeGeneralQuestion() {
+
+    }
+
 }

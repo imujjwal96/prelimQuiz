@@ -6,6 +6,7 @@ if (!file_exists('../application/config/config.php')) {
     die;
 }
 
+require '../vendor/autoload.php';
 require_once '../application/init.php';
 
 $application = new Application();

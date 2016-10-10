@@ -68,7 +68,43 @@ class AdminController extends Controller
 
     public function question($action) {
         if ($action == "add") {
-            $this->View->render('admin/questions/add');
+            if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                $this->View->render('admin/questions/add', array(
+                    "quiz_type" => Config::get("QUIZ_TYPE")
+                ));
+            } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST["mcq"])) {
+                    if (isset($_POST["question_statement"], $_POST["option_a"], $_POST["option_b"], $_POST["option_c"],
+                        $_POST["option_d"], $_POST["answer"])) {
+                        $questionStatement = htmlspecialchars($_POST["question_statement"]);
+                        $optionA = htmlspecialchars($_POST["option_a"]);
+                        $optionB = htmlspecialchars($_POST["option_b"]);
+                        $optionC = htmlspecialchars($_POST["option_c"]);
+                        $optionD = htmlspecialchars($_POST["option_d"]);
+                        $answer = htmlspecialchars($_POST["answer"]);
+
+                        LevelModel::storeMCQQuestion($questionStatement, $optionA, $optionB, $optionC, $optionD, $answer);
+                    }
+                } elseif (isset($_POST["general"])) {
+
+                } else {
+
+                }
+            }
+        } else {
+            if (LevelModel::getTotalQuestions() != 0) {
+                if ($action == "edit") {
+                    $this->View->render('admin/questions/edit');
+                } elseif ($action == "delete") {
+                    $this->View->render('admin/questions/delete');
+                }
+            } else {
+                echo 'No Questions Exist';
+            }
         }
+    }
+
+    public function instructions() {
+        $this->View->render('admin/instructions');
     }
 }

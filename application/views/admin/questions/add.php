@@ -6,9 +6,19 @@
             <hr />
             <label for="question_type">Type of the Question</label>
             <select class="form-control" name="quesion_type" id="question_type">
+
                 <option value="" selected></option>
-                <option value="mcq">MCQ</option>
-                <option value="general">General</option>
+                <?php
+                if($this->quiz_type == "MCQ") {
+                    echo '<option value="mcq">MCQ</option>';
+                }else if ($this->quiz_type == "General") {
+                    echo '<option value="general">General</option>';
+                } else {
+                    echo '<option value="mcq">MCQ</option>';
+                    echo '<option value="general">General</option>';
+                }
+                ?>
+
             </select>
             <form name="mcq" id="mcq" role="form" method="POST" action="" style="display:none">
                 <hr />
@@ -42,7 +52,7 @@
                     <option value="c">C</option>
                     <option value="d">D</option>
                 </select>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" name = "mcq" class="btn btn-default">Submit</button>
             </form>
 
             <form name="general" id="general" role="form" method="POST" action="" style="display:none">
@@ -57,7 +67,7 @@
                     <label class="control-label" for="answer">Answer: </label>
                     <input type="text" class="form-control" name="answer" id="answer" placeholder="Answer">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" name="general" class="btn btn-default">Submit</button>
             </form>
 
         </div>
