@@ -13,8 +13,13 @@ class AdminController extends Controller
         if (!UserModel::doesUsersExist()) {
             $this->View->render('admin/register');
         } else {
-            // Check if Logged in
-            // If not logged in, login page
+            if (LoginModel::isUserLoggedIn() && UserModel::isAdmin()) {
+                Redirect::to('/admin/dashboard');
+            } elseif (!LoginModel::isUserLoggedIn()) {
+                Redirect::to('/login');
+            } else {
+                Redirect::to('/index');
+            }
         }
     }
 
@@ -47,18 +52,6 @@ class AdminController extends Controller
         }
     }
 
-    public function login()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-        } else {
-            // Check if logged in
-
-            //if not logged in
-            $this->View->render('admin/login');
-        }
-    }
-
     public function dashboard()
     {
         if (LoginModel::isUserLoggedIn() && UserModel::isAdmin()) {
@@ -83,10 +76,23 @@ class AdminController extends Controller
                         $optionD = htmlspecialchars($_POST["option_d"]);
                         $answer = htmlspecialchars($_POST["answer"]);
 
-                        LevelModel::storeMCQQuestion($questionStatement, $optionA, $optionB, $optionC, $optionD, $answer);
+                        if (LevelModel::storeMCQQuestion($questionStatement, $optionA, $optionB, $optionC, $optionD, $answer)) {
+                            Redirect::to('/admin/dashboard');
+                        } else {
+                            echo 'Could not store the question.';
+                        }
                     }
                 } elseif (isset($_POST["general"])) {
+                    if (isset($_POST["question_statement"], $_POST["answer"])) {
+                        $questionStatement = htmlspecialchars($_POST["question_statement"]);
+                        $answer = htmlspecialchars($_POST["answer"]);
 
+                        if (LevelModel::storeGeneralQuestion($questionStatement, $answer)) {
+                            Redirect::to('/admin/dashboard');
+                        } else {
+                            echo 'Could not store the question.';
+                        }
+                    }
                 } else {
 
                 }

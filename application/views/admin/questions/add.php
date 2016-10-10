@@ -60,7 +60,7 @@
                 <h4 style="text-align: center">General Question</h4>
                 <hr />
                 <div class="form-group">
-                    <label class="control-label" for="question_title">Statement:</label>
+                    <label class="control-label" for="question_statement">Statement:</label>
                     <input type="text" class="form-control" name="question_statement" id="question_statement" placeholder="Statement of the Question">
                 </div>
                 <div class="form-group">

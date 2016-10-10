@@ -24,12 +24,8 @@ class DatabaseFactory {
                 $this->database->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             } catch (PDOException $e) {
 
-                // Echo custom message. Echo error code gives you some info.
                 echo 'Database connection can not be estabilished. Please try again later.' . '<br>';
                 echo 'Error code: ' . $e->getCode();
-
-                // Stop application :(
-                // No connection, reached limit connections etc. so no point to keep it running
                 exit;
             }
         }
@@ -38,6 +34,7 @@ class DatabaseFactory {
 
     public function getConnectionMongo() {
         if (!$this->databaseMongo) {
+
             $connection = new MongoDB\Client("mongodb://localhost:27017");
             $this->databaseMongo = $connection->selectDatabase(Config::get('DB_NAME'));
         }

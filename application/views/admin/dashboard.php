@@ -12,6 +12,9 @@
                 <a href="/admin/question/edit" class="btn btn-default btn-rounded">Edit a Question</a>
                 <a href="/admin/question/delete" class="btn btn-default btn-rounded">Delete a Question</a>
             </li>
+            <li>
+                <a href="/login/logout" class="btn btn-default btn-rounded">Logout</a>
+            </li>
 
         </ul>
     </div>

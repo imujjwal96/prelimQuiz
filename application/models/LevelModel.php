@@ -72,9 +72,7 @@ class LevelModel {
 
     public static function storeMCQQuestion($questionStatement, $optionA, $optionB, $optionC, $optionD, $answer) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
-
         $questions = $databaseMongo->selectCollection("questions");
-
         $document = array(
             "type" => "MCQ",
             "statement" => $questionStatement,
@@ -86,12 +84,24 @@ class LevelModel {
             ],
             "answer" => $answer
         );
-
-        $questions->insertOne($document);
+        if ($questions->insertOne($document)) {
+            return true;
+        }
+        return false;
     }
 
-    public static function storeGeneralQuestion() {
-
+    public static function storeGeneralQuestion($questionStatement, $answer) {
+        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $questions = $databaseMongo->selectCollection("questions");
+        $document = array(
+            "type" => "General",
+            "statement" => $questionStatement,
+            "answer" => $answer
+        );
+        if ($questions->insertOne($document)) {
+            return true;
+        }
+        return false;
     }
 
 }
