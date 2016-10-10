@@ -11,5 +11,8 @@
     ],
     "require": {
         "mongodb/mongodb": "^1.0"
+    },
+    "autoload": {
+        "psr-4": { "": ["application/core/", "application/models/"] }
     }
 }
