@@ -45,9 +45,8 @@ class LevelController extends Controller {
             Redirect::to('level/index');
         } else {
             if (isset($_POST["input"]) AND !empty($_POST["input"])) {
-                $input = str_replace(' ', '', strtolower(strip_tags($_POST["input"])));
-                LevelModel::storeUserAnswer($input, UserModel::getUserLevel());
-                if (LevelModel::getAnswer() == sha1($input)) {
+                $input = htmlspecialchars($_POST["input"]);
+                if (LevelModel::getAnswer() == $input) {
                     if (!UserModel::incrementPoints(LevelModel::getQuestionPoints())) {
                         echo 'error points';
                         exit();

@@ -18,6 +18,7 @@ class LevelModel {
             if ($i == $level) {
                 return $question;
             }
+            $i++;
         }
         return false;
     }

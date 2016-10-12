@@ -1,27 +1,15 @@
-<!--Navbar-->
 <nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar bg-transparent">
-
-    <!-- Collapse button-->
     <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
         <i class="fa fa-bars"></i>
-
     </button>
-
     <div class="container">
-
-        <!--Collapse content-->
         <div class="collapse navbar-toggleable-xs" id="collapseEx2">
-            <!--Navbar Brand-->
 			<a class="navbar-brand" style="font-weight: 100 " href="../../index/leaderboard"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp Leaderboard</a>
             <a class="navbar-brand" href="../../login/logout" style="float: right;font-weight: 100"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp Quit</a>
-           
         </div>
-        <!--/.Collapse content-->
 
     </div>
-
 </nav>
-<!--/.Navbar-->
 
 <div class="container-fluid">
     <div class="row"  >
@@ -29,7 +17,7 @@
         <div class="card" style="margin:80px 80px;">
             <form action="/level/submit" method="POST">
                 <div class="card-block">
-                    <h4 class="card-title">Question <?= $this->question->id . '/' . $this->total;?>: <strong> <?= $this->question->statement; ?></strong></h4>
+                    <h4 class="card-title">Question <?= (UserModel::getUserLevel() + 1) . '/' . $this->total;?>: <strong> <?= $this->question->statement; ?></strong></h4>
                     <hr />
                     <?php if (isset($this->question->image) && !empty($this->question->image)) {
                         echo '<img src="'. $this->question->image . '"/>';
