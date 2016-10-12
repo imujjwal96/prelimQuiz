@@ -109,4 +109,10 @@ class LevelModel {
         $questions = $databaseMongo->selectCollection("questions");
         return $questions->find()->toArray();
     }
+
+    public static function deleteQuestionById($id) {
+        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+
+        $deleteResult = $databaseMongo->selectCollection("questions")->deleteOne(['_id' => $id]);
+    }
 }

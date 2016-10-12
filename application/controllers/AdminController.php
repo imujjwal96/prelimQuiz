@@ -104,7 +104,18 @@ class AdminController extends Controller
                         "questions" => LevelModel::getQuestions()
                     ));
                 } elseif ($action == "delete") {
-                    $this->View->render('admin/questions/delete');
+                    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                        $this->View->render('admin/questions/delete',array(
+                            "questions" => LevelModel::getQuestions()
+                        ));
+                    } else {
+                        if (isset($_POST["question_id"])) {
+                            $questionId = htmlspecialchars($_POST["question_id"]);
+                            LevelModel::deleteQuestionById($questionId);
+                            Redirect::to('admin/question/delete');
+                        }
+                    }
+
                 }
             } else {
                 echo 'No Questions Exist';
