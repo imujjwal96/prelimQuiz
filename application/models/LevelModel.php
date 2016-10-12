@@ -11,26 +11,22 @@ class LevelModel {
     }
 
     public static function getCurrentQuestion() {
-        $str = file_get_contents('../database/questions_sample.json');
+        $questions = self::getQuestions();
         $level = self::getUserLevel();
-        $json = json_decode($str);
-
-        foreach ($json as $item) {
-            if ($item->id == ($level + 1)) {
-                return $item;
+        $i = 0;
+        foreach ($questions as $question) {
+            if ($i == $level) {
+                return $question;
             }
         }
         return false;
     }
 
     public static function getTotalQuestions() {
-        $str = file_get_contents('../database/questions_sample.json');
-        $json = json_decode($str);
-        $i = 0;
-        foreach ($json as $item) {
-            $i++;
-        }
-        return $i;
+        $database = DatabaseFactory::getFactory()->getConnectionMongo();
+        $questions = $database->selectCollection("questions");
+
+        return $questions->count();
     }
 
     public static function getQuestionType() {
@@ -42,32 +38,11 @@ class LevelModel {
     }
 
     public static function getQuestionPoints() {
-        return self::getCurrentQuestion()->points;
+        return self::getCurrentQuestion()->points ? self::getCurrentQuestion()->points  : 2;
     }
 
     public static function getAnswer() {
         return self::getCurrentQuestion()->answer;
-    }
-
-    public static function storeUserAnswer($input, $level) {
-        $database = DatabaseFactory::getFactory()->getConnection();
-        $level = $level + 1;
-        $query = $database->prepare("UPDATE answers SET `$level` = :input WHERE username = :username LIMIT 1");
-        $query->execute(array(
-            ':input' => $input,
-            ':username' => Session::get('user_name')
-        ));
-
-        $query = $database->prepare("UPDATE info SET datetime = NOW() WHERE username = :username LIMIT 1");
-        $query->execute(array(
-            ':username' => Session::get('user_name')
-        ));
-
-        $count = $query->rowCount();
-        if ($count == 1) {
-            return true;
-        }
-        return false;
     }
 
     public static function storeMCQQuestion($questionStatement, $optionA, $optionB, $optionC, $optionD, $answer) {

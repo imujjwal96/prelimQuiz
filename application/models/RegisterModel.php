@@ -16,13 +16,6 @@ class RegisterModel {
             ':role' => $role
             ));
 
-        if ($role != 'admin') {
-            $sql2 = "INSERT INTO answers (username) VALUES (:username)";
-            $query2 = $database->prepare($sql2);
-            $query2->execute(array(
-                ':username' => $userName
-            ));
-        }
         $count =  $query->rowCount();
         if ($count == 1) {
             return true;
