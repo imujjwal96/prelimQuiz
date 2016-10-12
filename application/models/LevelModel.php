@@ -104,4 +104,9 @@ class LevelModel {
         return false;
     }
 
+    public static function getQuestions() {
+        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $questions = $databaseMongo->selectCollection("questions");
+        return $questions->find()->toArray();
+    }
 }

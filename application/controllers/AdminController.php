@@ -100,7 +100,9 @@ class AdminController extends Controller
         } else {
             if (LevelModel::getTotalQuestions() != 0) {
                 if ($action == "edit") {
-                    $this->View->render('admin/questions/edit');
+                    $this->View->render('admin/questions/edit', array(
+                        "questions" => LevelModel::getQuestions()
+                    ));
                 } elseif ($action == "delete") {
                     $this->View->render('admin/questions/delete');
                 }
