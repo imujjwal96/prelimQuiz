@@ -15,17 +15,20 @@ class RegisterModel {
      * @param string $role. User's role (admin / contestant)
      * @return bool true if user registered successfully, else false
      */
-    public static function registerNewUser($name, $email, $userName,  $phone, $role = 'contestant') {
+    public static function registerNewUser($name, $email, $userName, $phone, $password, $role = 'contestant') {
 
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "INSERT INTO info (name, email, username, phone, points, level, role, datetime) VALUES (:name, :email, :username, :phone, '0', '0', :role, NOW())";
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO info (name, email, username, phone, password, points, level, role, datetime) VALUES (:name, :email, :username, :phone, :password,  '0', '0', :role, NOW())";
         $query = $database->prepare($sql);
         $query->execute(array(
             ':name' => $name,
             ':email' => $email,
             ':username' => $userName,
             ':phone' => $phone,
+            ':password' => $passwordHash,
             ':role' => $role
             ));
 

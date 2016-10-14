@@ -33,7 +33,7 @@
                     <h1 class="h1-responsive wow fadeInUp title" >Hey, Start your CodeRush Test Level 0</h1></li>
                 <li>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="md-form">
                                 <input type="text" id="form1" class="form-control" name="username">
                                 <label for="form1">Username</label>
@@ -42,19 +42,25 @@
                         <div class="col-md-3">
                             <div class="md-form">
                                 <input type="text" id="form2" class="form-control" name="name">
-                                <label for="form1">Name</label>
+                                <label for="form2">Name</label>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="md-form">
                                 <input type="text" id="form3" class="form-control" name="email">
-                                <label for="form2">Email</label>
+                                <label for="form3">Email</label>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="md-form">
                                 <input type="text" id="form4" class="form-control" name="phone">
-                                <label for="form3">Phone</label>
+                                <label for="form4">Phone</label>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="md-form">
+                                <input type="password" id="form5" class="form-control" name="password">
+                                <label for="form5">Password</label>
                             </div>
                         </div>
                     </div>

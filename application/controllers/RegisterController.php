@@ -19,19 +19,24 @@ class RegisterController extends Controller {
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $userName = strip_tags($_POST['username']);
             $phone = strip_tags($_POST['phone']);
+            $password = strip_tags($_POST['password']);
 
             if (!RegisterModel::formValidation($userName, $email)) {
                 echo 'Invalid Credentials';
             }
             if (!UserModel::getUserByEmail($email)) {
-                if (RegisterModel::registerNewUser($name, $email, $userName,  $phone)) {
-                    if (LoginModel::login($userName, $phone)) {
-                        Redirect::to('level/index/0');
-                    }
+                if (!UserModel::getUserByUsername($userName)) {
+                    if (RegisterModel::registerNewUser($name, $email, $userName, $phone, $password)) {
+                        if (LoginModel::login($userName, $phone)) {
+                            Redirect::to('level/index/0');
+                        }
 
-                    echo 'Registered Successfully';
+                        echo 'Registered Successfully';
+                    } else {
+                        echo 'Error with the DB';
+                    }
                 } else {
-                    echo 'Error with the DB';
+                    echo 'User with username: ' . $userName . ' already exists.';
                 }
             } else {
                 echo 'User with email: ' . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . ' already exists.';

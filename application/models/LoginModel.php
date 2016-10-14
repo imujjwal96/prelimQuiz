@@ -12,13 +12,13 @@ class LoginModel {
      * @param string $userPhone. User's phone number
      * @return bool true if user successfully logged in, else false
      */
-    public static function login($userName, $userPhone) {
-        if (empty($userName) OR empty($userPhone)) {
+    public static function login($userName, $userPassword) {
+        if (empty($userName) OR empty($userPassword)) {
             echo 'Empty Credentials';
             return false;
         }
 
-        $result = self::validateAndGetUser($userName, $userPhone);
+        $result = self::validateAndGetUser($userName, $userPassword);
 
         if (!$result) {
             return false;
@@ -84,11 +84,11 @@ class LoginModel {
 
     /**
      * Validates the user credentials and get user info
-     * @param stirng $userName. User's username
+     * @param string $userName. User's username
      * @param string $userPhone. User's phone number
      * @return bool|mixed User object if the credentials are correct, else returns false
      */
-    private static function validateAndGetUser($userName, $userPhone)
+    private static function validateAndGetUser($userName, $userPassword)
     {
 
         $result = UserModel::getUserByUsername($userName);
@@ -98,13 +98,10 @@ class LoginModel {
             return false;
         }
 
-        // if hash of provided password does NOT match the hash in the database: +1 failed-login counter
-        if (strcmp($userPhone, $result->phone) != 0) {
-            echo 'Phone number didn\'t match';
+        if (!password_verify($userPassword, $result->password)) {
             return false;
         }
 
         return $result;
     }
-
 }

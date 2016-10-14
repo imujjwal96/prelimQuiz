@@ -18,9 +18,9 @@ class LoginController extends Controller {
     public function action() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userName = strip_tags($_POST['username']);
-            $phone = strip_tags($_POST['phone']);
+            $password = strip_tags($_POST['password']);
 
-            $loginSuccessful = LoginModel::login($userName, $phone);
+            $loginSuccessful = LoginModel::login($userName, $password);
 
             if ($loginSuccessful) {
                 if (UserModel::isAdmin()) {
