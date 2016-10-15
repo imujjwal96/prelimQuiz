@@ -33,6 +33,7 @@
                     </div>
                 </li>
                 <li>
+                 <input type="hidden" name="token" id="token" value="<?= $this->tokens; ?>"/>
                     <div class="md-form">
                         <button type="submit" class="btn btn-default btn-rounded">Register</button>
                     </div>

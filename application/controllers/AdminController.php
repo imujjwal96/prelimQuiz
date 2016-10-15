@@ -10,8 +10,9 @@ class AdminController extends Controller
 
     public function index()
     {
+    	$data = array('tokens' => $_SESSION ['token']);
         if (!UserModel::doesUsersExist()) {
-            $this->View->render('admin/register');
+            $this->View->render('admin/register',$data);
         } else {
             if (LoginModel::isUserLoggedIn() && UserModel::isAdmin()) {
                 Redirect::to('/admin/dashboard');
@@ -25,13 +26,15 @@ class AdminController extends Controller
 
     public function register()
     {
+    	$timestamp_old = time() - (15*60);
+    	$csr_check= (isset($_SESSION['token']) && isset($_SESSION['token_time']) && isset($_POST['token'])) && ($_SESSION['token'] == $_POST['token']) && ($_SESSION['token_time'] >= $timestamp_old);
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $name = strip_tags($_POST['name']);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $userName = strip_tags($_POST['username']);
             $phone = strip_tags($_POST['phone']);
 
-            if (!RegisterModel::formValidation($userName, $email)) {
+            if (!RegisterModel::formValidation($userName, $email) or !$csr_check) {
                 echo 'Invalid Credentials';
             }
             if (!UserModel::getUserByEmail($email)) {
