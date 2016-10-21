@@ -15,7 +15,7 @@
     <link rel="icon" href="images/favicon.png">
     <style>
         body {
-            background: url("/images/404.png")no-repeat center fixed;
+            background: url("/images/404.jpg")no-repeat center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -25,8 +25,11 @@
 </head>
 
 <body>
-
-
+<div class="container-fluid" style="margin-top:6em">
+<p style="text-align: -webkit-center;margin-bottom:-18px;color:#969696">Sorry, We Could'nt find that page</p>
+<h1 style="font-size: 50vh;text-align: -webkit-center;font-weight: 900;color: #678fff;">404</h1>
+<a href="../index" style="text-align: -webkit-center;"><p style="color:#fff"> GO TO HOMEPAGE </p></a>
+</div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
