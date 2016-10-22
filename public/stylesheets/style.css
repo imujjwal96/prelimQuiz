@@ -43,7 +43,7 @@ input[type="text"]:not([readonly])+label {
 input[type="text"]:focus:not([readonly])+label {
 	color:#fff;
 }
-.infinite_text{
+.infinite_text {
 	color: #ffe276;
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
