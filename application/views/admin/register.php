@@ -26,8 +26,8 @@
                         </div>
                         <div class="col-md-3">
                             <div class="md-form">
-                                <input type="text" id="form4" class="form-control" name="phone">
-                                <label for="form3">Password</label>
+                                <input type="password" id="form4" class="form-control" name="password">
+                                <label for="form4">Password</label>
                             </div>
                         </div>
                     </div>

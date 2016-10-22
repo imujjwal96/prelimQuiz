@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                   `email` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
                                   `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
                                   `phone` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-                                  `password` varchar(128) COLLATE utf8_unicode NOT NULL,
+                                  `password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
                                   `points` int(11) NOT NULL,
                                   `level` int(11) NOT NULL,
                                   `role` varchar(11) COLLATE utf8_unicode_ci NOT NULL,

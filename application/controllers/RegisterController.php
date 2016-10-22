@@ -27,7 +27,7 @@ class RegisterController extends Controller {
             if (!UserModel::getUserByEmail($email)) {
                 if (!UserModel::getUserByUsername($userName)) {
                     if (RegisterModel::registerNewUser($name, $email, $userName, $phone, $password)) {
-                        if (LoginModel::login($userName, $phone)) {
+                        if (LoginModel::login($userName, $password)) {
                             Redirect::to('level/index/0');
                         }
 

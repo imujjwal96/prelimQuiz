@@ -12,14 +12,14 @@ class AdminController extends Controller
     {
         if (!UserModel::doesUsersExist()) {
             $this->View->render('admin/register');
+            return;
+        }
+        if (LoginModel::isUserLoggedIn() && UserModel::isAdmin()) {
+            Redirect::to('/admin/dashboard');
+        } elseif (!LoginModel::isUserLoggedIn()) {
+            Redirect::to('/login');
         } else {
-            if (LoginModel::isUserLoggedIn() && UserModel::isAdmin()) {
-                Redirect::to('/admin/dashboard');
-            } elseif (!LoginModel::isUserLoggedIn()) {
-                Redirect::to('/login');
-            } else {
-                Redirect::to('/index');
-            }
+            Redirect::to('/index');
         }
     }
 
@@ -29,14 +29,15 @@ class AdminController extends Controller
             $name = strip_tags($_POST['name']);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $userName = strip_tags($_POST['username']);
-            $phone = strip_tags($_POST['phone']);
+            $password = strip_tags($_POST['password']);
+            $phone = "xxxxxxxxxx";
 
             if (!RegisterModel::formValidation($userName, $email)) {
                 echo 'Invalid Credentials';
             }
             if (!UserModel::getUserByEmail($email)) {
-                if (RegisterModel::registerNewUser($name, $email, $userName, $phone, 'admin')) {
-                    if (LoginModel::login($userName, $phone)) {
+                if (RegisterModel::registerNewUser($name, $email, $userName, $phone, $password, 'admin')) {
+                    if (LoginModel::login($userName, $password)) {
                         Redirect::to('admin/dashboard');
                     }
                     echo 'Registered Successfully';
