@@ -108,20 +108,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
     <link rel="icon" href="images/favicon.png">
 </head>
 
-<body>
-    <div class="container">
+<body style="background: none;">
+    <div class="container-fluid">
 
-        <div class="row" style="width: 200px; margin: 0 auto">
-            <img src="images/logo.png" class="img-responsive" width="200px"/>
-
-        </div>
-        <div class="row">
-
-            <div class="col-md-6 offset-md-3">
-                <form role="form" method="POST" action="install.php">
+        <div class="row row-eq-height">
+            <div class="col-md-6 left-side" style="background: #9601ff;text-align: center">
+            	<div class="branding" >
+            	<img src="images/logo.png" class="img-responsive" width="200px"/>
+            	<h3 style="color: #ffffff;font-weight: 100;">An open source, self-hosted quiz script with the backend of Object Oriented PHP</h1>
+            	<h1 ><a href="https://github.com/imujjwal96/prelimQuiz" style="color: #ffffff;"><i class="fa fa-github" aria-hidden="true"></i></a></h1>
+            	</div>
+            </div>
+           <div class="col-md-6">
+                <form role="form" method="POST" action="install.php" class="ss-form">
                     <hr />
                     <h4 style="text-align: center">Installation</h4>
                     <hr />

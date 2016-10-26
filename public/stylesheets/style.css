@@ -43,6 +43,23 @@ input[type="text"]:not([readonly])+label {
 input[type="text"]:focus:not([readonly])+label {
 	color:#fff;
 }
+input[type="password"]{
+  color: #eee;
+}
+input[type="password"]:focus:not([readonly]) {
+  border-color:#2BBBAD  ;
+  box-shadow:0 1px 0 0 #2BBBAD;
+  color:#fff;
+}
+
+input[type="password"]:not([readonly])+label {
+  color:rgba(255,255,255,.9);
+}
+
+input[type="password"]:focus:not([readonly])+label {
+  color:#fff;
+}
+
 .infinite_text {
 	color: #ffe276;
     -webkit-animation-iteration-count: infinite;
@@ -78,7 +95,7 @@ text-align: center;
 	margin-top: 80px;
 }
 label {
-	color: #aaa;
+	color: #8e66ab;
 	font-size: 18px;
 	padding: 4px;
 }
@@ -163,4 +180,22 @@ label {
   border-radius: 50%;
   background-color: #30cfc0;
   opacity: 0;
+}
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+.branding{
+  padding: 5em;
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .row-eq-height  {
+        display: block;
+    }
+    .branding{
+      padding: 10px;
+    }
 }
