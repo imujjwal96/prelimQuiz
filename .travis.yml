@@ -3,11 +3,24 @@ php:
   - '5.6'
   - '7.0'
   
+matrix:
+  fast_finish: true
+
+sudo: false
+
 services:
   - mongodb
   
+addons:
+  apt:
+    sources:
+    - mongodb-3.0-precise
+    packages:
+    - mongodb-org-server
+    
 before_script:
-  - composer self-update
+  - pecl install mongodb
+  - travis_retry composer self-update
   - composer install --prefer-source --no-interaction
   - mongo mydb_test --eval 'db.addUser("travis", "test");'
   
