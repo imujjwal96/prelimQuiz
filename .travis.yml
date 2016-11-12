@@ -22,6 +22,5 @@ before_script:
   - pecl install mongodb
   - travis_retry composer self-update
   - composer install --prefer-source --no-interaction
-  - mongo mydb_test --eval 'db.addUser("travis", "test");'
   
 script: vendor/bin/phpunit
