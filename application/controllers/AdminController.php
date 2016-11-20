@@ -71,13 +71,14 @@ class AdminController extends Controller
                     if (isset($_POST["question_statement"], $_POST["option_a"], $_POST["option_b"], $_POST["option_c"],
                         $_POST["option_d"], $_POST["answer"])) {
                         $questionStatement = htmlspecialchars($_POST["question_statement"]);
+                        $questionCover = $_FILES["cover"];
                         $optionA = htmlspecialchars($_POST["option_a"]);
                         $optionB = htmlspecialchars($_POST["option_b"]);
                         $optionC = htmlspecialchars($_POST["option_c"]);
                         $optionD = htmlspecialchars($_POST["option_d"]);
                         $answer = htmlspecialchars($_POST["answer"]);
 
-                        if (LevelModel::storeMCQQuestion($questionStatement, $optionA, $optionB, $optionC, $optionD, $answer)) {
+                        if (LevelModel::storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer)) {
                             Redirect::to('/admin/dashboard');
                         } else {
                             echo 'Could not store the question.';

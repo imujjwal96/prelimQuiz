@@ -20,13 +20,18 @@
                 ?>
 
             </select>
-            <form name="mcq" id="mcq" role="form" method="POST" action="" style="display:none">
+            <form name="mcq" id="mcq" role="form" method="POST" action="" enctype="multipart/form-data" style="display:none">
                 <hr />
                 <h4 style="text-align: center">Multiple Choice Question</h4>
                 <hr />
                 <div class="form-group">
                     <label class="control-label" for="question_statement">Statement:</label>
                     <input type="text" class="form-control" name="question_statement" id="question_statement" placeholder="Statement of the Question">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="question_cover">Cover:</label>
+                    <input type="file" class="fprm-control" name="question_cover" id="question_cover" placeholder="Cover">
+                    <input type="text" class="form-control" name="question_cover" id="question_cover" placeholder="Statement of the Question">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="option_a">Option A: </label>

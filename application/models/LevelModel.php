@@ -85,8 +85,10 @@ class LevelModel {
      * @param string $answer. Answer to the question.
      * @return bool true if the question is stored successfully, else false
      */
-    public static function storeMCQQuestion($questionStatement, $optionA, $optionB, $optionC, $optionD, $answer) {
+    public static function storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $gridFS = $databaseMongo->selectGridFSBucket();
+        $gridFS->openUploadStream()
         $questions = $databaseMongo->selectCollection("questions");
         $document = array(
             "type" => "MCQ",

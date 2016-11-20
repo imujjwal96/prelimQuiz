@@ -8,8 +8,11 @@ class LoginController extends Controller {
 
     public function index() {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            $this->View->render('login/index');
-
+            if (LoginModel::isUserLoggedIn()) {
+                Redirect::to('/');
+            } else {
+                $this->View->render('login/index');
+            }
         } else {
             // error
         }

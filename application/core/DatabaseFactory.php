@@ -34,12 +34,9 @@ class DatabaseFactory {
 
     public function getConnectionMongo() {
         if (!$this->databaseMongo) {
-
             $connection = new MongoDB\Client("mongodb://localhost:27017");
             $this->databaseMongo = $connection->selectDatabase(Config::get('DB_NAME'));
         }
         return $this->databaseMongo;
     }
-
-
 }

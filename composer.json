@@ -10,13 +10,11 @@
         }
     ],
     "require": {
-        "mongodb/mongodb": "^1.0",
-        "phpunit/phpunit": "5.5.*"
+        "phpunit/phpunit": "5.5.*",
+        "mongodb/mongodb": "1.1.0-alpha1"
     },
     "require-dev": {
-        "heroku/heroku-buildpack-php": "*",
-        "ext-mysql": "*",
-        "ext-mongodb": "*"
+        "heroku/heroku-buildpack-php": "*"
     },
     "autoload": {
         "psr-4": { "": ["application/core/", "application/models/"] }
