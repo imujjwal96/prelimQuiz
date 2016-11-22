@@ -78,6 +78,7 @@ class LevelModel {
     /**
      * Stores an MCQ question to the Mongo Database
      * @param string $questionStatement. Statement of the question.
+     * @param string $questionCover. Cover image.
      * @param string $optionA. First option.
      * @param string $optionB. Second option.
      * @param string $optionC. Third option.
@@ -87,12 +88,11 @@ class LevelModel {
      */
     public static function storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
-        $gridFS = $databaseMongo->selectGridFSBucket();
-        $gridFS->openUploadStream()
         $questions = $databaseMongo->selectCollection("questions");
         $document = array(
             "type" => "MCQ",
             "statement" => $questionStatement,
+            "cover" => new MongoDB\BSON\Binary(file_get_contents($questionCover["tmp_name"]), MongoDB\BSON\Binary::TYPE_GENERIC),
             "options" => [
                 "a" => $optionA,
                 "b" => $optionB,

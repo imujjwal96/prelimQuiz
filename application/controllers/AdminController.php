@@ -71,7 +71,10 @@ class AdminController extends Controller
                     if (isset($_POST["question_statement"], $_POST["option_a"], $_POST["option_b"], $_POST["option_c"],
                         $_POST["option_d"], $_POST["answer"])) {
                         $questionStatement = htmlspecialchars($_POST["question_statement"]);
-                        $questionCover = $_FILES["cover"];
+                        $questionCover = "";
+                        if (Files::isImage($_FILES["question_cover"])) {
+                            $questionCover = $_FILES["question_cover"];
+                        }
                         $optionA = htmlspecialchars($_POST["option_a"]);
                         $optionB = htmlspecialchars($_POST["option_b"]);
                         $optionC = htmlspecialchars($_POST["option_c"]);

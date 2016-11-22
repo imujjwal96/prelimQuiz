@@ -31,7 +31,6 @@
                 <div class="form-group">
                     <label class="control-label" for="question_cover">Cover:</label>
                     <input type="file" class="fprm-control" name="question_cover" id="question_cover" placeholder="Cover">
-                    <input type="text" class="form-control" name="question_cover" id="question_cover" placeholder="Statement of the Question">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="option_a">Option A: </label>
