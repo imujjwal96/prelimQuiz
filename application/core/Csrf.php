@@ -17,10 +17,10 @@ class Csrf
         $csrf_token  = Session::get('csrf_token');
 
         if ($max_time + $stored_time <= time() || empty($csrf_token)) {
+
             Session::set('csrf_token', md5(uniqid(rand(), true)));
             Session::set('csrf_token_time', time());
         }
-
         return Session::get('csrf_token');
     }
 
@@ -30,7 +30,6 @@ class Csrf
      */
     public static function isTokenValid($token)
     {
-        // $token = Request::post('csrf_token');
-        return $token === Session::get('csrf_token') && !empty($token);
+        return $token == Session::get('csrf_token') && !empty($token);
     }
 }

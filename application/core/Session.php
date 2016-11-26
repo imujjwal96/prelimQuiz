@@ -18,6 +18,7 @@ class Session {
 
             return $value;
         }
+        return '';
     }
 
     public static function add($key, $value) {

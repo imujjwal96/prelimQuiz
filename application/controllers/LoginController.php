@@ -11,8 +11,9 @@ class LoginController extends Controller {
             if (LoginModel::isUserLoggedIn()) {
                 Redirect::to('/');
             } else {
+                $token = Csrf::generateToken();
                 $this->View->render('login/index', array(
-                    'token' => Csrf::generateToken()
+                    'token' => $token
                 ));
             }
         } else {
@@ -24,11 +25,12 @@ class LoginController extends Controller {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userName = strip_tags($_POST['username']);
             $password = strip_tags($_POST['password']);
-            $token = strip_tags($_POST['token']);
-
-            $loginSuccessful = LoginModel::login($userName, $password);
-
-            if ($loginSuccessful and Csrf::isTokenValid($token)) {
+            $token = $_POST['token'];
+            $loginSuccessful = false;
+            if (Csrf::isTokenValid($token)) {
+                $loginSuccessful = LoginModel::login($userName, $password);
+            }
+            if ($loginSuccessful) {
                 if (UserModel::isAdmin()) {
                     Redirect::to('admin/dashboard');
                 } else {

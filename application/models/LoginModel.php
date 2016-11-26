@@ -85,7 +85,7 @@ class LoginModel {
     /**
      * Validates the user credentials and get user info
      * @param string $userName. User's username
-     * @param string $userPassword. User's password
+     * @param string $userpa. User's phone number
      * @return bool|mixed User object if the credentials are correct, else returns false
      */
     private static function validateAndGetUser($userName, $userPassword)
