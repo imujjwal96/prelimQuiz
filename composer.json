@@ -11,7 +11,9 @@
     ],
     "require": {
         "phpunit/phpunit": "5.5.*",
-        "mongodb/mongodb": "1.1.0-alpha1"
+        "mongodb/mongodb": "1.1.0-alpha1",
+        "ext-mysql": "*",
+        "ext-mongodb": "*"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "*"
