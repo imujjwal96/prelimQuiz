@@ -26,6 +26,7 @@ class LevelController extends Controller {
                             "total" => LevelModel::getTotalQuestions()
                         ));
                     } else {
+
                         $this->View->render('level/general', array(
                             "question" => $question,
                             "total" => LevelModel::getTotalQuestions()

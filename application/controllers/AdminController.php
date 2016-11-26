@@ -52,7 +52,7 @@ class AdminController extends Controller
             }
 
         } else {
-            $this->View->renderWithoutHeaderAndFooter('404.php');
+            $this->View->renderWithoutHeaderAndFooter('404');
         }
     }
 

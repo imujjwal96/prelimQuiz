@@ -20,8 +20,9 @@
                     <h4 class="card-title">Question <?= (UserModel::getUserLevel() + 1) . '/' . $this->total;?>: <strong> <?= $this->question->statement; ?></strong></h4>
                     <hr />
                     <?php if (isset($this->question->cover) && !empty($this->question->cover)) {
-                        echo '<img src="'. $this->question->cover . '"/>';
-                    } ?>
+                        echo '<img src="data:jpeg;base64,' . base64_encode($this->question->cover->getData()) . '" />';
+                    }
+                    ?>
                     <div class="row" style="color: black;">
                         <div class="col-md-6">
                         <label class="radio">
