@@ -11,7 +11,9 @@ class AdminController extends Controller
     public function index()
     {
         if (!UserModel::doesUsersExist()) {
-            $this->View->render('admin/register');
+            $this->View->render('admin/register', array(
+                'token' => Csrf::generateToken()
+            ));
             return;
         }
         if (LoginModel::isUserLoggedIn() && UserModel::isAdmin()) {
@@ -31,8 +33,9 @@ class AdminController extends Controller
             $userName = strip_tags($_POST['username']);
             $password = strip_tags($_POST['password']);
             $phone = "xxxxxxxxxx";
+            $token = strip_tags($_POST['token']);
 
-            if (!RegisterModel::formValidation($userName, $email)) {
+            if (!RegisterModel::formValidation($userName, $email) or !Csrf::isTokenValid($token)) {
                 echo 'Invalid Credentials';
             }
             if (!UserModel::getUserByEmail($email)) {
@@ -64,7 +67,8 @@ class AdminController extends Controller
         if ($action == "add") {
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $this->View->render('admin/questions/add', array(
-                    "quiz_type" => Config::get("QUIZ_TYPE")
+                    "quiz_type" => Config::get("QUIZ_TYPE"),
+                    "token" => Csrf::generateToken()
                 ));
             } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST["mcq"])) {
@@ -106,12 +110,14 @@ class AdminController extends Controller
             if (LevelModel::getTotalQuestions() != 0) {
                 if ($action == "edit") {
                     $this->View->render('admin/questions/edit', array(
-                        "questions" => LevelModel::getQuestions()
+                        "questions" => LevelModel::getQuestions(),
+                        "token" => Csrf::generateToken()
                     ));
                 } elseif ($action == "delete") {
                     if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         $this->View->render('admin/questions/delete',array(
-                            "questions" => LevelModel::getQuestions()
+                            "questions" => LevelModel::getQuestions(),
+                            "token" => Csrf::generateToken()
                         ));
                     } else {
                         if (isset($_POST["question_id"])) {

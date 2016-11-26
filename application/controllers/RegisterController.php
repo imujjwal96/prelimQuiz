@@ -7,7 +7,9 @@ class RegisterController extends Controller {
 
     public function index() {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            $this->View->render('register/index');
+            $this->View->render('register/index', array(
+                'token' => Csrf::generateToken()
+            ));
         } else {
             // error
         }
@@ -20,8 +22,9 @@ class RegisterController extends Controller {
             $userName = strip_tags($_POST['username']);
             $phone = strip_tags($_POST['phone']);
             $password = strip_tags($_POST['password']);
+            $token = strip_tags($_POST['token']);
 
-            if (!RegisterModel::formValidation($userName, $email)) {
+            if (!RegisterModel::formValidation($userName, $email) or !Csrf::isTokenValid($token)) {
                 echo 'Invalid Credentials';
             }
             if (!UserModel::getUserByEmail($email)) {

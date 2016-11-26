@@ -9,7 +9,7 @@ class LoginModel {
     /**
      * Login a user
      * @param string $userName. User's username
-     * @param string $userPhone. User's phone number
+     * @param string $userPassword. User's password
      * @return bool true if user successfully logged in, else false
      */
     public static function login($userName, $userPassword) {
@@ -85,7 +85,7 @@ class LoginModel {
     /**
      * Validates the user credentials and get user info
      * @param string $userName. User's username
-     * @param string $userPhone. User's phone number
+     * @param string $userPassword. User's password
      * @return bool|mixed User object if the credentials are correct, else returns false
      */
     private static function validateAndGetUser($userName, $userPassword)
