@@ -95,8 +95,12 @@ class AdminController extends Controller
                     if (isset($_POST["question_statement"], $_POST["answer"])) {
                         $questionStatement = htmlspecialchars($_POST["question_statement"]);
                         $answer = htmlspecialchars($_POST["answer"]);
+                        $questionCover = "";
+                        if (Files::isImage($_FILES["question_cover"])) {
+                            $questionCover = $_FILES["question_cover"];
+                        }
 
-                        if (LevelModel::storeGeneralQuestion($questionStatement, $answer)) {
+                        if (LevelModel::storeGeneralQuestion($questionStatement, $questionCover, $answer)) {
                             Redirect::to('/admin/dashboard');
                         } else {
                             echo 'Could not store the question.';

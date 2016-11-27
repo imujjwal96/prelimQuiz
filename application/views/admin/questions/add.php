@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="question_cover">Cover:</label>
-                    <input type="file" class="fprm-control" name="question_cover" id="question_cover" placeholder="Cover">
+                    <input type="file" class="form-control" name="question_cover" id="question_cover" placeholder="Cover">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="option_a">Option A: </label>
@@ -59,13 +59,17 @@
                 <button type="submit" name = "mcq" class="btn btn-default">Submit</button>
             </form>
 
-            <form name="general" id="general" role="form" method="POST" action="" style="display:none">
+            <form name="general" id="general" role="form" method="POST" action="" enctype="multipart/form-data" style="display:none">
                 <hr />
                 <h4 style="text-align: center">General Question</h4>
                 <hr />
                 <div class="form-group">
                     <label class="control-label" for="question_statement">Statement:</label>
                     <input type="text" class="form-control" name="question_statement" id="question_statement" placeholder="Statement of the Question">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="question_cover">Cover:</label>
+                    <input type="file" class="form-control" name="question_cover" id="question_cover" placeholder="Cover">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="answer">Answer: </label>

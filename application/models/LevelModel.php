@@ -110,15 +110,17 @@ class LevelModel {
     /**
      * Stores an General question to the Mongo Database
      * @param string $questionStatement. Statement of the question.
+     * @param $questionCover
      * @param string $answer. Answer to the question.
      * @return bool true if the question is stored successfully, else false.
      */
-    public static function storeGeneralQuestion($questionStatement, $answer) {
+    public static function storeGeneralQuestion($questionStatement, $questionCover, $answer) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
         $questions = $databaseMongo->selectCollection("questions");
         $document = array(
             "type" => "General",
             "statement" => $questionStatement,
+            "cover" => new MongoDB\BSON\Binary(file_get_contents($questionCover["tmp_name"]), MongoDB\BSON\Binary::TYPE_GENERIC),
             "answer" => $answer
         );
         if ($questions->insertOne($document)) {
