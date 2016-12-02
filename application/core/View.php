@@ -30,4 +30,14 @@ class View {
     {
         return htmlentities($str, ENT_QUOTES, 'UTF-8');
     }
+
+    public function renderFlashMessages()
+    {
+
+        require Config::get('PATH_VIEW') . 'templates/flash.php';
+
+        Session::set('flash_success', null);
+        Session::set('flash_message', null);
+        Session::set('flash_error', null);
+    }
 }
