@@ -36,6 +36,7 @@ class RegisterModel {
         if ($count == 1) {
             return true;
         }
+        Session::add('flash_error', "Registration failed");
         return false;
     }
 
@@ -60,10 +61,12 @@ class RegisterModel {
      */
     public static function validateUserName($userName) {
         if (empty($userName)) {
+            Session::add('flash_error', "Empty Username");
             return false;
         }
 
         if (!preg_match('/^[a-zA-Z0-9]{2,64}$/', $userName)) {
+            Session::add('flash_error', "Invalid username");
             return false;
         }
 
@@ -77,10 +80,12 @@ class RegisterModel {
      */
     public static function validateEmail($email) {
         if (empty($email)) {
+            Session::add('flash_error', "Empty Email");
             return false;
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            Session::add('flash_error', "Invalid Email");
             return false;
         }
         return true;
