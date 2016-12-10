@@ -1,6 +1,12 @@
 <?php
 
-class LevelController extends Controller {
+namespace Application\Controllers;
+
+use Application\Core\Controller;
+
+use Application\Core\Redirect;
+
+class Level extends Controller {
     public function __construct() {
         parent::__construct();
     }

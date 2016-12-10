@@ -1,8 +1,12 @@
 <?php
 
+namespace Application\Controllers;
+
+use Application\Core\Controller;
+
 use Application\Core\Redirect;
 
-class IndexController extends \Application\Core\Controller
+class Index extends Controller
 {
     public function __construct() {
         parent::__construct();
