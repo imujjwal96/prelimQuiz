@@ -1,10 +1,15 @@
 <?php
 
+namespace Application\Models;
+
+use Application\Core\Session;
+use Application\Core\Config;
+
 /**
  * Class LoginModel
  * Handles user login
  */
-class LoginModel {
+class Login {
 
     /**
      * Login a user
@@ -91,7 +96,7 @@ class LoginModel {
     private static function validateAndGetUser($userName, $userPassword)
     {
 
-        $result = UserModel::getUserByUsername($userName);
+        $result = User::getUserByUsername($userName);
 
         if (!$result) {
             echo 'User not Found';

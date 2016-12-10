@@ -1,17 +1,22 @@
 <?php
 
+namespace Application\Models;
+
+use Application\Core\Session;
+use Application\Core\DatabaseFactory;
+
 /**
  * Class LevelModel
  * Handles questions and user levels
  */
-class LevelModel {
+class Level {
 
     /**
      * Gets a user's level with information gathered from the session
      * @return int level the user is currently in.
      */
     public static function getUserLevel() {
-            $user = UserModel::getUserByUsername(Session::get('user_name'));
+            $user = User::getUserByUsername(Session::get('user_name'));
             return $user->level;
     }
 
