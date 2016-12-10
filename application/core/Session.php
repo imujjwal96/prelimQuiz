@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Core;
+
 class Session {
     public static function init() {
         if (session_id() == '') {

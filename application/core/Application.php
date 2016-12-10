@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Core;
+
 class Application {
 
     protected $controller;

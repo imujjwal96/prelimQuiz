@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Core;
+
 class DatabaseFactory {
     private static $factory;
     private $database;

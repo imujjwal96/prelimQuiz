@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Core;
+
 /**
  * Class Csrf
  * Prevents forms from Cross Site Request Forgery

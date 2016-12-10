@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Core;
+
 class View {
 
     public function render($filename, $data = null)
