@@ -6,6 +6,9 @@ use Application\Core\Controller;
 
 use Application\Core\Redirect;
 
+use Application\Models\User as UserModel;
+use Application\Models\Login as LoginModel;
+
 class Index extends Controller
 {
     public function __construct() {

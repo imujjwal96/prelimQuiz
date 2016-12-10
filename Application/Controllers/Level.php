@@ -6,6 +6,10 @@ use Application\Core\Controller;
 
 use Application\Core\Redirect;
 
+use Application\Models\User as UserModel;
+use Application\Models\Login as LoginModel;
+use Application\Models\Level as LevelModel;
+
 class Level extends Controller {
     public function __construct() {
         parent::__construct();

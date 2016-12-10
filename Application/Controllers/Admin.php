@@ -7,6 +7,11 @@ use Application\Core\Controller;
 use Application\Core\Redirect;
 use Application\Core\Csrf;
 
+use Application\Models\User as UserModel;
+use Application\Models\Login as LoginModel;
+use Application\Models\Register as RegisterModel;
+use Application\Models\Level as LevelModel;
+
 class Admin extends Controller
 {
 

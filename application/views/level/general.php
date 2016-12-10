@@ -16,7 +16,7 @@
         <div class="card" style="margin:80px 80px;color:#aaa;">
         <form type="form" method="POST" action="/level/submit">
             <div class="card-block">
-                <h4 class="card-title">Question <?= (UserModel::getUserLevel() + 1) . '/' . $this->total;?>: <strong> <?= $this->question->statement; ?></strong></h4>
+                <h4 class="card-title">Question <?= (\Application\Models\User::getUserLevel() + 1) . '/' . $this->total;?>: <strong> <?= $this->question->statement; ?></strong></h4>
                 <hr />
                 <?php if (isset($this->question->cover) && !empty($this->question->cover)) {
                     echo '<img src="data:jpeg;base64,' . base64_encode($this->question->cover->getData()) . '" />';
