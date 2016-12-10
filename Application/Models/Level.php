@@ -97,7 +97,7 @@ class Level {
         $document = array(
             "type" => "MCQ",
             "statement" => $questionStatement,
-            "cover" => new MongoDB\BSON\Binary(file_get_contents($questionCover["tmp_name"]), MongoDB\BSON\Binary::TYPE_GENERIC),
+            "cover" => new \MongoDB\BSON\Binary(file_get_contents($questionCover["tmp_name"]), \MongoDB\BSON\Binary::TYPE_GENERIC),
             "options" => [
                 "a" => $optionA,
                 "b" => $optionB,
@@ -125,7 +125,7 @@ class Level {
         $document = array(
             "type" => "General",
             "statement" => $questionStatement,
-            "cover" => new MongoDB\BSON\Binary(file_get_contents($questionCover["tmp_name"]), MongoDB\BSON\Binary::TYPE_GENERIC),
+            "cover" => new \MongoDB\BSON\Binary(file_get_contents($questionCover["tmp_name"]), \MongoDB\BSON\Binary::TYPE_GENERIC),
             "answer" => $answer
         );
         if ($questions->insertOne($document)) {
