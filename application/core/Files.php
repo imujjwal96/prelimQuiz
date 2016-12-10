@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Core;
+
 class Files {
 
     public static function uploadFile()

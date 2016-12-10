@@ -1,10 +1,15 @@
 <?php
 
+namespace Application\Models;
+
+use Application\Core\DatabaseFactory;
+use Application\Core\Session;
+
 /**
  * Class RegisterModel
  * Handles user registration
  */
-class RegisterModel {
+class Register {
 
     /**
      * Registers a user

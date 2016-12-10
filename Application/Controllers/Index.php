@@ -1,6 +1,16 @@
 <?php
 
-class IndexController extends Controller {
+namespace Application\Controllers;
+
+use Application\Core\Controller;
+
+use Application\Core\Redirect;
+
+use Application\Models\User as UserModel;
+use Application\Models\Login as LoginModel;
+
+class Index extends Controller
+{
     public function __construct() {
         parent::__construct();
     }
@@ -15,7 +25,7 @@ class IndexController extends Controller {
         } else {
             if (UserModel::doesUsersExist()) {
                 $this->View->render('index/index', array(
-                    "quizName" => Config::get("QUIZ_NAME")
+                    "quizName" => \Application\Core\Config::get("QUIZ_NAME")
                 ));
             } else {
                 Redirect::to('admin');

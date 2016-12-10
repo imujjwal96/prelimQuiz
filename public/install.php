@@ -11,14 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $db_pass = empty($_POST["quiz_name"]) ? "" : htmlspecialchars($_POST["db_pass"]);
         $db_port = empty($_POST["quiz_name"]) ? "3306" : htmlspecialchars($_POST["db_port"]);
 
-        $config_file = fopen("../application/config/config.php", "w") or die("could not open file.");
+        $config_file = fopen("../Application/Config/config.php", "w") or die("could not open file.");
 
         $content = '<?php
     return array(
         \'URL\' => \'http://\' . $_SERVER[\'HTTP_HOST\'] . str_replace(\'public\', \'\', dirname($_SERVER[\'SCRIPT_NAME\'])),
 
-        \'PATH_CONTROLLER\' => realpath(dirname(__FILE__).\'/../../\') . \'/application/controllers/\',
-        \'PATH_VIEW\' => realpath(dirname(__FILE__).\'/../../\') . \'/application/views/\',
+        \'PATH_CONTROLLER\' => realpath(dirname(__FILE__).\'/../../\') . \'/Application/Controllers/\',
+        \'PATH_VIEW\' => realpath(dirname(__FILE__).\'/../../\') . \'/Application/Views/\',
 
         \'DEFAULT_CONTROLLER\' => \'index\',
         \'DEFAULT_ACTION\' => \'index\',

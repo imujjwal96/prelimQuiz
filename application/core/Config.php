@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Core;
+
 class Config {
     public static $config;
 
@@ -7,7 +9,7 @@ class Config {
     {
         if (!self::$config) {
 
-            $config_file = '../application/config/config.php';
+            $config_file = '../Application/Config/config.php';
 
             if (!file_exists($config_file)) {
                 return false;

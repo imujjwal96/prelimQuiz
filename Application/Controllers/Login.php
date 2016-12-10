@@ -1,6 +1,16 @@
 <?php
 
-class LoginController extends Controller {
+namespace Application\Controllers;
+
+use Application\Core\Controller;
+
+use Application\Core\Csrf;
+use Application\Core\Redirect;
+
+use Application\Models\User as UserModel;
+use Application\Models\Login as LoginModel;
+
+class Login extends Controller {
 
     public function __construct() {
         parent::__construct();

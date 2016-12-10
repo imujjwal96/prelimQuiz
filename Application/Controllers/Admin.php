@@ -1,6 +1,18 @@
 <?php
 
-class AdminController extends Controller
+namespace Application\Controllers;
+
+use Application\Core\Controller;
+
+use Application\Core\Redirect;
+use Application\Core\Csrf;
+
+use Application\Models\User as UserModel;
+use Application\Models\Login as LoginModel;
+use Application\Models\Register as RegisterModel;
+use Application\Models\Level as LevelModel;
+
+class Admin extends Controller
 {
 
     public function __construct()
@@ -67,7 +79,7 @@ class AdminController extends Controller
         if ($action == "add") {
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $this->View->render('admin/questions/add', array(
-                    "quiz_type" => Config::get("QUIZ_TYPE"),
+                    "quiz_type" => \Application\Core\Config::get("QUIZ_TYPE"),
                     "token" => Csrf::generateToken()
                 ));
             } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -76,7 +88,7 @@ class AdminController extends Controller
                         $_POST["option_d"], $_POST["answer"])) {
                         $questionStatement = htmlspecialchars($_POST["question_statement"]);
                         $questionCover = "";
-                        if (Files::isImage($_FILES["question_cover"])) {
+                        if (\Application\Core\Files::isImage($_FILES["question_cover"])) {
                             $questionCover = $_FILES["question_cover"];
                         }
                         $optionA = htmlspecialchars($_POST["option_a"]);
@@ -96,7 +108,7 @@ class AdminController extends Controller
                         $questionStatement = htmlspecialchars($_POST["question_statement"]);
                         $answer = htmlspecialchars($_POST["answer"]);
                         $questionCover = "";
-                        if (Files::isImage($_FILES["question_cover"])) {
+                        if (\Application\Core\Files::isImage($_FILES["question_cover"])) {
                             $questionCover = $_FILES["question_cover"];
                         }
 

@@ -1,11 +1,15 @@
 <?php
 
+namespace Application\Models;
+
+use Application\Core\DatabaseFactory;
+use Application\Core\Session;
 
 /**
  * Class UserModel
  * Handles all the User Profile stuff
  */
-class UserModel {
+class User {
 
     /**
      * Checks if there is any user in the database
