@@ -147,6 +147,7 @@ class Level {
     /**
      * Deletes a question by its id
      * @param string $id. id of the question (stored in the database)
+     * @return true if question deleted successfully else false
      */
     public static function deleteQuestionById($id) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
@@ -156,5 +157,20 @@ class Level {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Gets a question by its id
+     * @param string $id. id of the question (stored in the database)
+     * @return array question if found else empty array
+     */
+    public static function getQuestionById($id) {
+        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $question = $databaseMongo->selectCollection("questions")->findOne(['_id' => new \MongoDB\BSON\ObjectID($id)]);
+
+        if ($question != null) {
+            return $question;
+        }
+        return [];
     }
 }

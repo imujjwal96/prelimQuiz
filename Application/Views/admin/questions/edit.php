@@ -8,6 +8,8 @@
                     <tr>
                         <th style = "text-align: center">Question No.</th>
                         <th style = "text-align: center">Statement</th>
+                        <th style = "text-align: center">Action</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -18,6 +20,12 @@
                             echo '<tr>
                                     <td>' . $i++ . '</td>
                                     <td>' . $question->statement . '</td>
+                                    <td>
+                                        <form action="/admin/question/edit" method="POST">
+                                            <input type="hidden" value="' . $question->_id . '" name="question_id" />
+                                            <button type="submit" class="btn btn-danger">Edit</button>
+                                        </form>        
+                                    </td>
                               </tr>';
                         }
                     }

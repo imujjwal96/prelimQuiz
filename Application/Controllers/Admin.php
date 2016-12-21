@@ -77,7 +77,21 @@ class Admin extends Controller
         }
     }
 
-    public function question($action) {
+    public function question($action=null, $id=null) {
+        if ($id != null && $action=="edit") {
+            $question = LevelModel::getQuestionById($id);
+            if ($question->type == "MCQ") {
+                $this->View->render('admin/questions/edit_mcq', array(
+                    "question" => LevelModel::getQuestionById($id)
+                ));
+                return;
+            }
+            $this->View->render('admin/questions/edit_general', array(
+                "question" => LevelModel::getQuestionById($id)
+            ));
+            return;
+        }
+
         if ($action == "add") {
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $this->View->render('admin/questions/add', array(
@@ -127,10 +141,18 @@ class Admin extends Controller
         } else {
             if (LevelModel::getTotalQuestions() != 0) {
                 if ($action == "edit") {
-                    $this->View->render('admin/questions/edit', array(
-                        "questions" => LevelModel::getQuestions(),
-                        "token" => Csrf::generateToken()
-                    ));
+                    if ($_SERVER["REQUEST_METHOD"] != "POST") {
+                        $this->View->render('admin/questions/edit', array(
+                            "questions" => LevelModel::getQuestions(),
+                            "token" => Csrf::generateToken()
+                        ));
+                        return;
+                    }
+
+                    if (isset($_POST["question_id"])) {
+                        $questionId = htmlspecialchars($_POST["question_id"]);
+                        Redirect::to('admin/question/edit/' .$questionId);
+                    }
                 } elseif ($action == "delete") {
                     if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         $this->View->render('admin/questions/delete',array(
