@@ -150,7 +150,11 @@ class Level {
      */
     public static function deleteQuestionById($id) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $deleteResult = $databaseMongo->selectCollection("questions")->findOneAndDelete(['_id' => new \MongoDB\BSON\ObjectID($id)]);
 
-        $deleteResult = $databaseMongo->selectCollection("questions")->deleteOne(['_id' => $id]);
+        if ($deleteResult != null) {
+            return true;
+        }
+        return false;
     }
 }

@@ -39,32 +39,34 @@ class Admin extends Controller
 
     public function register()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $name = strip_tags($_POST['name']);
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            $userName = strip_tags($_POST['username']);
-            $password = strip_tags($_POST['password']);
-            $phone = "xxxxxxxxxx";
-            $token = strip_tags($_POST['token']);
-
-            if (!RegisterModel::formValidation($userName, $email) or !Csrf::isTokenValid($token)) {
-                echo 'Invalid Credentials';
-            }
-            if (!UserModel::getUserByEmail($email)) {
-                if (RegisterModel::registerNewUser($name, $email, $userName, $phone, $password, 'admin')) {
-                    if (LoginModel::login($userName, $password)) {
-                        Redirect::to('admin/dashboard');
-                    }
-                    echo 'Registered Successfully';
-                } else {
-                    echo 'Error with the DB';
-                }
-            } else {
-                echo 'User with email: ' . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . ' already exists.';
-            }
-
-        } else {
+        if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $this->View->renderWithoutHeaderAndFooter('404');
+            return;
+        }
+
+        $name = strip_tags($_POST['name']);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $userName = strip_tags($_POST['username']);
+        $password = strip_tags($_POST['password']);
+        $phone = "xxxxxxxxxx";
+        $token = strip_tags($_POST['token']);
+
+        if (!RegisterModel::formValidation($userName, $email) or !Csrf::isTokenValid($token)) {
+            echo 'Invalid Credentials';
+            return;
+        }
+
+        if (!UserModel::getUserByEmail($email)) {
+            if (RegisterModel::registerNewUser($name, $email, $userName, $phone, $password, 'admin')) {
+                if (LoginModel::login($userName, $password)) {
+                    Redirect::to('admin/dashboard');
+                }
+                echo 'Registered Successfully';
+            } else {
+                echo 'Error with the DB';
+            }
+        } else {
+            echo 'User with email: ' . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . ' already exists.';
         }
     }
 

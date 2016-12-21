@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <hr />
                     <div class="form-group">
                         <label class="control-label" for="quiz_name">Name of the Quiz</label>
-                        <input type="text" class="form-control" name="quiz_name" id="quiz_name" placeholder="Quiz Name">
+                        <input type="text" class="form-control" name="quiz_name" id="quiz_name" placeholder="Quiz Name" required />
                     </div>
                     <div class="form-group">
                         <label for="quiz_type">Type of the Quiz</label>
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <hr />
                     <div class="form-group">
                         <label class="control-label" for="db_name">Name of the Database</label>
-                        <input type="text" class="form-control" name="db_name" id="db_name" placeholder="Database Name">
+                        <input type="text" class="form-control" name="db_name" id="db_name" placeholder="Database Name" required />
                     </div>
                     <div class="form-group">
                         <label for="db_type">Type of the Database</label>
