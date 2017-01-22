@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\Models;
+namespace PQ\Models;
 
-use Application\Core\Session;
-use Application\Core\DatabaseFactory;
+use PQ\Core\Session;
+use PQ\Core\DatabaseFactory;
 
 /**
  * Class LevelModel

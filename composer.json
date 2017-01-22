@@ -18,8 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\Core\\": "Application/Core/",
-            "Application\\Models\\": "Application/Models/"
+            "PQ\\Core\\": "Application/Core/",
+            "PQ\\Models\\": "Application/Models/"
         }
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Application\Models;
 
-use Application\Core\DatabaseFactory;
-use Application\Core\Session;
+use PQ\Core\DatabaseFactory;
+use PQ\Core\Session;
 
 /**
  * Class RegisterModel

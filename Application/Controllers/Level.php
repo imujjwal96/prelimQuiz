@@ -1,14 +1,14 @@
 <?php
 
-namespace Application\Controllers;
+namespace PQ\Controllers;
 
-use Application\Core\Controller;
+use PQ\Core\Controller;
 
-use Application\Core\Redirect;
+use PQ\Core\Redirect;
 
-use Application\Models\User as UserModel;
-use Application\Models\Login as LoginModel;
-use Application\Models\Level as LevelModel;
+use PQ\Models\User as UserModel;
+use PQ\Models\Login as LoginModel;
+use PQ\Models\Level as LevelModel;
 
 class Level extends Controller {
     public function __construct() {

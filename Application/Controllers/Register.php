@@ -1,15 +1,15 @@
 <?php
 
-namespace Application\Controllers;
+namespace PQ\Controllers;
 
-use Application\Core\Controller;
+use PQ\Core\Controller;
 
-use Application\Core\Csrf;
-use Application\Core\Redirect;
+use PQ\Core\Csrf;
+use PQ\Core\Redirect;
 
-use Application\Models\User as UserModel;
-use Application\Models\Login as LoginModel;
-use Application\Models\Register as RegisterModel;
+use PQ\Models\User as UserModel;
+use PQ\Models\Login as LoginModel;
+use PQ\Models\Register as RegisterModel;
 
 class Register extends Controller {
     public function __construct() {

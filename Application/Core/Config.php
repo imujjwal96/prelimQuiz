@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Core;
+namespace PQ\Core;
 
 class Config {
     public static $config;

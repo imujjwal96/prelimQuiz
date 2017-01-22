@@ -2,8 +2,8 @@
 
 namespace Application\Models;
 
-use Application\Core\Session;
-use Application\Core\Config;
+use PQ\Core\Session;
+use PQ\Core\Config;
 
 /**
  * Class LoginModel

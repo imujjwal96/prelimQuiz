@@ -1,16 +1,16 @@
 <?php
 
-namespace Application\Controllers;
+namespace PQ\Controllers;
 
-use Application\Core\Controller;
+use PQ\Core\Controller;
 
-use Application\Core\Redirect;
-use Application\Core\Csrf;
+use PQ\Core\Redirect;
+use PQ\Core\Csrf;
 
-use Application\Models\User as UserModel;
-use Application\Models\Login as LoginModel;
-use Application\Models\Register as RegisterModel;
-use Application\Models\Level as LevelModel;
+use PQ\Models\User as UserModel;
+use PQ\Models\Login as LoginModel;
+use PQ\Models\Register as RegisterModel;
+use PQ\Models\Level as LevelModel;
 
 class Admin extends Controller
 {
