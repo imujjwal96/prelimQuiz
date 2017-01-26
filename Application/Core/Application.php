@@ -25,7 +25,7 @@ class Application {
         if (file_exists(Config::get('PATH_CONTROLLER') . $this->controllerName . '.php')) {
 
             require Config::get('PATH_CONTROLLER') . $this->controllerName . '.php';
-            $a = 'Application\Controllers\\' . $this->controllerName;
+            $a = 'PQ\Controllers\\' . $this->controllerName;
             $this->controller = new $a;
 
             if (method_exists($this->controller, $this->method)) {

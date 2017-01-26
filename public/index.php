@@ -7,4 +7,4 @@ if (!file_exists('../Application/Config/config.php')) {
 }
 
 require '../vendor/autoload.php';
-$application = new \Application\Core\Application();
+$application = new \PQ\Core\Application();

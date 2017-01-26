@@ -25,7 +25,7 @@ class Index extends Controller
         } else {
             if (UserModel::doesUsersExist()) {
                 $this->View->render('index/index', array(
-                    "quizName" => \Application\Core\Config::get("QUIZ_NAME")
+                    "quizName" => \PQ\Core\Config::get("QUIZ_NAME")
                 ));
             } else {
                 Redirect::to('admin');

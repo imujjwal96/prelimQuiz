@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Models;
+namespace PQ\Models;
 
 use PQ\Core\Session;
 use PQ\Core\Config;

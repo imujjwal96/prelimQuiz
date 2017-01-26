@@ -44,9 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ';
         if (fwrite($config_file, $content)) {
             $servername = "127.0.0.1";
-            $username = "username";
-            $password = "password";
-            $dbname = "myDB";
 
             $database = mysqli_connect($servername, $db_user, $db_pass);
             if (!$database) {

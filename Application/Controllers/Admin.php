@@ -95,7 +95,7 @@ class Admin extends Controller
         if ($action == "add") {
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $this->View->render('admin/questions/add', array(
-                    "quiz_type" => \Application\Core\Config::get("QUIZ_TYPE"),
+                    "quiz_type" => \PQ\Core\Config::get("QUIZ_TYPE"),
                     "token" => Csrf::generateToken()
                 ));
             } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -104,7 +104,7 @@ class Admin extends Controller
                         $_POST["option_d"], $_POST["answer"])) {
                         $questionStatement = htmlspecialchars($_POST["question_statement"]);
                         $questionCover = "";
-                        if (\Application\Core\Files::isImage($_FILES["question_cover"])) {
+                        if (\PQ\Core\Files::isImage($_FILES["question_cover"])) {
                             $questionCover = $_FILES["question_cover"];
                         }
                         $optionA = htmlspecialchars($_POST["option_a"]);
@@ -124,7 +124,7 @@ class Admin extends Controller
                         $questionStatement = htmlspecialchars($_POST["question_statement"]);
                         $answer = htmlspecialchars($_POST["answer"]);
                         $questionCover = "";
-                        if (\Application\Core\Files::isImage($_FILES["question_cover"])) {
+                        if (\PQ\Core\Files::isImage($_FILES["question_cover"])) {
                             $questionCover = $_FILES["question_cover"];
                         }
 
