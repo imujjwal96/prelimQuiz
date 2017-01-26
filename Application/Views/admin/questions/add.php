@@ -2,7 +2,7 @@
     <div class="row" style="margin-top: 50px">
         <div class="col-md-6 offset-md-3">
             <hr />
-            <h4 style="text-align: center">Add Question</h4>
+            <h4 style="text-align: center; color:white">Add Question</h4>
             <hr />
             <label for="question_type">Type of the Question</label>
             <select class="form-control" name="quesion_type" id="question_type">

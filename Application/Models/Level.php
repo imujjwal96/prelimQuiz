@@ -107,8 +107,10 @@ class Level {
             "answer" => $answer
         );
         if ($questions->insertOne($document)) {
+            Session::add("flash_success", "Question added successfully.");
             return true;
         }
+        Session::add("flash_error", "Failed to add question.");
         return false;
     }
 
@@ -129,8 +131,10 @@ class Level {
             "answer" => $answer
         );
         if ($questions->insertOne($document)) {
+            Session::add("flash_success", "Question added successfully.");
             return true;
         }
+        Session::add("flash_error", "Failed to add question.");
         return false;
     }
 

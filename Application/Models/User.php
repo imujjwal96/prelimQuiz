@@ -29,6 +29,27 @@ class User {
     }
 
     /**
+     * Checks if a user exists
+     * @param $parameter. (includes email, user_id, username)
+     * @param $value. value of the parameter
+     * @return bool true if user exists else false
+     */
+    public static function doesUserExist($parameter, $value) {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT * FROM info WHERE $parameter = :value";
+        $query = $database->prepare($sql);
+        $query->execute(array(
+            ':value' => $value
+        ));
+
+        if ($query->rowCount() != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Get user in an order of descresing points
      * @return array|bool array of user objects if users exist else false
      */

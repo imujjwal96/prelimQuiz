@@ -2,8 +2,9 @@
     <div class="full-bg-img flex-center">
         <ul>
             <li>
-                <h1 class="h1-responsive wow fadeInUp title"><?= \Application\Core\Config::get('QUIZ_NAME') ?></h1>
+                <h1 class="h1-responsive wow fadeInUp title"><?= \PQ\Core\Config::get('QUIZ_NAME') ?></h1>
             </li>
+            <?php $this->renderFlashMessages(); ?>
             <li>
                 <a href="/admin/instructions" class="btn btn-default btn-rounded">Add Instructions</a>
                 <a href="/admin/question/add" class="btn btn-default btn-rounded">Add a Question</a>

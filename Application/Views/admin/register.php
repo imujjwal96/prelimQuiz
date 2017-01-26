@@ -5,6 +5,7 @@
                 <li style="margin: 40px">
                     <h1 class="h1-responsive wow fadeInUp title" >Admin Registration</h1></li>
                 <li>
+                    <?php $this->renderFlashMessages(); ?>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="md-form">
@@ -15,20 +16,20 @@
                         <div class="col-md-3">
                             <div class="md-form">
                                 <input type="text" id="form2" class="form-control" name="name">
-                                <label for="form1">Name</label>
+                                <label for="form2">Name</label>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="md-form">
                                 <input type="text" id="form3" class="form-control" name="email">
-                                <label for="form2">Email</label>
+                                <label for="form3">Email</label>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="md-form">
                                 <input type="password" id="form4" class="form-control" name="password">
-                                <input type="hidden" name="token" id="token" value="<?= $this->token; ?>"/>
                                 <label for="form4">Password</label>
+                                <input type="hidden" name="token" id="token" value="<?= $this->token; ?>"/>
                             </div>
                         </div>
                     </div>
