@@ -20,6 +20,9 @@ Before you proceed make sure your server meets the following requirements:
 * MongoDB
 * Webserver, ie. Apache, nginx
 
+### Docker Compose installation
+Just run `docker-compose up --build` from the project directory and you'll have a fully running webserver with mysql connected. You can acces the application from `localhost`
+
 ## Authors
 
 * **Ujjwal Bhardwaj** 

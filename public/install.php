@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         \'DEFAULT_ACTION\' => \'index\',
 
         \'DB_TYPE\' => "' . $db_type . '",
-        \'DB_HOST\' => \'127.0.0.1\',
+        \'DB_HOST\' => \'mysqlhost\',
         \'DB_NAME\' => "' . $db_name . '",
         \'DB_USER\' => "' . $db_user . '",
         \'DB_PASS\' => "' . $db_pass . '",
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
 ';
         if (fwrite($config_file, $content)) {
-            $servername = "127.0.0.1";
+            $servername = "mysqlhost";
             $username = "username";
             $password = "password";
             $dbname = "myDB";

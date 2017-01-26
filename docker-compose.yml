@@ -1,0 +1,27 @@
+version: '2'
+services:
+  mysqldb:
+    image: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: prelim_quiz
+      MYSQL_USER: quizUser
+      MYSQL_PASSWORD: quizPassword
+  mongodb:
+    image: mongo
+    volumes:
+      - ./docker/data/mongo:/data/db
+
+  webserver:
+    build: ./docker/webserver
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html/
+    links:
+      - mysqldb:mysqlhost
+      - mongodb:mongohost
