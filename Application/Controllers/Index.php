@@ -18,7 +18,7 @@ class Index extends Controller
 
     public function index()
     {
-        if (!UserModel::doesUserExist()) {
+        if (!UserModel::doesUsersExist()) {
             Redirect::to('admin');
             return;
         }
