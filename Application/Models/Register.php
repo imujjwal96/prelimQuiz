@@ -39,10 +39,9 @@ class Register {
 
         $count =  $query->rowCount();
         if ($count == 1) {
-            Session::add('flash_success', "Registration Successful");
             return true;
         }
-        Session::add('flash_error', "Registration failed");
+        Session::add('flash_error', "Failed to register user.");
         return false;
     }
 
