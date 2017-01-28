@@ -2,7 +2,6 @@
 
 namespace PQ\Controllers;
 
-use phpDocumentor\Reflection\DocBlock\Tags\See;
 use PQ\Core\Controller;
 
 use PQ\Core\Csrf;

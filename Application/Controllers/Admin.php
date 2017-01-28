@@ -33,63 +33,72 @@ class Admin extends Controller
 
         if (!LoginModel::isUserLoggedIn()) {
             Redirect::to('login');
+            return;
         }
 
         if (UserModel::isAdmin()) {
             Redirect::to('admin/dashboard');
+            return;
         }
 
         Redirect::to('index');
+        return;
     }
 
     public function register()
     {
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
-            $this->View->renderWithoutHeaderAndFooter('404');
+            Redirect::to('index');
             return;
         }
 
         $name = strip_tags($_POST['name']);
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        $userName = strip_tags($_POST['username']);
+        $username = strip_tags($_POST['username']);
         $password = strip_tags($_POST['password']);
         $phone = "xxxxxxxxxx";
         $token = strip_tags($_POST['token']);
 
-        if (!(RegisterModel::formValidation($userName, $email) AND Csrf::isTokenValid($token))) {
+        if (!(RegisterModel::formValidation($username, $email) AND Csrf::isTokenValid($token))) {
             Redirect::to("admin");
             return;
         }
 
         if (UserModel::doesUserExist("email", $email)) {
-            Session::add("flash_success", "User with email: " . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . " already exists.");
+            Session::add("flash_error", "User with email: " . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . " already exists.");
             Redirect::to('admin');
             return;
         }
 
-        RegisterModel::registerNewUser($name, $email, $userName, $phone, $password, 'admin');
+        RegisterModel::registerNewUser($name, $email, $username, $phone, $password, 'admin');
 
-        if (LoginModel::login($userName, $password)) {
+        if (LoginModel::login($username, $password)) {
             Redirect::to('admin/dashboard');
             return;
         }
 
-        Redirect::to("admin");
+        Redirect::to('admin');
         return;
     }
 
     public function dashboard()
     {
         if(!UserModel::doesUsersExist()) {
-            Redirect::to("admin");
+            Redirect::to('admin');
             return;
         }
 
-        if (LoginModel::isUserLoggedIn() && UserModel::isAdmin()) {
-            $this->View->render('admin/dashboard');
+        if (!LoginModel::isUserLoggedIn()) {
+            Redirect::to('index');
             return;
         }
-        Redirect::to("index");
+
+        if (!UserModel::isAdmin()) {
+            Redirect::to('index');
+            return;
+        }
+
+        $this->View->render('admin/dashboard');
         return;
     }
 
@@ -99,8 +108,13 @@ class Admin extends Controller
             return;
         }
 
-        if (!(LoginModel::isUserLoggedIn() && UserModel::isAdmin())) {
-            Redirect::to("index");
+        if (!LoginModel::isUserLoggedIn()) {
+            Redirect::to('index');
+            return;
+        }
+
+        if (!UserModel::isAdmin()) {
+            Redirect::to('index');
             return;
         }
 
@@ -222,7 +236,8 @@ class Admin extends Controller
         }
     }
 
-    public function instructions() {
+    public function instructions()
+    {
         $this->View->render('admin/instructions');
         return;
     }
