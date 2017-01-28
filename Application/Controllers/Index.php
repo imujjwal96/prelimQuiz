@@ -11,36 +11,45 @@ use PQ\Models\Login as LoginModel;
 
 class Index extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function index() {
-        if (LoginModel::isUserLoggedIn()) {
-            if (UserModel::isAdmin()) {
-                Redirect::to('admin/dashboard');
-            } else {
-                Redirect::to('level');
-            }
-        } else {
-            if (UserModel::doesUsersExist()) {
-                $this->View->render('index/index', array(
-                    "quizName" => \PQ\Core\Config::get("QUIZ_NAME")
-                ));
-            } else {
-                Redirect::to('admin');
-            }
-
+    public function index()
+    {
+        if (!UserModel::doesUserExist()) {
+            Redirect::to('admin');
+            return;
         }
+
+        if (!LoginModel::isUserLoggedIn()) {
+            $this->View->render('index/index', array(
+                "quizName" => \PQ\Core\Config::get("QUIZ_NAME")
+            ));
+            return;
+        }
+
+        if (UserModel::isAdmin()) {
+            Redirect::to('admin/dashboard');
+            return;
+        }
+
+        Redirect::to('level');
+        return;
     }
 
-    public function instructions() {
+    public function instructions()
+    {
         $this->View->render('index/instructions');
+        return;
     }
 
-    public function leaderboard() {
+    public function leaderboard()
+    {
         $this->View->render('index/leaderboard', array(
             'users' => UserModel::getUsersByPoints()
         ));
+        return;
     }
 }
