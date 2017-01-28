@@ -19,13 +19,14 @@ class Login {
      */
     public static function login($userName, $userPassword) {
         if (empty($userName) OR empty($userPassword)) {
-            echo 'Empty Credentials';
+            Session:add("flash_error", "Empty credentials.");
             return false;
         }
 
         $result = self::validateAndGetUser($userName, $userPassword);
 
         if (!$result) {
+            Session::add("flash_error", "Invalid username or password.");
             return false;
         }
 
@@ -99,7 +100,6 @@ class Login {
         $result = User::getUserByUsername($userName);
 
         if (!$result) {
-            echo 'User not Found';
             return false;
         }
 
