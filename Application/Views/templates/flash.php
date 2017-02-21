@@ -2,9 +2,11 @@
 
 use PQ\Core\Session;
 
-$flash_success = Session::get('flash_success');
-$flash_message = Session::get('flash_message');
-$flash_error   = Session::get('flash_error');
+$Session = new Session();
+
+$flash_success = $Session->get('flash_success');
+$flash_message = $Session->get('flash_message');
+$flash_error   = $Session->get('flash_error');
 
 if ($flash_success != null) {
     foreach ($flash_success as $flash) {

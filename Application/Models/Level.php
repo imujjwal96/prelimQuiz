@@ -13,8 +13,12 @@ class Level {
 
     protected $user;
 
+    protected $Session;
+
     public function __construct() {
         $this->user = new User();
+
+        $this->Session = new Session();
     }
 
     /**
@@ -22,7 +26,7 @@ class Level {
      * @return int level the user is currently in.
      */
     public function getUserLevel() {
-            return $this->user->getUserByUsername(Session::get('user_name'))->level;
+            return $this->user->getUserByUsername($this->Session->get('user_name'))->level;
     }
 
     /**
@@ -112,10 +116,10 @@ class Level {
             "answer" => $answer
         );
         if ($questions->insertOne($document)) {
-            Session::add("flash_success", "Question added successfully.");
+            $this->Session->add("flash_success", "Question added successfully.");
             return true;
         }
-        Session::add("flash_error", "Failed to add question.");
+        $this->Session->add("flash_error", "Failed to add question.");
         return false;
     }
 
@@ -136,10 +140,10 @@ class Level {
             "answer" => $answer
         );
         if ($questions->insertOne($document)) {
-            Session::add("flash_success", "Question added successfully.");
+            $this->Session->add("flash_success", "Question added successfully.");
             return true;
         }
-        Session::add("flash_error", "Failed to add question.");
+        $this->Session->add("flash_error", "Failed to add question.");
         return false;
     }
 

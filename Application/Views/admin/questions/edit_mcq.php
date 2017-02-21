@@ -14,7 +14,7 @@
     <div class="row"  >
         <div class="col-md-12">
             <div class="card" style="margin:80px 80px;color:#aaa;">
-                <form type="form" method="POST" action="/level/submit">
+                <form method="POST" action="/level/submit">
                     <div class="card-block">
                         <h4 class="card-title"><strong> <?= $this->question->statement; ?></strong></h4>
                         <hr />

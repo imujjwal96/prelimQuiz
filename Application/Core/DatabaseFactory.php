@@ -6,6 +6,12 @@ class DatabaseFactory {
     private static $factory;
     private $database;
     private $databaseMongo;
+    private $Config;
+
+    public function __construct()
+    {
+        $this->Config = new Config();
+    }
 
     public static function getFactory() {
         if (!self::$factory) {
@@ -19,14 +25,14 @@ class DatabaseFactory {
             try {
                 $options = array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING);
                 $this->database = new \PDO(
-                    Config::get('DB_TYPE') . ':host=' . Config::get('DB_HOST') . ';dbname=' .
-                    Config::get('DB_NAME') . ';port=' . Config::get('DB_PORT') . ';charset=' . Config::get('DB_CHARSET'),
-                    Config::get('DB_USER'), Config::get('DB_PASS'), $options
+                    $this->Config->get('DB_TYPE') . ':host=' . $this->Config->get('DB_HOST') . ';dbname=' .
+                    $this->Config->get('DB_NAME') . ';port=' . $this->Config->get('DB_PORT') . ';charset=' . $this->Config->get('DB_CHARSET'),
+                    $this->Config->get('DB_USER'), $this->Config->get('DB_PASS'), $options
                 );
                 $this->database->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
             } catch (\PDOException $e) {
 
-                echo 'Database connection can not be estabilished. Please try again later.' . '<br>';
+                echo 'Database connection can not be established. Please try again later.' . '<br>';
                 echo 'Error code: ' . $e->getCode();
                 exit;
             }
@@ -37,7 +43,7 @@ class DatabaseFactory {
     public function getConnectionMongo() {
         if (!$this->databaseMongo) {
             $connection = new \MongoDB\Client("mongodb://localhost:27017");
-            $this->databaseMongo = $connection->selectDatabase(Config::get('DB_NAME'));
+            $this->databaseMongo = $connection->selectDatabase($this->Config->get('DB_NAME'));
         }
         return $this->databaseMongo;
     }

@@ -1,8 +1,11 @@
+<?php
+$Config = new \PQ\Core\Config();
+?>
 <div class="view hm-black-light">
     <div class="full-bg-img flex-center">
         <ul>
             <li>
-                <h1 class="h1-responsive wow fadeInUp title"><?= \PQ\Core\Config::get('QUIZ_NAME') ?></h1>
+                <h1 class="h1-responsive wow fadeInUp title"><?= $Config->get('QUIZ_NAME') ?></h1>
             </li>
             <?php $this->renderFlashMessages(); ?>
             <li>

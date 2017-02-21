@@ -3,8 +3,6 @@
 namespace PQ\Controllers;
 
 use PQ\Core\Controller;
-use PQ\Core\Redirect;
-use PQ\Core\Session;
 
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
@@ -27,24 +25,24 @@ class Level extends Controller
     public function index($id=null)
     {
         if (!$this->user->doesUsersExist()) {
-            Redirect::to('admin');
+            $this->Redirect->to('admin');
             return;
         }
 
         if (!$this->login->isUserLoggedIn()) {
-            Redirect::to('login');
+            $this->Redirect->to('login');
             return;
         }
 
 
         $level = $this->level->getUserLevel();
         if ($id == null) {
-            Redirect::to('level/index/' . $level);
+            $this->Redirect->to('level/index/' . $level);
             return;
         }
 
         if ($id != $level) {
-            Redirect::to('level/index/'.$level);
+            $this->Redirect->to('level/index/'.$level);
             return;
         }
 
@@ -56,6 +54,7 @@ class Level extends Controller
 
         if ($this->level->getQuestionType() == "MCQ") {
             $this->View->render('level/mcq', array(
+                "user_level" => $this->user->getUserLevel(),
                 "question" => $question,
                 "total" => $this->level->getTotalQuestions()
             ));
@@ -63,6 +62,7 @@ class Level extends Controller
         }
 
         $this->View->render('level/general', array(
+            "user_level" => $this->user->getUserLevel(),
             "question" => $question,
             "total" => $this->level->getTotalQuestions()
         ));
@@ -72,13 +72,13 @@ class Level extends Controller
     public function submit()
     {
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
-            Redirect::to('level/index');
+            $this->Redirect->to('level/index');
             return;
         }
 
         if (!isset($_POST["input"]) || empty($_POST["input"])) {
-            Session::add("flash_message", "Empty input value");
-            Redirect::to('level/index');
+            $this->Session->add("flash_message", "Empty input value");
+            $this->Redirect->to('level/index');
             return;
         }
 
@@ -93,6 +93,6 @@ class Level extends Controller
             echo 'error level';
             exit();
         }
-        Redirect::to('level/index');
+        $this->Redirect->to('level/index');
     }
 }

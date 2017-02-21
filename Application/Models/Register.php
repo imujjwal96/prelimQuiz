@@ -11,6 +11,13 @@ use PQ\Core\Session;
  */
 class Register {
 
+    protected $Session;
+
+    public function __construct()
+    {
+        $this->Session = new Session();
+    }
+
     /**
      * Registers a user
      * @param string $name. User's name
@@ -42,7 +49,7 @@ class Register {
         if ($count == 1) {
             return true;
         }
-        Session::add('flash_error', "Failed to register user.");
+        $this->Session->add('flash_error', "Failed to register user.");
         return false;
     }
 
@@ -67,12 +74,12 @@ class Register {
      */
     public function validateUserName($userName) {
         if (empty($userName)) {
-            Session::add('flash_error', "Empty Username");
+            $this->Session->add('flash_error', "Empty Username");
             return false;
         }
 
         if (!preg_match('/^[a-zA-Z0-9]{2,64}$/', $userName)) {
-            Session::add('flash_error', "Invalid username");
+            $this->Session->add('flash_error', "Invalid username");
             return false;
         }
 
@@ -86,12 +93,12 @@ class Register {
      */
     public function validateEmail($email) {
         if (empty($email)) {
-            Session::add('flash_error', "Empty Email");
+            $this->Session->add('flash_error', "Empty Email");
             return false;
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            Session::add('flash_error', "Invalid Email");
+            $this->Session->add('flash_error', "Invalid Email");
             return false;
         }
         return true;

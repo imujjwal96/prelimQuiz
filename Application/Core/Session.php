@@ -3,18 +3,18 @@
 namespace PQ\Core;
 
 class Session {
-    public static function init() {
+    public function init() {
         if (session_id() == '') {
             session_start();
         }
     }
 
-    public static function set($key, $value)
+    public function set($key, $value)
     {
         $_SESSION[$key] = $value;
     }
 
-    public static function get($key) {
+    public function get($key) {
         if (isset($_SESSION[$key])) {
             $value = $_SESSION[$key];
 
@@ -23,15 +23,15 @@ class Session {
         return '';
     }
 
-    public static function add($key, $value) {
+    public function add($key, $value) {
         $_SESSION[$key][] = $value;
     }
 
-    public static function destroy() {
+    public function destroy() {
         session_destroy();
     }
 
-    public static function userIsLoggedIn() {
+    public function userIsLoggedIn() {
         return (self::get('user_logged_in') ? true : false);
     }
 }

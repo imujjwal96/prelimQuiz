@@ -4,10 +4,6 @@ namespace PQ\Controllers;
 
 use PQ\Core\Controller;
 
-use PQ\Core\Csrf;
-use PQ\Core\Redirect;
-
-use PQ\Core\Session;
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 
@@ -26,15 +22,15 @@ class Login extends Controller
     public function index()
     {
         if ($_SERVER["REQUEST_METHOD"] != "GET") {
-            Redirect::to('index');
+            $this->Redirect->to('index');
             return;
         }
 
         if ($this->login->isUserLoggedIn()) {
-            Redirect::to('index');
+            $this->Redirect->to('index');
         }
 
-        $token = Csrf::generateToken();
+        $token = $this->Csrf->generateToken();
         $this->View->render('login/index', array(
             'token' => $token
         ));
@@ -43,7 +39,7 @@ class Login extends Controller
     public function action()
     {
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
-            Redirect::to('login');
+            $this->Redirect->to('login');
             return;
         }
 
@@ -52,33 +48,33 @@ class Login extends Controller
         $token = $_POST['token'];
 
 
-        if (!Csrf::isTokenValid($token)) {
-            Session::add("flash_error", "Failed to login user.");
-            Redirect::to('login/index');
+        if (!$this->Csrf->isTokenValid($token)) {
+            $this->Session->add("flash_error", "Failed to login user.");
+            $this->Redirect->to('login/index');
             return;
         }
 
         $login = $this->login->login($username, $password);
         if (!$login) {
-            Redirect::to('login/index');
+            $this->Redirect->to('login/index');
             return;
         }
 
 
         if ($this->user->isAdmin()) {
-            Redirect::to('admin/dashboard');
+            $this->Redirect->to('admin/dashboard');
             return;
         }
 
         $result = $this->user->getUserByUsername($username);
-        Redirect::to('level/index/' . $result->level);
+        $this->Redirect->to('level/index/' . $result->level);
         return;
     }
 
     public function logout()
     {
         $this->login->logout();
-        Redirect::to('index');
+        $this->Redirect->to('index');
         return;
     }
 }

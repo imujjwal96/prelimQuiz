@@ -4,6 +4,15 @@ namespace PQ\Core;
 
 class View {
 
+    private $Config;
+    private $Session;
+
+    public function __construct()
+    {
+        $this->Config = new Config();
+        $this->Session = new Session();
+    }
+
     public function render($filename, $data = null)
     {
         if ($data) {
@@ -12,9 +21,9 @@ class View {
             }
         }
 
-        require Config::get('PATH_VIEW') . 'templates/header.php';
-        require Config::get('PATH_VIEW') . $filename . '.php';
-        require Config::get('PATH_VIEW') . 'templates/footer.php';
+        require $this->Config->get('PATH_VIEW') . 'templates/header.php';
+        require $this->Config->get('PATH_VIEW') . $filename . '.php';
+        require $this->Config->get('PATH_VIEW') . 'templates/footer.php';
     }
 
     public function renderWithoutHeaderAndFooter($filename, $data = null)
@@ -25,7 +34,7 @@ class View {
             }
         }
 
-        require Config::get('PATH_VIEW') . $filename . '.php';
+        require $this->Config->get('PATH_VIEW') . $filename . '.php';
     }
 
     public function encodeHTML($str)
@@ -36,10 +45,10 @@ class View {
     public function renderFlashMessages()
     {
 
-        require Config::get('PATH_VIEW') . 'templates/flash.php';
+        require $this->Config->get('PATH_VIEW') . 'templates/flash.php';
 
-        Session::set('flash_success', null);
-        Session::set('flash_message', null);
-        Session::set('flash_error', null);
+        $this->Session->set('flash_success', null);
+        $this->Session->set('flash_message', null);
+        $this->Session->set('flash_error', null);
     }
 }

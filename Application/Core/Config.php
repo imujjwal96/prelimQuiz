@@ -3,11 +3,11 @@
 namespace PQ\Core;
 
 class Config {
-    public static $config;
+    public $config;
 
-    public static function get($key)
+    public function get($key)
     {
-        if (!self::$config) {
+        if (!$this->config) {
 
             $config_file = '../Application/Config/config.php';
 
@@ -15,9 +15,9 @@ class Config {
                 return false;
             }
 
-            self::$config = require $config_file;
+            $this->config = require $config_file;
         }
 
-        return self::$config[$key];
+        return $this->config[$key];
     }
 }

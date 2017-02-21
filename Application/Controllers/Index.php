@@ -4,8 +4,6 @@ namespace PQ\Controllers;
 
 use PQ\Core\Controller;
 
-use PQ\Core\Redirect;
-
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 
@@ -24,23 +22,23 @@ class Index extends Controller
     public function index()
     {
         if (!$this->user->doesUsersExist()) {
-            Redirect::to('admin');
+            $this->Redirect->to('admin');
             return;
         }
 
         if (!$this->login->isUserLoggedIn()) {
             $this->View->render('index/index', array(
-                "quizName" => \PQ\Core\Config::get("QUIZ_NAME")
+                "quizName" => $this->Config->get("QUIZ_NAME")
             ));
             return;
         }
 
         if ($this->user->isAdmin()) {
-            Redirect::to('admin/dashboard');
+            $this->Redirect->to('admin/dashboard');
             return;
         }
 
-        Redirect::to('level');
+        $this->Redirect->to('level');
         return;
     }
 

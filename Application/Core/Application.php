@@ -8,23 +8,25 @@ class Application {
     protected $method;
     protected $params = array();
     private $controllerName;
+    private $Config;
 
     public function __construct() {
+        $this->Config = new Config();
         $this->parseURL();
 
         if (!$this->controllerName) {
-            $this->controllerName = Config::get('DEFAULT_CONTROLLER');
+            $this->controllerName = $this->Config->get('DEFAULT_CONTROLLER');
         }
 
         if (!$this->method OR (strlen($this->method) == 0)) {
-            $this->method = Config::get('DEFAULT_ACTION');
+            $this->method = $this->Config->get('DEFAULT_ACTION');
         }
 
         $this->controllerName = ucwords($this->controllerName);
 
-        if (file_exists(Config::get('PATH_CONTROLLER') . $this->controllerName . '.php')) {
+        if (file_exists($this->Config->get('PATH_CONTROLLER') . $this->controllerName . '.php')) {
 
-            require Config::get('PATH_CONTROLLER') . $this->controllerName . '.php';
+            require $this->Config->get('PATH_CONTROLLER') . $this->controllerName . '.php';
             $a = 'PQ\Controllers\\' . $this->controllerName;
             $this->controller = new $a;
 
@@ -35,10 +37,10 @@ class Application {
                     $this->controller->{$this->method}();
                 }
             } else {
-                require Config::get('PATH_VIEW') . '404.php';
+                require $this->Config->get('PATH_VIEW') . '404.php';
             }
         } else {
-            require Config::get('PATH_VIEW') . '404.php';
+            require $this->Config->get('PATH_VIEW') . '404.php';
         }
     }
 

@@ -4,8 +4,15 @@ namespace PQ\Core;
 
 class Redirect
 {
-    public static function to($path)
+    private $Config;
+
+    public function __construct()
     {
-        header("location: " . Config::get('URL') . $path);
+        $this->Config = new Config();
+    }
+
+    public function to($path)
+    {
+        header("location: " . $this->Config->get('URL') . $path);
     }
 }

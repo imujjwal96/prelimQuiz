@@ -4,10 +4,6 @@ namespace PQ\Controllers;
 
 use PQ\Core\Controller;
 
-use PQ\Core\Csrf;
-use PQ\Core\Redirect;
-use PQ\Core\Session;
-
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Register as RegisterModel;
@@ -29,12 +25,12 @@ class Register extends Controller
     public function index() 
     {
         if ($_SERVER["REQUEST_METHOD"] != "GET") {
-            Redirect::to('index');
+            $this->Redirect->to('index');
             return;
         }
 
         $this->View->render('register/index', array(
-            'token' => Csrf::generateToken()
+            'token' => $this->Csrf->generateToken()
         ));
         return;
     }
@@ -42,7 +38,7 @@ class Register extends Controller
     public function action()
     {
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
-            Redirect::to('index');
+            $this->Redirect->to('index');
             return;
         }
         
@@ -53,34 +49,34 @@ class Register extends Controller
         $password = strip_tags($_POST['password']);
         $token = strip_tags($_POST['token']);
 
-        if (!$this->register->formValidation($username, $email) or !Csrf::isTokenValid($token)) {
+        if (!$this->register->formValidation($username, $email) or !$this->Csrf->isTokenValid($token)) {
             echo 'Invalid Credentials';
         }
 
         if ($this->user->getUserByEmail($email)) {
-            Session::add("flash_error", "User with email: " . $email . " already exists.");
-            Redirect::to('register');
+            $this->Session->add("flash_error", "User with email: " . $email . " already exists.");
+            $this->Redirect->to('register');
             return;
         }
 
         if ($this->user->getUserByUsername($username)) {
-            Session::add("flash_error", "User with username: " . $username . " already exists.");
-            Redirect::to('register');
+            $this->Session->add("flash_error", "User with username: " . $username . " already exists.");
+            $this->Redirect->to('register');
             return;
         }
 
         $register = $this->register->registerNewUser($name, $email, $username, $phone, $password);
         if (!$register) {
-            Redirect::to('register');
+            $this->Redirect->to('register');
             return;
         }
 
         if (!$this->login->login($username, $password)) {
-            Redirect::to('login');
+            $this->Redirect->to('login');
             return;
         }
 
-        Redirect::to('level/index/0');
+        $this->Redirect->to('level/index/0');
         return;
     }
 }

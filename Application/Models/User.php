@@ -11,6 +11,13 @@ use PQ\Core\Session;
  */
 class User {
 
+    protected $Session;
+
+    public function __construct()
+    {
+        $this->Session = new Session();
+    }
+
     /**
      * Checks if there is any user in the database
      * @return bool true if users exist else false
@@ -50,7 +57,7 @@ class User {
     }
 
     /**
-     * Get user in an order of descresing points
+     * Get user in an order of decreasing points
      * @return array|bool array of user objects if users exist else false
      */
     public function getUsersByPoints() {
@@ -132,7 +139,7 @@ class User {
         $query = $database->prepare("UPDATE info SET points = points + :points WHERE username = :user_name LIMIT 1");
         $query->execute(array(
             ':points' => $points,
-            ':user_name' => Session::get('user_name')
+            ':user_name' => $this->Session->get('user_name')
         ));
         $count = $query->rowCount();
         if ($count == 1) {
@@ -150,7 +157,7 @@ class User {
 
         $query = $database->prepare("UPDATE info SET level = level + 1 WHERE username = :user_name LIMIT 1");
         $query->execute(array(
-            ':user_name' => Session::get('user_name')
+            ':user_name' => $this->Session->get('user_name')
         ));
         $count = $query->rowCount();
         if ($count == 1) {
@@ -187,7 +194,7 @@ class User {
 
         $query = $database->prepare("SELECT role FROM info WHERE username = :username");
         $query->execute(array(
-            ':username' => Session::get('user_name')
+            ':username' => $this->Session->get('user_name')
         ));
 
         if ($query->fetch()->role == "admin") {

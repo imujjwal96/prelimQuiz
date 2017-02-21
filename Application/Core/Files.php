@@ -4,12 +4,12 @@ namespace PQ\Core;
 
 class Files {
 
-    public static function uploadFile()
+    public function uploadFile()
     {
 
     }
 
-    public static function isImage($file)
+    public function isImage($file)
     {
         //$fileType = pathinfo(basename($file["name"]),PATHINFO_EXTENSION);
        // if ($fileType == "jpg" || $fileType == "png" || $fileType == "jpeg" || $fileType == "gif") {

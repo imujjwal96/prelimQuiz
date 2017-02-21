@@ -4,10 +4,6 @@ namespace PQ\Controllers;
 
 use PQ\Core\Controller;
 
-use PQ\Core\Redirect;
-use PQ\Core\Csrf;
-
-use PQ\Core\Session;
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Register as RegisterModel;
@@ -33,29 +29,29 @@ class Admin extends Controller
     {
         if (!$this->user->doesUsersExist()) {
             $this->View->render('admin/register', array(
-                'token' => Csrf::generateToken()
+                'token' => $this->Csrf->generateToken()
             ));
             return;
         }
 
         if (!$this->login->isUserLoggedIn()) {
-            Redirect::to('login');
+            $this->Redirect->to('login');
             return;
         }
 
         if ($this->user->isAdmin()) {
-            Redirect::to('admin/dashboard');
+            $this->Redirect->to('admin/dashboard');
             return;
         }
 
-        Redirect::to('index');
+        $this->Redirect->to('index');
         return;
     }
 
     public function register()
     {
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
-            Redirect::to('index');
+            $this->Redirect->to('index');
             return;
         }
 
@@ -66,42 +62,42 @@ class Admin extends Controller
         $phone = "xxxxxxxxxx";
         $token = strip_tags($_POST['token']);
 
-        if (!($this->register->formValidation($username, $email) AND Csrf::isTokenValid($token))) {
-            Redirect::to("admin");
+        if (!($this->register->formValidation($username, $email) AND $this->Csrf->isTokenValid($token))) {
+            $this->Redirect->to("admin");
             return;
         }
 
         if ($this->user->doesUserExist("email", $email)) {
-            Session::add("flash_error", "User with email: " . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . " already exists.");
-            Redirect::to('admin');
+            $this->Session->add("flash_error", "User with email: " . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . " already exists.");
+            $this->Redirect->to('admin');
             return;
         }
 
         $this->register->registerNewUser($name, $email, $username, $phone, $password, 'admin');
 
         if ($this->login->login($username, $password)) {
-            Redirect::to('admin/dashboard');
+            $this->Redirect->to('admin/dashboard');
             return;
         }
 
-        Redirect::to('admin');
+        $this->Redirect->to('admin');
         return;
     }
 
     public function dashboard()
     {
         if(!$this->user->doesUsersExist()) {
-            Redirect::to('admin');
+            $this->Redirect->to('admin');
             return;
         }
 
         if (!$this->login->isUserLoggedIn()) {
-            Redirect::to('index');
+            $this->Redirect->to('index');
             return;
         }
 
         if (!$this->user->isAdmin()) {
-            Redirect::to('index');
+            $this->Redirect->to('index');
             return;
         }
 
@@ -111,17 +107,17 @@ class Admin extends Controller
 
     public function question($action=null, $id=null) {
         if(!$this->user->doesUsersExist()) {
-            Redirect::to("admin");
+            $this->Redirect->to("admin");
             return;
         }
 
         if (!$this->login->isUserLoggedIn()) {
-            Redirect::to('index');
+            $this->Redirect->to('index');
             return;
         }
 
         if (!$this->user->isAdmin()) {
-            Redirect::to('index');
+            $this->Redirect->to('index');
             return;
         }
 
@@ -142,8 +138,8 @@ class Admin extends Controller
         if ($action == "add") {
             if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 $this->View->render('admin/questions/add', array(
-                    "quiz_type" => \PQ\Core\Config::get("QUIZ_TYPE"),
-                    "token" => Csrf::generateToken()
+                    "quiz_type" => $this->Config->get("QUIZ_TYPE"),
+                    "token" => $this->Csrf->generateToken()
                 ));
                 return;
             }
@@ -151,14 +147,14 @@ class Admin extends Controller
             if (isset($_POST["mcq"])) {
                 if (!isset($_POST["question_statement"], $_POST["option_a"], $_POST["option_b"], $_POST["option_c"],
                     $_POST["option_d"], $_POST["answer"])) {
-                    Session::add("flash_error", "Invalid Questions Parameters");
-                    Redirect::to('admin/dashboard/add');
+                    $this->Session->add("flash_error", "Invalid Questions Parameters");
+                    $this->Redirect->to('admin/dashboard/add');
                     return;
                 }
 
                 $questionStatement = htmlspecialchars($_POST["question_statement"]);
                 $questionCover = "";
-                if (\PQ\Core\Files::isImage($_FILES["question_cover"])) {
+                if ($this->Files->isImage($_FILES["question_cover"])) {
                     $questionCover = $_FILES["question_cover"];
                 }
                 $optionA = htmlspecialchars($_POST["option_a"]);
@@ -168,37 +164,37 @@ class Admin extends Controller
                 $answer = htmlspecialchars($_POST["answer"]);
 
                 $this->level->storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer);
-                Redirect::to('admin/dashboard');
+                $this->Redirect->to('admin/dashboard');
                 return;
             }
 
             if (isset($_POST["general"])) {
                 if (!isset($_POST["question_statement"], $_POST["answer"])) {
-                    Session::add("flash_error", "Invalid Questions Parameters");
-                    Redirect::to('admin/dashboard/add');
+                    $this->Session->add("flash_error", "Invalid Questions Parameters");
+                    $this->Redirect->to('admin/dashboard/add');
                     return;
                 }
 
                 $questionStatement = htmlspecialchars($_POST["question_statement"]);
                 $answer = htmlspecialchars($_POST["answer"]);
                 $questionCover = "";
-                if (\PQ\Core\Files::isImage($_FILES["question_cover"])) {
+                if ($this->Files->isImage($_FILES["question_cover"])) {
                     $questionCover = $_FILES["question_cover"];
                 }
 
                 $this->level->storeGeneralQuestion($questionStatement, $questionCover, $answer);
-                Redirect::to('admin/dashboard');
+                $this->Redirect->to('admin/dashboard');
                 return;
             }
 
-            Session::add("flash_error", "Invalid Question Type");
-            Redirect::to("admin/dashboard");
+            $this->Session->add("flash_error", "Invalid Question Type");
+            $this->Redirect->to("admin/dashboard");
             return;
         }
 
         if ($this->level->getTotalQuestions() == 0) {
-            Session::add("flash_message", "No questions exist.");
-            Redirect::to("admin/dashboard");
+            $this->Session->add("flash_message", "No questions exist.");
+            $this->Redirect->to("admin/dashboard");
             return;
         }
 
@@ -206,19 +202,19 @@ class Admin extends Controller
             if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 $this->View->render('admin/questions/edit', array(
                     "questions" => $this->level->getQuestions(),
-                    "token" => Csrf::generateToken()
+                    "token" => $this->Csrf->generateToken()
                 ));
                 return;
             }
 
             if (!isset($_POST["question_id"])) {
-                Session::add("flash_error", "Invalid question");
-                Redirect::to('admin/dashboard/edit');
+                $this->Session->add("flash_error", "Invalid question");
+                $this->Redirect->to('admin/dashboard/edit');
                 return;
             }
 
             $questionId = htmlspecialchars($_POST["question_id"]);
-            Redirect::to('admin/question/edit/' .$questionId);
+            $this->Redirect->to('admin/question/edit/' .$questionId);
             return;
         }
 
@@ -226,19 +222,19 @@ class Admin extends Controller
             if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 $this->View->render('admin/questions/delete',array(
                     "questions" => $this->level->getQuestions(),
-                    "token" => Csrf::generateToken()
+                    "token" => $this->Csrf->generateToken()
                 ));
             }
 
             if (!isset($_POST["question_id"])) {
-                Session::add("flash_error", "Invalid question");
-                Redirect::to('admin/dashboard/edit');
+                $this->Session->add("flash_error", "Invalid question");
+                $this->Redirect->to('admin/dashboard/edit');
                 return;
             }
 
             $questionId = htmlspecialchars($_POST["question_id"]);
             $this->level->deleteQuestionById($questionId);
-            Redirect::to('admin/question/delete');
+            $this->Redirect->to('admin/question/delete');
             return;
         }
     }
