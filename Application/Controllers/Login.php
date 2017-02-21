@@ -13,9 +13,13 @@ use PQ\Models\Login as LoginModel;
 
 class Login extends Controller
 {
+    protected $user;
+    protected $login;
 
     public function __construct()
     {
+        $this->user = new UserModel();
+        $this->login = new LoginModel();
         parent::__construct();
     }
 
@@ -26,7 +30,7 @@ class Login extends Controller
             return;
         }
 
-        if (LoginModel::isUserLoggedIn()) {
+        if ($this->login->isUserLoggedIn()) {
             Redirect::to('index');
         }
 
@@ -54,26 +58,26 @@ class Login extends Controller
             return;
         }
 
-        $login = LoginModel::login($username, $password);
+        $login = $this->login->login($username, $password);
         if (!$login) {
             Redirect::to('login/index');
             return;
         }
 
 
-        if (UserModel::isAdmin()) {
+        if ($this->user->isAdmin()) {
             Redirect::to('admin/dashboard');
             return;
         }
 
-        $result = UserModel::getUserByUsername($username);
+        $result = $this->user->getUserByUsername($username);
         Redirect::to('level/index/' . $result->level);
         return;
     }
 
     public function logout()
     {
-        LoginModel::logout();
+        $this->login->logout();
         Redirect::to('index');
         return;
     }

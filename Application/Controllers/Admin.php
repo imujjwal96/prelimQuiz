@@ -12,31 +12,38 @@ use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Register as RegisterModel;
 use PQ\Models\Level as LevelModel;
-use PQ\Models\User;
 
 class Admin extends Controller
 {
+    protected $user;
+    protected $login;
+    protected $register;
+    protected $level;
 
     public function __construct()
     {
+        $this->user = new UserModel();
+        $this->login = new LoginModel();
+        $this->register = new RegisterModel();
+        $this->level = new LevelModel();
         parent::__construct();
     }
 
     public function index()
     {
-        if (!UserModel::doesUsersExist()) {
+        if (!$this->user->doesUsersExist()) {
             $this->View->render('admin/register', array(
                 'token' => Csrf::generateToken()
             ));
             return;
         }
 
-        if (!LoginModel::isUserLoggedIn()) {
+        if (!$this->login->isUserLoggedIn()) {
             Redirect::to('login');
             return;
         }
 
-        if (UserModel::isAdmin()) {
+        if ($this->user->isAdmin()) {
             Redirect::to('admin/dashboard');
             return;
         }
@@ -59,20 +66,20 @@ class Admin extends Controller
         $phone = "xxxxxxxxxx";
         $token = strip_tags($_POST['token']);
 
-        if (!(RegisterModel::formValidation($username, $email) AND Csrf::isTokenValid($token))) {
+        if (!($this->register->formValidation($username, $email) AND Csrf::isTokenValid($token))) {
             Redirect::to("admin");
             return;
         }
 
-        if (UserModel::doesUserExist("email", $email)) {
+        if ($this->user->doesUserExist("email", $email)) {
             Session::add("flash_error", "User with email: " . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . " already exists.");
             Redirect::to('admin');
             return;
         }
 
-        RegisterModel::registerNewUser($name, $email, $username, $phone, $password, 'admin');
+        $this->register->registerNewUser($name, $email, $username, $phone, $password, 'admin');
 
-        if (LoginModel::login($username, $password)) {
+        if ($this->login->login($username, $password)) {
             Redirect::to('admin/dashboard');
             return;
         }
@@ -83,17 +90,17 @@ class Admin extends Controller
 
     public function dashboard()
     {
-        if(!UserModel::doesUsersExist()) {
+        if(!$this->user->doesUsersExist()) {
             Redirect::to('admin');
             return;
         }
 
-        if (!LoginModel::isUserLoggedIn()) {
+        if (!$this->login->isUserLoggedIn()) {
             Redirect::to('index');
             return;
         }
 
-        if (!UserModel::isAdmin()) {
+        if (!$this->user->isAdmin()) {
             Redirect::to('index');
             return;
         }
@@ -103,31 +110,31 @@ class Admin extends Controller
     }
 
     public function question($action=null, $id=null) {
-        if(!UserModel::doesUsersExist()) {
+        if(!$this->user->doesUsersExist()) {
             Redirect::to("admin");
             return;
         }
 
-        if (!LoginModel::isUserLoggedIn()) {
+        if (!$this->login->isUserLoggedIn()) {
             Redirect::to('index');
             return;
         }
 
-        if (!UserModel::isAdmin()) {
+        if (!$this->user->isAdmin()) {
             Redirect::to('index');
             return;
         }
 
         if ($id != null && $action=="edit") {
-            $question = LevelModel::getQuestionById($id);
+            $question = $this->level->getQuestionById($id);
             if ($question->type == "MCQ") {
                 $this->View->render('admin/questions/edit_mcq', array(
-                    "question" => LevelModel::getQuestionById($id)
+                    "question" => $question
                 ));
                 return;
             }
             $this->View->render('admin/questions/edit_general', array(
-                "question" => LevelModel::getQuestionById($id)
+                "question" => $question
             ));
             return;
         }
@@ -160,7 +167,7 @@ class Admin extends Controller
                 $optionD = htmlspecialchars($_POST["option_d"]);
                 $answer = htmlspecialchars($_POST["answer"]);
 
-                LevelModel::storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer);
+                $this->level->storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer);
                 Redirect::to('admin/dashboard');
                 return;
             }
@@ -179,7 +186,7 @@ class Admin extends Controller
                     $questionCover = $_FILES["question_cover"];
                 }
 
-                LevelModel::storeGeneralQuestion($questionStatement, $questionCover, $answer);
+                $this->level->storeGeneralQuestion($questionStatement, $questionCover, $answer);
                 Redirect::to('admin/dashboard');
                 return;
             }
@@ -189,7 +196,7 @@ class Admin extends Controller
             return;
         }
 
-        if (LevelModel::getTotalQuestions() == 0) {
+        if ($this->level->getTotalQuestions() == 0) {
             Session::add("flash_message", "No questions exist.");
             Redirect::to("admin/dashboard");
             return;
@@ -198,7 +205,7 @@ class Admin extends Controller
         if ($action == "edit") {
             if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 $this->View->render('admin/questions/edit', array(
-                    "questions" => LevelModel::getQuestions(),
+                    "questions" => $this->level->getQuestions(),
                     "token" => Csrf::generateToken()
                 ));
                 return;
@@ -218,7 +225,7 @@ class Admin extends Controller
         if ($action == "delete") {
             if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 $this->View->render('admin/questions/delete',array(
-                    "questions" => LevelModel::getQuestions(),
+                    "questions" => $this->level->getQuestions(),
                     "token" => Csrf::generateToken()
                 ));
             }
@@ -230,7 +237,7 @@ class Admin extends Controller
             }
 
             $questionId = htmlspecialchars($_POST["question_id"]);
-            LevelModel::deleteQuestionById($questionId);
+            $this->level->deleteQuestionById($questionId);
             Redirect::to('admin/question/delete');
             return;
         }

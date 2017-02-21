@@ -11,19 +11,25 @@ use PQ\Core\Config;
  */
 class Login {
 
+    protected  $user;
+
+    public function __construct() {
+        $this->user = new User();
+    }
+
     /**
      * Login a user
      * @param string $userName. User's username
      * @param string $userPassword. User's password
      * @return bool true if user successfully logged in, else false
      */
-    public static function login($userName, $userPassword) {
+    public function login($userName, $userPassword) {
         if (empty($userName) OR empty($userPassword)) {
-            Session:add("flash_error", "Empty credentials.");
+            Session::add("flash_error", "Empty credentials.");
             return false;
         }
 
-        $result = self::validateAndGetUser($userName, $userPassword);
+        $result = $this->validateAndGetUser($userName, $userPassword);
 
         if (!$result) {
             Session::add("flash_error", "Invalid username or password.");
@@ -40,10 +46,10 @@ class Login {
     /**
      * Logs out a user
      */
-    public static function logout() {
+    public function logout() {
         $user_id = Session::get('user_id');
 
-        self::deleteCookie($user_id);
+        $this->deleteCookie($user_id);
 
         Session::destroy();
     }
@@ -54,7 +60,7 @@ class Login {
      * @param string $userName. User's username
      * @param string $email. User's email
      */
-    public static function setSuccessfulLoginIntoSession($userID, $userName, $email) {
+    public function setSuccessfulLoginIntoSession($userID, $userName, $email) {
         Session::init();
 
         session_regenerate_id(true);
@@ -75,7 +81,7 @@ class Login {
      * Checks if a user is logged in
      * @return bool true if the uer is logged in, else false
      */
-    public static function isUserLoggedIn() {
+    public function isUserLoggedIn() {
         return Session::userIsLoggedIn();
     }
 
@@ -83,7 +89,7 @@ class Login {
      * Deletes the cookie
      * @param int/null $userID
      */
-    public static function deleteCookie($userID = null) {
+    public function deleteCookie($userID = null) {
         setcookie('remember_me', false, time() - (3600 * 24 * 3650), Config::get('COOKIE_PATH'),
             Config::get('COOKIE_DOMAIN'), Config::get('COOKIE_SECURE'), Config::get('COOKIE_HTTP'));
     }
@@ -91,13 +97,11 @@ class Login {
     /**
      * Validates the user credentials and get user info
      * @param string $userName. User's username
-     * @param string $userpa. User's phone number
+     * @param string $userPassword. User's password
      * @return bool|mixed User object if the credentials are correct, else returns false
      */
-    private static function validateAndGetUser($userName, $userPassword)
-    {
-
-        $result = User::getUserByUsername($userName);
+    private function validateAndGetUser($userName, $userPassword) {
+        $result = $this->user->getUserByUsername($userName);
 
         if (!$result) {
             return false;

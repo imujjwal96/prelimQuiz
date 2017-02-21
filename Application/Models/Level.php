@@ -11,22 +11,27 @@ use PQ\Core\DatabaseFactory;
  */
 class Level {
 
+    protected $user;
+
+    public function __construct() {
+        $this->user = new User();
+    }
+
     /**
      * Gets a user's level with information gathered from the session
      * @return int level the user is currently in.
      */
-    public static function getUserLevel() {
-            $user = User::getUserByUsername(Session::get('user_name'));
-            return $user->level;
+    public function getUserLevel() {
+            return $this->user->getUserByUsername(Session::get('user_name'))->level;
     }
 
     /**
      * Gets the current question for the user to solve
      * @return mixed/bool question object if a question is found, else false
      */
-    public static function getCurrentQuestion() {
-        $questions = self::getQuestions();
-        $level = self::getUserLevel();
+    public function getCurrentQuestion() {
+        $questions = $this->getQuestions();
+        $level = $this->getUserLevel();
         $i = 0;
         foreach ($questions as $question) {
             if ($i == $level) {
@@ -41,7 +46,7 @@ class Level {
      * Gets the total number of questions
      * @return int total number of questions
      */
-    public static function getTotalQuestions() {
+    public function getTotalQuestions() {
         $database = DatabaseFactory::getFactory()->getConnectionMongo();
         $questions = $database->selectCollection("questions");
 
@@ -52,32 +57,32 @@ class Level {
      * Gets the type of the question  (General / MCQ)
      * @return string. Question type
      */
-    public static function getQuestionType() {
-        return self::getCurrentQuestion()->type;
+    public function getQuestionType() {
+        return $this->getCurrentQuestion()->type;
     }
 
     /**
      * Gets the statement of the question.
      * @return string. Statement of the question
      */
-    public static function getQuestionStatement() {
-        return self::getCurrentQuestion()->statement;
+    public function getQuestionStatement() {
+        return $this->getCurrentQuestion()->statement;
     }
 
     /**
      * Get the points of the current question
      * @return int points
      */
-    public static function getQuestionPoints() {
-        return self::getCurrentQuestion()->points ? self::getCurrentQuestion()->points  : 2;
+    public function getQuestionPoints() {
+        return $this->getCurrentQuestion()->points ? $this->getCurrentQuestion()->points : 2;
     }
 
     /**
      * Gets the answer of the current questions
      * @return string answer
      */
-    public static function getAnswer() {
-        return self::getCurrentQuestion()->answer;
+    public function getAnswer() {
+        return $this->getCurrentQuestion()->answer;
     }
 
     /**
@@ -91,7 +96,7 @@ class Level {
      * @param string $answer. Answer to the question.
      * @return bool true if the question is stored successfully, else false
      */
-    public static function storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer) {
+    public function storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
         $questions = $databaseMongo->selectCollection("questions");
         $document = array(
@@ -121,7 +126,7 @@ class Level {
      * @param string $answer. Answer to the question.
      * @return bool true if the question is stored successfully, else false.
      */
-    public static function storeGeneralQuestion($questionStatement, $questionCover, $answer) {
+    public function storeGeneralQuestion($questionStatement, $questionCover, $answer) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
         $questions = $databaseMongo->selectCollection("questions");
         $document = array(
@@ -142,7 +147,7 @@ class Level {
      * Gets all the questions from the database in the form of an array
      * @return array
      */
-    public static function getQuestions() {
+    public function getQuestions() {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
         $questions = $databaseMongo->selectCollection("questions");
         return $questions->find()->toArray();
@@ -153,7 +158,7 @@ class Level {
      * @param string $id. id of the question (stored in the database)
      * @return true if question deleted successfully else false
      */
-    public static function deleteQuestionById($id) {
+    public function deleteQuestionById($id) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
         $deleteResult = $databaseMongo->selectCollection("questions")->findOneAndDelete(['_id' => new \MongoDB\BSON\ObjectID($id)]);
 
@@ -168,7 +173,7 @@ class Level {
      * @param string $id. id of the question (stored in the database)
      * @return array question if found else empty array
      */
-    public static function getQuestionById($id) {
+    public function getQuestionById($id) {
         $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
         $question = $databaseMongo->selectCollection("questions")->findOne(['_id' => new \MongoDB\BSON\ObjectID($id)]);
 

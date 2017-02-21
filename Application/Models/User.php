@@ -15,7 +15,7 @@ class User {
      * Checks if there is any user in the database
      * @return bool true if users exist else false
      */
-    public static function doesUsersExist() {
+    public function doesUsersExist() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "SELECT * FROM info";
@@ -34,7 +34,7 @@ class User {
      * @param $value. value of the parameter
      * @return bool true if user exists else false
      */
-    public static function doesUserExist($parameter, $value) {
+    public function doesUserExist($parameter, $value) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "SELECT * FROM info WHERE $parameter = :value";
@@ -53,7 +53,7 @@ class User {
      * Get user in an order of descresing points
      * @return array|bool array of user objects if users exist else false
      */
-    public static function getUsersByPoints() {
+    public function getUsersByPoints() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "SELECT * FROM info ORDER BY points DESC";
@@ -72,7 +72,7 @@ class User {
      * @param int $userID. The user's id
      * @return bool|mixed object of user's details if user found else false
      */
-    public static function getUserByID($userID) {
+    public function getUserByID($userID) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "SELECT * FROM info WHERE id = :userID";
@@ -90,7 +90,7 @@ class User {
      * @param string $email. User's email address
      * @return bool|mixed object of user's details if user is found else false
      */
-    public static function getUserByEmail($email) {
+    public function getUserByEmail($email) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "SELECT * FROM info WHERE email = :email";
@@ -108,7 +108,7 @@ class User {
      * @param string $userName. The user's username
      * @return bool|mixed object of user's details if user is found else false
      */
-    public static function getUserByUsername($userName) {
+    public function getUserByUsername($userName) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "SELECT * FROM info WHERE username = :username";
@@ -126,7 +126,7 @@ class User {
      * @param int $points Value by which the points are to be incremented
      * @return bool true if successfully incremented else false
      */
-    public static function incrementPoints($points) {
+    public function incrementPoints($points) {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $query = $database->prepare("UPDATE info SET points = points + :points WHERE username = :user_name LIMIT 1");
@@ -145,7 +145,7 @@ class User {
      * Increments Level of a user.
      * @return bool true if incremented successfully else false.
      */
-    public static function incrementLevel() {
+    public function incrementLevel() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $query = $database->prepare("UPDATE info SET level = level + 1 WHERE username = :user_name LIMIT 1");
@@ -163,7 +163,7 @@ class User {
      * Gets a user's level.
      * @return bool|int The current level of the user else false.
      */
-    public static function getUserLevel() {
+    public function getUserLevel() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "SELECT level FROM info WHERE username = :username";
@@ -182,7 +182,7 @@ class User {
      * Checks if a user is admin
      * @return bool true if admin else false
      */
-    public static function isAdmin() {
+    public function isAdmin() {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $query = $database->prepare("SELECT role FROM info WHERE username = :username");

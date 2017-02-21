@@ -6,16 +6,23 @@ use PQ\Core\Controller;
 
 use PQ\Core\Csrf;
 use PQ\Core\Redirect;
-
 use PQ\Core\Session;
+
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Register as RegisterModel;
 
 class Register extends Controller 
 {
-    public function __construct() 
+    protected $user;
+    protected $login;
+    protected $register;
+
+    public function __construct()
     {
+        $this->user = new UserModel();
+        $this->login = new LoginModel();
+        $this->register = new RegisterModel();
         parent::__construct();
     }
 
@@ -46,29 +53,29 @@ class Register extends Controller
         $password = strip_tags($_POST['password']);
         $token = strip_tags($_POST['token']);
 
-        if (!RegisterModel::formValidation($username, $email) or !Csrf::isTokenValid($token)) {
+        if (!$this->register->formValidation($username, $email) or !Csrf::isTokenValid($token)) {
             echo 'Invalid Credentials';
         }
 
-        if (UserModel::getUserByEmail($email)) {
+        if ($this->user->getUserByEmail($email)) {
             Session::add("flash_error", "User with email: " . $email . " already exists.");
             Redirect::to('register');
             return;
         }
 
-        if (UserModel::getUserByUsername($username)) {
+        if ($this->user->getUserByUsername($username)) {
             Session::add("flash_error", "User with username: " . $username . " already exists.");
             Redirect::to('register');
             return;
         }
 
-        $register = RegisterModel::registerNewUser($name, $email, $username, $phone, $password);
+        $register = $this->register->registerNewUser($name, $email, $username, $phone, $password);
         if (!$register) {
             Redirect::to('register');
             return;
         }
 
-        if (!LoginModel::login($username, $password)) {
+        if (!$this->login->login($username, $password)) {
             Redirect::to('login');
             return;
         }

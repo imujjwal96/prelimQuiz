@@ -17,10 +17,11 @@ class Register {
      * @param string $email. User's email
      * @param string $userName. User's username
      * @param string $phone. User's phone number
+     * @param string $password. User's password
      * @param string $role. User's role (admin / contestant)
      * @return bool true if user registered successfully, else false
      */
-    public static function registerNewUser($name, $email, $userName, $phone, $password, $role = 'contestant') {
+    public function registerNewUser($name, $email, $userName, $phone, $password, $role = 'contestant') {
 
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -51,8 +52,8 @@ class Register {
      * @param string $email. User's email
      * @return bool true if credentials are validated, else false
      */
-    public static function formValidation($userName, $email) {
-        if (self::validateUserName($userName) AND self::validateEmail($email)) {
+    public function formValidation($userName, $email) {
+        if ($this->validateUserName($userName) AND $this->validateEmail($email)) {
             return true;
         }
         return false;
@@ -64,7 +65,7 @@ class Register {
      * @return bool true if username is validated, else false
      * Username should contain only alphanumeric characters of length in between 2 and 64
      */
-    public static function validateUserName($userName) {
+    public function validateUserName($userName) {
         if (empty($userName)) {
             Session::add('flash_error', "Empty Username");
             return false;
@@ -83,7 +84,7 @@ class Register {
      * @param string $email. User's email
      * @return bool true if email is validated, else false
      */
-    public static function validateEmail($email) {
+    public function validateEmail($email) {
         if (empty($email)) {
             Session::add('flash_error', "Empty Email");
             return false;

@@ -3,35 +3,41 @@
 namespace PQ\Controllers;
 
 use PQ\Core\Controller;
-
 use PQ\Core\Redirect;
-
 use PQ\Core\Session;
+
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Level as LevelModel;
 
 class Level extends Controller
 {
+    protected $user;
+    protected $login;
+    protected $level;
+
     public function __construct()
     {
+        $this->user = new UserModel();
+        $this->login = new LoginModel();
+        $this->level = new LevelModel();
         parent::__construct();
     }
 
     public function index($id=null)
     {
-        if (!UserModel::doesUsersExist()) {
+        if (!$this->user->doesUsersExist()) {
             Redirect::to('admin');
             return;
         }
 
-        if (!LoginModel::isUserLoggedIn()) {
+        if (!$this->login->isUserLoggedIn()) {
             Redirect::to('login');
             return;
         }
 
 
-        $level = LevelModel::getUserLevel();
+        $level = $this->level->getUserLevel();
         if ($id == null) {
             Redirect::to('level/index/' . $level);
             return;
@@ -42,23 +48,23 @@ class Level extends Controller
             return;
         }
 
-        $question = LevelModel::getCurrentQuestion();
+        $question = $this->level->getCurrentQuestion();
         if (!$question) {
             $this->View->render('level/end');
             return;
         }
 
-        if (LevelModel::getQuestionType() == "MCQ") {
+        if ($this->level->getQuestionType() == "MCQ") {
             $this->View->render('level/mcq', array(
                 "question" => $question,
-                "total" => LevelModel::getTotalQuestions()
+                "total" => $this->level->getTotalQuestions()
             ));
             return;
         }
 
         $this->View->render('level/general', array(
             "question" => $question,
-            "total" => LevelModel::getTotalQuestions()
+            "total" => $this->level->getTotalQuestions()
         ));
         return;
     }
@@ -77,18 +83,16 @@ class Level extends Controller
         }
 
         $input = strip_tags($_POST["input"]);
-        if (LevelModel::getAnswer() == $input) {
-            if (!UserModel::incrementPoints(LevelModel::getQuestionPoints())) {
+        if ($this->level->getAnswer() == $input) {
+            if (!$this->user->incrementPoints($this->level->getQuestionPoints())) {
                 echo 'error points';
                 exit();
             }
         }
-        if (!UserModel::incrementLevel()) {
+        if (!$this->user->incrementLevel()) {
             echo 'error level';
             exit();
         }
         Redirect::to('level/index');
-
-
     }
 }
