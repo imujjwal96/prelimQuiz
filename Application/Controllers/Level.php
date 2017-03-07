@@ -3,6 +3,7 @@
 namespace PQ\Controllers;
 
 use PQ\Core\Controller;
+use PQ\Core\Request;
 
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
@@ -13,12 +14,14 @@ class Level extends Controller
     protected $user;
     protected $login;
     protected $level;
+    protected $request;
 
     public function __construct()
     {
         $this->user = new UserModel();
         $this->login = new LoginModel();
         $this->level = new LevelModel();
+        $this->request = new Request();
         parent::__construct();
     }
 
@@ -71,18 +74,18 @@ class Level extends Controller
 
     public function submit()
     {
-        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        if (!$this->request->isPost()) {
             $this->Redirect->to('level/index');
             return;
         }
 
-        if (!isset($_POST["input"]) || empty($_POST["input"])) {
+        if (!$this->request->post('input')) {
             $this->Session->add("flash_message", "Empty input value");
             $this->Redirect->to('level/index');
             return;
         }
 
-        $input = strip_tags($_POST["input"]);
+        $input = $this->request->post('input', true);
         if ($this->level->getAnswer() == $input) {
             if (!$this->user->incrementPoints($this->level->getQuestionPoints())) {
                 echo 'error points';

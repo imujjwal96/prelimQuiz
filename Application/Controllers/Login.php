@@ -4,6 +4,7 @@ namespace PQ\Controllers;
 
 use PQ\Core\Controller;
 
+use PQ\Core\Request;
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 
@@ -11,17 +12,19 @@ class Login extends Controller
 {
     protected $user;
     protected $login;
+    protected $request;
 
     public function __construct()
     {
         $this->user = new UserModel();
         $this->login = new LoginModel();
+        $this->request = new  Request();
         parent::__construct();
     }
 
     public function index()
     {
-        if ($_SERVER["REQUEST_METHOD"] != "GET") {
+        if (!$this->request->isGet()) {
             $this->Redirect->to('index');
             return;
         }
@@ -38,14 +41,14 @@ class Login extends Controller
 
     public function action()
     {
-        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        if (!$this->request->isPost()) {
             $this->Redirect->to('login');
             return;
         }
 
-        $username = strip_tags($_POST['username']);
-        $password = strip_tags($_POST['password']);
-        $token = $_POST['token'];
+        $username = $this->request->post('username', true);
+        $password = $this->request->post('password', true);
+        $token = $this->request->post('token', true);
 
 
         if (!$this->Csrf->isTokenValid($token)) {
