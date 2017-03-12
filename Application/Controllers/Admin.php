@@ -3,6 +3,7 @@
 namespace PQ\Controllers;
 
 use PQ\Core\Controller;
+use PQ\Core\Request;
 
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
@@ -15,6 +16,7 @@ class Admin extends Controller
     protected $login;
     protected $register;
     protected $level;
+    protected $request;
 
     public function __construct()
     {
@@ -22,6 +24,7 @@ class Admin extends Controller
         $this->login = new LoginModel();
         $this->register = new RegisterModel();
         $this->level = new LevelModel();
+        $this->request = new Request();
         parent::__construct();
     }
 
@@ -50,17 +53,17 @@ class Admin extends Controller
 
     public function register()
     {
-        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        if (!$this->request->isPost()) {
             $this->Redirect->to('index');
             return;
         }
 
-        $name = strip_tags($_POST['name']);
+        $name = $this->request->post('name', true);
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        $username = strip_tags($_POST['username']);
-        $password = strip_tags($_POST['password']);
+        $username = $this->request->post('username', true);
+        $password = $this->request->post('password', true);
         $phone = "xxxxxxxxxx";
-        $token = strip_tags($_POST['token']);
+        $token = $this->request->post('token', true);
 
         if (!($this->register->formValidation($username, $email) AND $this->Csrf->isTokenValid($token))) {
             $this->Redirect->to("admin");
@@ -136,7 +139,7 @@ class Admin extends Controller
         }
 
         if ($action == "add") {
-            if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            if (!$this->request->isPost()) {
                 $this->View->render('admin/questions/add', array(
                     "quiz_type" => $this->Config->get("QUIZ_TYPE"),
                     "token" => $this->Csrf->generateToken()
@@ -144,39 +147,39 @@ class Admin extends Controller
                 return;
             }
 
-            if (isset($_POST["mcq"])) {
-                if (!isset($_POST["question_statement"], $_POST["option_a"], $_POST["option_b"], $_POST["option_c"],
-                    $_POST["option_d"], $_POST["answer"])) {
+            if ($this->request->post('mcq')) {
+                if (!($this->request->post('question_statement') && $this->request->post('option_a') && $this->request->post('option_b') &&
+                     $this->request->post('option_c') && $this->request->post('option_d') && $this->request->post('answer'))) {
                     $this->Session->add("flash_error", "Invalid Questions Parameters");
                     $this->Redirect->to('admin/dashboard/add');
                     return;
                 }
 
-                $questionStatement = htmlspecialchars($_POST["question_statement"]);
+                $questionStatement = htmlspecialchars($this->request->post('question_statement'));
                 $questionCover = "";
                 if ($this->Files->isImage($_FILES["question_cover"])) {
                     $questionCover = $_FILES["question_cover"];
                 }
-                $optionA = htmlspecialchars($_POST["option_a"]);
-                $optionB = htmlspecialchars($_POST["option_b"]);
-                $optionC = htmlspecialchars($_POST["option_c"]);
-                $optionD = htmlspecialchars($_POST["option_d"]);
-                $answer = htmlspecialchars($_POST["answer"]);
+                $optionA = htmlspecialchars($this->request->post('option_a'), true);
+                $optionB = htmlspecialchars($this->request->post('option_b'), true);
+                $optionC = htmlspecialchars($this->request->post('option_c'), true);
+                $optionD = htmlspecialchars($this->request->post('option_d'), true);
+                $answer = htmlspecialchars($this->request->post('answer'), true);
 
                 $this->level->storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer);
                 $this->Redirect->to('admin/dashboard');
                 return;
             }
 
-            if (isset($_POST["general"])) {
-                if (!isset($_POST["question_statement"], $_POST["answer"])) {
+            if ($this->request->post('general')) {
+                if (!($this->request->post('question_statement') && $this->request->post('answer'))) {
                     $this->Session->add("flash_error", "Invalid Questions Parameters");
                     $this->Redirect->to('admin/dashboard/add');
                     return;
                 }
 
-                $questionStatement = htmlspecialchars($_POST["question_statement"]);
-                $answer = htmlspecialchars($_POST["answer"]);
+                $questionStatement = htmlspecialchars($this->request->post('question_statement', true));
+                $answer = htmlspecialchars($this->request->post('answer'));
                 $questionCover = "";
                 if ($this->Files->isImage($_FILES["question_cover"])) {
                     $questionCover = $_FILES["question_cover"];
@@ -199,7 +202,7 @@ class Admin extends Controller
         }
 
         if ($action == "edit") {
-            if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            if (!$this->request->isPost()) {
                 $this->View->render('admin/questions/edit', array(
                     "questions" => $this->level->getQuestions(),
                     "token" => $this->Csrf->generateToken()
@@ -207,32 +210,32 @@ class Admin extends Controller
                 return;
             }
 
-            if (!isset($_POST["question_id"])) {
+            if (!$this->request->post('question_id')) {
                 $this->Session->add("flash_error", "Invalid question");
                 $this->Redirect->to('admin/dashboard/edit');
                 return;
             }
 
-            $questionId = htmlspecialchars($_POST["question_id"]);
+            $questionId = htmlspecialchars($this->request->post('question_id'));
             $this->Redirect->to('admin/question/edit/' .$questionId);
             return;
         }
 
         if ($action == "delete") {
-            if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            if (!$this->request->isPost()) {
                 $this->View->render('admin/questions/delete',array(
                     "questions" => $this->level->getQuestions(),
                     "token" => $this->Csrf->generateToken()
                 ));
             }
 
-            if (!isset($_POST["question_id"])) {
+            if (!$this->request->post('question_id')) {
                 $this->Session->add("flash_error", "Invalid question");
                 $this->Redirect->to('admin/dashboard/edit');
                 return;
             }
 
-            $questionId = htmlspecialchars($_POST["question_id"]);
+            $questionId = htmlspecialchars($this->request->post('question_id'), true);
             $this->level->deleteQuestionById($questionId);
             $this->Redirect->to('admin/question/delete');
             return;

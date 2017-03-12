@@ -4,6 +4,7 @@ namespace PQ\Controllers;
 
 use PQ\Core\Controller;
 
+use PQ\Core\Request;
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Register as RegisterModel;
@@ -13,18 +14,20 @@ class Register extends Controller
     protected $user;
     protected $login;
     protected $register;
+    protected $request;
 
     public function __construct()
     {
         $this->user = new UserModel();
         $this->login = new LoginModel();
         $this->register = new RegisterModel();
+        $this->request = new Request();
         parent::__construct();
     }
 
     public function index() 
     {
-        if ($_SERVER["REQUEST_METHOD"] != "GET") {
+        if (!$this->request->isGet()) {
             $this->Redirect->to('index');
             return;
         }
@@ -37,17 +40,17 @@ class Register extends Controller
 
     public function action()
     {
-        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        if (!$this->request->isPost()) {
             $this->Redirect->to('index');
             return;
         }
         
-        $name = strip_tags($_POST['name']);
+        $name = $this->request->post('name', true);
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        $username = strip_tags($_POST['username']);
-        $phone = strip_tags($_POST['phone']);
-        $password = strip_tags($_POST['password']);
-        $token = strip_tags($_POST['token']);
+        $username = $this->request->post('username', true);
+        $phone = $this->request->post('phone', true);
+        $password = $this->request->post('password', true);
+        $token = $this->request->post('token', true);
 
         if (!$this->register->formValidation($username, $email) or !$this->Csrf->isTokenValid($token)) {
             echo 'Invalid Credentials';

@@ -7,11 +7,13 @@ class Application {
     protected $controller;
     protected $method;
     protected $params = array();
+    protected $request;
     private $controllerName;
     private $Config;
 
     public function __construct() {
         $this->Config = new Config();
+        $this->request = new Request();
         $this->parseURL();
 
         if (!$this->controllerName) {
@@ -45,8 +47,8 @@ class Application {
     }
 
     public function parseURL() {
-        if (isset($_GET['url'])) {
-            $url = trim($_GET['url'], '/');
+        if ($this->request->get('url')) {
+            $url = trim($this->request->get('url'), '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
             $url = explode('/', $url);
 
