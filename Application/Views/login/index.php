@@ -25,7 +25,7 @@
                             <div class="md-form">
                                 <input type="password" id="form2" class="form-control" name="password">
                                 <label for="form2">Password</label>
-                                <input type="hidden" name="token" id="token" value="<?= $this->token; ?>"/>
+                                <input type="hidden" name="token" id="token" value="<?= $this->request_token; ?>"/>
                             </div>
                         </div>
                     </div>

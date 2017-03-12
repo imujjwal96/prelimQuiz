@@ -1,6 +1,5 @@
 <?php
 
-
 if (!file_exists('../Application/Config/config.php')) {
     header('Location: /install.php');
     die;

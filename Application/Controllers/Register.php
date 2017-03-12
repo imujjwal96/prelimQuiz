@@ -32,9 +32,7 @@ class Register extends Controller
             return;
         }
 
-        $this->View->render('register/index', array(
-            'token' => $this->Csrf->generateToken()
-        ));
+        $this->View->render('register/index');
         return;
     }
 

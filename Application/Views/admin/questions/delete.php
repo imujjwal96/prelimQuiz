@@ -22,6 +22,7 @@
                                     <td>
                                         <form action="/admin/question/delete" method="POST">
                                             <input type="hidden" value="' . $question->_id . '" name="question_id" />
+                                            <input type="hidden" name="token" id="token" value="<?= $this->request_token; ?>"/>
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>        
                                     </td>

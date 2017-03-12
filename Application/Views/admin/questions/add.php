@@ -56,6 +56,7 @@
                     <option value="c">C</option>
                     <option value="d">D</option>
                 </select>
+                <input type="hidden" name="token" id="token" value="<?= $this->request_token; ?>"/>
                 <button type="submit" name = "mcq" class="btn btn-default">Submit</button>
             </form>
 
@@ -75,6 +76,7 @@
                     <label class="control-label" for="answer">Answer: </label>
                     <input type="text" class="form-control" name="answer" id="answer" placeholder="Answer">
                 </div>
+                <input type="hidden" name="token" id="token" value="<?= $this->request_token; ?>"/>
                 <button type="submit" name="general" class="btn btn-default">Submit</button>
             </form>
 

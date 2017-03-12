@@ -31,9 +31,7 @@ class Admin extends Controller
     public function index()
     {
         if (!$this->user->doesUsersExist()) {
-            $this->View->render('admin/register', array(
-                'token' => $this->Csrf->generateToken()
-            ));
+            $this->View->render('admin/register');
             return;
         }
 
@@ -141,8 +139,7 @@ class Admin extends Controller
         if ($action == "add") {
             if (!$this->request->isPost()) {
                 $this->View->render('admin/questions/add', array(
-                    "quiz_type" => $this->Config->get("QUIZ_TYPE"),
-                    "token" => $this->Csrf->generateToken()
+                    "quiz_type" => $this->Config->get("QUIZ_TYPE")
                 ));
                 return;
             }
@@ -165,6 +162,13 @@ class Admin extends Controller
                 $optionC = htmlspecialchars($this->request->post('option_c'), true);
                 $optionD = htmlspecialchars($this->request->post('option_d'), true);
                 $answer = htmlspecialchars($this->request->post('answer'), true);
+                $token = $this->request->post('token');
+
+                if (!$this->Csrf->isTokenValid($token)) {
+                    $this->Session->add("flash_error", "Failed to add question.");
+                    $this->Redirect->to('admin/dashboard');
+                    return;
+                }
 
                 $this->level->storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer);
                 $this->Redirect->to('admin/dashboard');
@@ -180,6 +184,14 @@ class Admin extends Controller
 
                 $questionStatement = htmlspecialchars($this->request->post('question_statement', true));
                 $answer = htmlspecialchars($this->request->post('answer'));
+                $token = $this->request->post('token');
+
+                if (!$this->Csrf->isTokenValid($token)) {
+                    $this->Session->add("flash_error", "Failed to add question.");
+                    $this->Redirect->to('admin/dashboard');
+                    return;
+                }
+
                 $questionCover = "";
                 if ($this->Files->isImage($_FILES["question_cover"])) {
                     $questionCover = $_FILES["question_cover"];
@@ -204,8 +216,7 @@ class Admin extends Controller
         if ($action == "edit") {
             if (!$this->request->isPost()) {
                 $this->View->render('admin/questions/edit', array(
-                    "questions" => $this->level->getQuestions(),
-                    "token" => $this->Csrf->generateToken()
+                    "questions" => $this->level->getQuestions()
                 ));
                 return;
             }
@@ -217,6 +228,13 @@ class Admin extends Controller
             }
 
             $questionId = htmlspecialchars($this->request->post('question_id'));
+            $token = $this->request->post('token');
+
+            if (!$this->Csrf->isTokenValid($token)) {
+                $this->Session->add("flash_error", "Failed to edit question.");
+                $this->Redirect->to('login/index');
+                return;
+            }
             $this->Redirect->to('admin/question/edit/' .$questionId);
             return;
         }
@@ -224,8 +242,7 @@ class Admin extends Controller
         if ($action == "delete") {
             if (!$this->request->isPost()) {
                 $this->View->render('admin/questions/delete',array(
-                    "questions" => $this->level->getQuestions(),
-                    "token" => $this->Csrf->generateToken()
+                    "questions" => $this->level->getQuestions()
                 ));
             }
 
@@ -236,6 +253,12 @@ class Admin extends Controller
             }
 
             $questionId = htmlspecialchars($this->request->post('question_id'), true);
+            $token = $this->request->post('token');
+            if (!$this->Csrf->isTokenValid($token)) {
+                $this->Session->add("flash_error", "Failed to delete question.");
+                $this->Redirect->to('admin/question/delete');
+                return;
+            }
             $this->level->deleteQuestionById($questionId);
             $this->Redirect->to('admin/question/delete');
             return;

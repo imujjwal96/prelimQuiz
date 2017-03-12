@@ -86,6 +86,13 @@ class Level extends Controller
         }
 
         $input = $this->request->post('input', true);
+        $token = $this->request->post('token');
+
+        if (!$this->Csrf->isTokenValid($token)) {
+            $this->Session->add("flash_error", "Failed to login user.");
+            $this->Redirect->to('level/index');
+            return;
+        }
         if ($this->level->getAnswer() == $input) {
             if (!$this->user->incrementPoints($this->level->getQuestionPoints())) {
                 echo 'error points';

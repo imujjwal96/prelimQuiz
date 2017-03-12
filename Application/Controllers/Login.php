@@ -19,6 +19,7 @@ class Login extends Controller
         $this->user = new UserModel();
         $this->login = new LoginModel();
         $this->request = new  Request();
+
         parent::__construct();
     }
 
@@ -33,10 +34,7 @@ class Login extends Controller
             $this->Redirect->to('index');
         }
 
-        $token = $this->Csrf->generateToken();
-        $this->View->render('login/index', array(
-            'token' => $token
-        ));
+        $this->View->render('login/index');
     }
 
     public function action()

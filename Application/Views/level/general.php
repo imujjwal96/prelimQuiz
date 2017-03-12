@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <hr />
-
+                <input type="hidden" name="token" id="token" value="<?= $this->request_token; ?>"/>
                 <button type="submit" class="btn btn-default">Submit</button>
             </div>
 			</form>

@@ -31,6 +31,17 @@ class Session {
         session_destroy();
     }
 
+    public function remove($key) {
+        unset($_SESSION[$key]);
+    }
+
+    public function exists($key) {
+        if (isset($_SESSION[$key]) && !empty($_SESSION[$key])) {
+            return true;
+        }
+        return false;
+    }
+
     public function userIsLoggedIn() {
         return (self::get('user_logged_in') ? true : false);
     }
