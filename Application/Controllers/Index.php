@@ -10,8 +10,11 @@ use PQ\Core\Random;
 use PQ\Core\Redirect;
 use PQ\Core\Request;
 use PQ\Core\Session;
-use PQ\Models\User as UserModel;
+
+use PQ\Models\Level as LevelModel;
 use PQ\Models\Login as LoginModel;
+use PQ\Models\Register as RegisterModel;
+use PQ\Models\User as UserModel;
 
 class Index extends Controller
 {
@@ -21,10 +24,10 @@ class Index extends Controller
     private $Config;
     private $Redirect;
 
-    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session)
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user)
     {
-        $this->user = new UserModel();
-        $this->login = new LoginModel();
+        $this->user = $user;
+        $this->login = $login;
 
         $this->Config = $Config;
         $this->Redirect = $Redirect;

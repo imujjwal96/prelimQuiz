@@ -10,9 +10,12 @@ use PQ\Core\Random;
 use PQ\Core\Redirect;
 use PQ\Core\Request;
 use PQ\Core\Session;
+
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Register as RegisterModel;
+use PQ\Models\Level as LevelModel;
+
 
 class Register extends Controller 
 {
@@ -24,11 +27,11 @@ class Register extends Controller
     private $Redirect;
     private $Request;
 
-    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session)
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user)
     {
-        $this->user = new UserModel();
-        $this->login = new LoginModel();
-        $this->register = new RegisterModel();
+        $this->user = $user;
+        $this->login = $login;
+        $this->register = $register;
 
         $this->Csrf = $Csrf;
         $this->Redirect = $Redirect;
