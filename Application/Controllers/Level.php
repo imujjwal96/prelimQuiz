@@ -2,9 +2,14 @@
 
 namespace PQ\Controllers;
 
+use PQ\Core\Config;
 use PQ\Core\Controller;
+use PQ\Core\Csrf;
+use PQ\Core\Random;
+use PQ\Core\Redirect;
 use PQ\Core\Request;
 
+use PQ\Core\Session;
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Level as LevelModel;
@@ -14,14 +19,20 @@ class Level extends Controller
     protected $user;
     protected $login;
     protected $level;
-    protected $request;
 
-    public function __construct()
+    private $Csrf;
+    private $Redirect;
+    private $Request;
+
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session)
     {
         $this->user = new UserModel();
         $this->login = new LoginModel();
         $this->level = new LevelModel();
-        $this->request = new Request();
+
+        $this->Csrf = $Csrf;
+        $this->Redirect = $Redirect;
+        $this->Request = $Request;
         parent::__construct();
     }
 
@@ -74,19 +85,19 @@ class Level extends Controller
 
     public function submit()
     {
-        if (!$this->request->isPost()) {
+        if (!$this->Request->isPost()) {
             $this->Redirect->to('level/index');
             return;
         }
 
-        if (!$this->request->post('input')) {
+        if (!$this->Request->post('input')) {
             $this->Session->add("flash_message", "Empty input value");
             $this->Redirect->to('level/index');
             return;
         }
 
-        $input = $this->request->post('input', true);
-        $token = $this->request->post('token');
+        $input = $this->Request->post('input', true);
+        $token = $this->Request->post('token');
 
         if (!$this->Csrf->isTokenValid($token)) {
             $this->Session->add("flash_error", "Failed to login user.");

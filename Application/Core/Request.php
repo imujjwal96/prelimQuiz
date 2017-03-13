@@ -4,7 +4,13 @@ namespace PQ\Core;
 
 class Request {
     private function getMethod() {
-        return $_SERVER["REQUEST_METHOD"];
+        if (isset($_SERVER["REQUEST_METHOD"])) {
+            return $_SERVER["REQUEST_METHOD"];
+        }
+        if (isset($_POST)) {
+            return "POST";
+        }
+        return "GET";
     }
 
     public function isPost() {

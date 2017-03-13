@@ -2,8 +2,14 @@
 
 namespace PQ\Controllers;
 
+use PQ\Core\Config;
 use PQ\Core\Controller;
 
+use PQ\Core\Csrf;
+use PQ\Core\Random;
+use PQ\Core\Redirect;
+use PQ\Core\Request;
+use PQ\Core\Session;
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 
@@ -12,10 +18,16 @@ class Index extends Controller
     protected $user;
     protected $login;
 
-    public function __construct()
+    private $Config;
+    private $Redirect;
+
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session)
     {
         $this->user = new UserModel();
         $this->login = new LoginModel();
+
+        $this->Config = $Config;
+        $this->Redirect = $Redirect;
         parent::__construct();
     }
 

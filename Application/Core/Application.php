@@ -7,13 +7,23 @@ class Application {
     protected $controller;
     protected $method;
     protected $params = array();
-    protected $request;
     private $controllerName;
+
     private $Config;
+    private $Csrf;
+    private $Random;
+    private $Redirect;
+    private $Request;
+    private $Session;
 
     public function __construct() {
         $this->Config = new Config();
-        $this->request = new Request();
+        $this->Csrf = new Csrf();
+        $this->Random = new Random();
+        $this->Redirect = new Redirect();
+        $this->Request = new Request();
+        $this->Session = new Session();
+
         $this->parseURL();
 
         if (!$this->controllerName) {
@@ -30,7 +40,14 @@ class Application {
 
             require $this->Config->get('PATH_CONTROLLER') . $this->controllerName . '.php';
             $a = 'PQ\Controllers\\' . $this->controllerName;
-            $this->controller = new $a;
+            $this->controller = new $a(
+                $this->Config,
+                $this->Csrf,
+                $this->Random,
+                $this->Redirect,
+                $this->Request,
+                $this->Session
+            );
 
             if (method_exists($this->controller, $this->method)) {
                 if (!empty($this->params)) {
@@ -47,8 +64,8 @@ class Application {
     }
 
     public function parseURL() {
-        if ($this->request->get('url')) {
-            $url = trim($this->request->get('url'), '/');
+        if ($this->Request->get('url')) {
+            $url = trim($this->Request->get('url'), '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
             $url = explode('/', $url);
 
