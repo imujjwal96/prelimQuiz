@@ -2,9 +2,14 @@
 
 namespace PQ\Controllers;
 
+use PQ\Core\Config;
 use PQ\Core\Controller;
 
+use PQ\Core\Csrf;
+use PQ\Core\Random;
+use PQ\Core\Redirect;
 use PQ\Core\Request;
+use PQ\Core\Session;
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Register as RegisterModel;
@@ -14,20 +19,26 @@ class Register extends Controller
     protected $user;
     protected $login;
     protected $register;
-    protected $request;
 
-    public function __construct()
+    private $Csrf;
+    private $Redirect;
+    private $Request;
+
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session)
     {
         $this->user = new UserModel();
         $this->login = new LoginModel();
         $this->register = new RegisterModel();
-        $this->request = new Request();
+
+        $this->Csrf = $Csrf;
+        $this->Redirect = $Redirect;
+        $this->Request= $Request;
         parent::__construct();
     }
 
     public function index() 
     {
-        if (!$this->request->isGet()) {
+        if (!$this->Request->isGet()) {
             $this->Redirect->to('index');
             return;
         }
@@ -38,17 +49,17 @@ class Register extends Controller
 
     public function action()
     {
-        if (!$this->request->isPost()) {
+        if (!$this->Request->isPost()) {
             $this->Redirect->to('index');
             return;
         }
         
-        $name = $this->request->post('name', true);
+        $name = $this->Request->post('name', true);
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        $username = $this->request->post('username', true);
-        $phone = $this->request->post('phone', true);
-        $password = $this->request->post('password', true);
-        $token = $this->request->post('token', true);
+        $username = $this->Request->post('username', true);
+        $phone = $this->Request->post('phone', true);
+        $password = $this->Request->post('password', true);
+        $token = $this->Request->post('token', true);
 
         if (!$this->register->formValidation($username, $email) or !$this->Csrf->isTokenValid($token)) {
             echo 'Invalid Credentials';

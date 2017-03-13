@@ -2,9 +2,14 @@
 
 namespace PQ\Controllers;
 
+use PQ\Core\Config;
 use PQ\Core\Controller;
 
+use PQ\Core\Csrf;
+use PQ\Core\Random;
+use PQ\Core\Redirect;
 use PQ\Core\Request;
+use PQ\Core\Session;
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 
@@ -12,20 +17,24 @@ class Login extends Controller
 {
     protected $user;
     protected $login;
-    protected $request;
+    private $Request;
+    private $Redirect;
+    private $Csrf;
 
-    public function __construct()
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session)
     {
         $this->user = new UserModel();
         $this->login = new LoginModel();
-        $this->request = new  Request();
+        $this->Request = $Request;
+        $this->Redirect = $Redirect;
+        $this->Csrf = $Csrf;
 
         parent::__construct();
     }
 
     public function index()
     {
-        if (!$this->request->isGet()) {
+        if (!$this->Request->isGet()) {
             $this->Redirect->to('index');
             return;
         }
@@ -39,14 +48,14 @@ class Login extends Controller
 
     public function action()
     {
-        if (!$this->request->isPost()) {
+        if (!$this->Request->isPost()) {
             $this->Redirect->to('login');
             return;
         }
 
-        $username = $this->request->post('username', true);
-        $password = $this->request->post('password', true);
-        $token = $this->request->post('token', true);
+        $username = $this->Request->post('username', true);
+        $password = $this->Request->post('password', true);
+        $token = $this->Request->post('token', true);
 
 
         if (!$this->Csrf->isTokenValid($token)) {
