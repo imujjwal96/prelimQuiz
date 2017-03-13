@@ -35,4 +35,11 @@ class Request {
         return false;
     }
 
+    public function requested($key, $request) {
+        if ($request === 'post') {
+            return isset($_POST[$key]);
+        }
+        return isset($_GET[$key]);
+    }
+
 }

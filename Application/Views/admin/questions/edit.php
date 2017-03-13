@@ -23,7 +23,7 @@
                                     <td>
                                         <form action="/admin/question/edit" method="POST">
                                             <input type="hidden" value="' . $question->_id . '" name="question_id" />
-                                            <input type="hidden" name="token" id="token" value="<?= $this->request_token; ?>"/>
+                                            <input type="hidden" name="token" id="token" value="'.$this->request_token.'"/>
                                             <button type="submit" class="btn btn-danger">Edit</button>
                                         </form>        
                                     </td>

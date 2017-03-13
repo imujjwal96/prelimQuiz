@@ -24,5 +24,5 @@
         'SESSION_RUNTIME' => 604800,
 
         'QUIZ_NAME' => "quizrival",
-        'QUIZ_TYPE' => "General"
+        'QUIZ_TYPE' => "Mixed"
     );

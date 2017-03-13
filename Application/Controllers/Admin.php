@@ -143,8 +143,7 @@ class Admin extends Controller
                 ));
                 return;
             }
-
-            if ($this->request->post('mcq')) {
+            if ($this->request->requested('mcq', 'post')) {
                 if (!($this->request->post('question_statement') && $this->request->post('option_a') && $this->request->post('option_b') &&
                      $this->request->post('option_c') && $this->request->post('option_d') && $this->request->post('answer'))) {
                     $this->Session->add("flash_error", "Invalid Questions Parameters");
@@ -175,7 +174,7 @@ class Admin extends Controller
                 return;
             }
 
-            if ($this->request->post('general')) {
+            if ($this->request->requested('general', 'post')) {
                 if (!($this->request->post('question_statement') && $this->request->post('answer'))) {
                     $this->Session->add("flash_error", "Invalid Questions Parameters");
                     $this->Redirect->to('admin/dashboard/add');
@@ -240,15 +239,17 @@ class Admin extends Controller
         }
 
         if ($action == "delete") {
+
             if (!$this->request->isPost()) {
                 $this->View->render('admin/questions/delete',array(
                     "questions" => $this->level->getQuestions()
                 ));
+                return;
             }
 
             if (!$this->request->post('question_id')) {
                 $this->Session->add("flash_error", "Invalid question");
-                $this->Redirect->to('admin/dashboard/edit');
+                $this->Redirect->to('admin/dashboard');
                 return;
             }
 
