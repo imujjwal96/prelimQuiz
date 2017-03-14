@@ -81,9 +81,106 @@ class LoginControllerTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /**public function testLoginWithValidCredentials() {}*/
+    public function testUserLoginWithValidCredentials() {
+        $username = 'legalusername';
+        $password = 'correctpassword';
+        $token = 'ASuperSecretToken';
 
-    public function testSample() {
-        $this->assertFalse("1-2-ka-4" == "4-2-ka-1" , "Testing");
+        $this->Request
+            ->expects($this->once())
+            ->method('isPost')
+            ->will($this->returnValue(true));
+
+        $this->Request
+            ->expects($this->any())
+            ->method('post')
+            ->withConsecutive(['username', true], ['password', true], ['token', true])
+            ->willReturnOnConsecutiveCalls($username, $password, $token);
+
+        $this->Csrf
+            ->expects($this->once())
+            ->method('isTokenValid')
+            ->with($token)
+            ->will($this->returnValue(true));
+
+        $this->login
+            ->expects($this->once())
+            ->method('login')
+            ->with($username, $password)
+            ->will($this->returnValue(true));
+
+        $result = (object)[
+            'id' => 1,
+            'name' => "Sample Name",
+            'email' => "sample@email.com",
+            'username' => $username,
+            'phone' => "9999999999",
+            'password' => $password,
+            'points' => 0,
+            'level' => 0,
+            'role' => "contestant",
+            'datetime' => "2017-03-12 23:29:29"
+        ];
+
+        $this->user
+            ->expects($this->once())
+            ->method('isAdmin')
+            ->will($this->returnValue(false));
+
+        $this->user
+            ->expects($this->once())
+            ->method('getUserByUsername')
+            ->with($username)
+            ->will($this->returnValue($result));
+
+        $this->Redirect
+            ->expects($this->once())
+            ->method('to')
+            ->with('level/index/' . $result->level);
+
+        $this->assertEquals(true, $this->loginController->action());
     }
+
+    public function testAdminLoginWithValidCredentials() {
+        $username = 'legalusername';
+        $password = 'correctpassword';
+        $token = 'ASuperSecretToken';
+
+        $this->Request
+            ->expects($this->once())
+            ->method('isPost')
+            ->will($this->returnValue(true));
+
+        $this->Request
+            ->expects($this->any())
+            ->method('post')
+            ->withConsecutive(['username', true], ['password', true], ['token', true])
+            ->willReturnOnConsecutiveCalls($username, $password, $token);
+
+        $this->Csrf
+            ->expects($this->once())
+            ->method('isTokenValid')
+            ->with($token)
+            ->will($this->returnValue(true));
+
+        $this->login
+            ->expects($this->once())
+            ->method('login')
+            ->with($username, $password)
+            ->will($this->returnValue(true));
+
+        $this->user
+            ->expects($this->once())
+            ->method('isAdmin')
+            ->will($this->returnValue(true));
+
+        $this->Redirect
+            ->expects($this->once())
+            ->method('to')
+            ->with('admin/dashboard');
+
+        $this->assertEquals(true, $this->loginController->action());
+    }
+
+
 }

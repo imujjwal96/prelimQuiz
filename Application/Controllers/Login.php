@@ -56,7 +56,7 @@ class Login extends Controller
     {
         if (!$this->Request->isPost()) {
             $this->Redirect->to('login');
-            return;
+            return false;
         }
 
         $username = $this->Request->post('username', true);
@@ -67,30 +67,31 @@ class Login extends Controller
         if (!$this->Csrf->isTokenValid($token)) {
             $this->Session->add("flash_error", "Failed to login user.");
             $this->Redirect->to('login/index');
-            return;
+            return false;
         }
 
         $login = $this->login->login($username, $password);
         if (!$login) {
             $this->Redirect->to('login/index');
-            return;
+            return false;
         }
 
 
         if ($this->user->isAdmin()) {
             $this->Redirect->to('admin/dashboard');
-            return;
+            return true;
         }
 
         $result = $this->user->getUserByUsername($username);
+
         $this->Redirect->to('level/index/' . $result->level);
-        return;
+        return true;
     }
 
     public function logout()
     {
         $this->login->logout();
         $this->Redirect->to('index');
-        return;
+        return true;
     }
 }
