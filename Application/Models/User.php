@@ -176,7 +176,7 @@ class User {
         $sql = "SELECT level FROM info WHERE username = :username";
         $query = $database->prepare($sql);
         $query->execute(array(
-            ':username' => Session::get('user_name')
+            ':username' => $this->Session->get('user_name')
         ));
 
         if ($query->rowCount() == 1) {

@@ -23,6 +23,7 @@ class Application {
         $this->Redirect = new Redirect();
         $this->Request = new Request();
         $this->Session = new Session();
+        $this->Mail = new Mail();
 
         $this->parseURL();
 
@@ -46,7 +47,8 @@ class Application {
                 $this->Random,
                 $this->Redirect,
                 $this->Request,
-                $this->Session
+                $this->Session,
+                $this->Mail
             );
 
             if (method_exists($this->controller, $this->method)) {

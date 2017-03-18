@@ -115,5 +115,8 @@ return array(
     'EMAIL_SMTP_HOST' => '',
     'EMAIL_SMTP_USERNAME' => '',
     'EMAIL_SMTP_PASSWORD' => '',
-    'EMAIL_SMTP_PORT' => ''
+    'EMAIL_SMTP_PORT' => '',
+
+    'DEFAULT_EMAIL' => 'no-reply@prelimquiz.ml',
+    'DEFAULT_NAME' => 'prelimQuiz'
 );

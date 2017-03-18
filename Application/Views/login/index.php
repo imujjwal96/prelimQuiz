@@ -29,6 +29,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <p id="reset-message">Forgot Password? <a id="lost-password">Reset</a></p>
+                    </div>
                 </li>
                 <li>
                     <div class="md-form">
@@ -39,3 +42,19 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#lost-password").click(function(){
+            if ($('#form1').val().length) {
+                $.post('/login/sendmail', {
+                        username: $('#form1').val()
+                    },
+                    function (data, status) {
+                        $('#reset-message').text(data.message);
+                        $('#reset-message').css('color', 'red');
+                    }
+                );
+            }
+        })
+    })
+</script>
