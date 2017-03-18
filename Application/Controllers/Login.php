@@ -151,13 +151,31 @@ class Login extends Controller
             return;
         }
 
-        if ($this->token->isExpired($this->user->getUserByUsername($username)->id, 'lostpassword')) {
+        $userId = $this->user->getUserByUsername($username)->id;
+        if ($this->token->isExpired($userId, 'lostpassword')) {
             $this->Redirect->to('login');
             return;
         }
 
-        $this->View->render('login/resetpassword', [
-            'username' => $username
-        ]);
+        if ($this->token->get($userId, 'lostpassowrd') !== $token) {
+            $this->Redirect->to('login');
+            return;
+        }
+
+        if ($this->Request->isGet()) {
+            $this->View->render('login/resetpassword', [
+                'username' => $username
+            ]);
+        }
+
+        if ($this->Request->isPost()) {
+            $password = $this->Request->post('password' , true);
+            $passwordConfirm = $this->Request->post('password_confirm', true);
+
+            if ($password === $passwordConfirm) {
+                $this->user->setPassword($userId, $password);
+            }
+        }
+
     }
 }

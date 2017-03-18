@@ -1,6 +1,6 @@
 <div class="view hm-black-light">
     <div class="full-bg-img flex-center" >
-        <form action="/login/action" method="POST">
+        <form action="" method="POST">
             <ul  style="margin: 40px">
                 <li>
                     <div class="row">
@@ -18,13 +18,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <p id="reset-message">Forgot Password? <a id="lost-password">Reset</a></p>
-                    </div>
                 </li>
                 <li>
                     <div class="md-form">
-                        <button type="submit" class="btn btn-default btn-rounded">Login</button>
+                        <button type="submit" class="btn btn-default btn-rounded">Reset Password</button>
                     </div>
                 </li>
             </ul>
