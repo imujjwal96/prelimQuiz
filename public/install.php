@@ -81,6 +81,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!mysqli_query($database, $table_update_query2)) {
                 die(mysqli_error($database));
             }
+
+            $create_table_query2 = "CREATE TABLE {$db_name}.`user_token` ( `id` int(11) NOT NULL,
+                                  `userid` int(11) NOT NULL,
+                                  `tokenkey` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+                                  `tokenvalue` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+                                  `timestamp` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+                                  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+            if (!mysqli_query($database, $create_table_query2)) {
+                die(mysqli_error($database));
+            }
+            $table_update_query21 = "ALTER TABLE {$db_name}.`user_token`
+                                   ADD PRIMARY KEY (`id`);";
+            if (!mysqli_query($database, $table_update_query21)) {
+                die(mysqli_error($database));
+            }
+            $table_update_query22 = " ALTER TABLE {$db_name}.`user_token`
+                                   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;";
+            if (!mysqli_query($database, $table_update_query22)) {
+                die(mysqli_error($database));
+            }
+
+
             header('Location: /');
         } else {
             die('could not write file.');

@@ -18,6 +18,6 @@ class Config {
             $this->config = require $config_file;
         }
 
-        return $this->config[$key];
+        return $this->config[$key] ?? '';
     }
 }

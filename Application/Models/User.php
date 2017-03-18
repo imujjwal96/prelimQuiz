@@ -176,7 +176,7 @@ class User {
         $sql = "SELECT level FROM info WHERE username = :username";
         $query = $database->prepare($sql);
         $query->execute(array(
-            ':username' => Session::get('user_name')
+            ':username' => $this->Session->get('user_name')
         ));
 
         if ($query->rowCount() == 1) {
@@ -198,6 +198,22 @@ class User {
         ));
 
         if ($query->fetch()->role == "admin") {
+            return true;
+        }
+        return false;
+    }
+
+    public function setPassword($userId, $password) {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $query = $database->prepare("UPDATE info SET password = :password WHERE id = :userid");
+        $query->execute([
+            ':password' => $password,
+            ':userid' => $userId
+        ]);
+
+        if ($query->rowCount() === 1) {
             return true;
         }
         return false;
