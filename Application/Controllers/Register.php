@@ -54,11 +54,11 @@ class Register extends Controller
     {
         if (!$this->Request->isPost()) {
             $this->Redirect->to('index');
-            return;
+            return false;
         }
         
         $name = $this->Request->post('name', true);
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $email = $this->Request->post('email', true);
         $username = $this->Request->post('username', true);
         $phone = $this->Request->post('phone', true);
         $password = $this->Request->post('password', true);
@@ -71,27 +71,27 @@ class Register extends Controller
         if ($this->user->getUserByEmail($email)) {
             $this->Session->add("flash_error", "User with email: " . $email . " already exists.");
             $this->Redirect->to('register');
-            return;
+            return false;
         }
 
         if ($this->user->getUserByUsername($username)) {
             $this->Session->add("flash_error", "User with username: " . $username . " already exists.");
             $this->Redirect->to('register');
-            return;
+            return false;
         }
 
         $register = $this->register->registerNewUser($name, $email, $username, $phone, $password);
         if (!$register) {
             $this->Redirect->to('register');
-            return;
+            return false;
         }
 
         if (!$this->login->login($username, $password)) {
             $this->Redirect->to('login');
-            return;
+            return false;
         }
 
         $this->Redirect->to('level/index/0');
-        return;
+        return true;
     }
 }
