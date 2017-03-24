@@ -1,21 +1,64 @@
 <?php
 
+namespace Tests\Controllers;
+
 use PQ\Controllers\Register as RegisterController;
 
 class RegisterControllerTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var \PQ\Core\Config | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $Config;
+
+    /**
+     * @var \PQ\Core\Csrf | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $Csrf;
+
+    /**
+     * @var \PQ\Core\Random | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $Random;
+
+    /**
+     * @var \PQ\Core\Redirect | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $Redirect;
+
+    /**
+     * @var \PQ\Core\Request | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $Request;
+
+    /**
+     * @var \PQ\Core\Session | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $Session;
 
+    /**
+     * @var RegisterController | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $registerController;
 
+    /**
+     * @var \PQ\Models\Level | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $level;
+
+    /**
+     * @var \PQ\Models\Login | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $login;
+
+    /**
+     * @var \PQ\Models\Register | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $register;
+
+    /**
+     * @var \PQ\Models\User | \PHPUnit_Framework_MockObject_MockObject
+     */
     private $user;
 
     public function setUp() {
