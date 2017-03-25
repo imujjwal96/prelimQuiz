@@ -89,13 +89,13 @@ class Level extends Controller
     {
         if (!$this->Request->isPost()) {
             $this->Redirect->to('level/index');
-            return;
+            return false;
         }
 
-        if (!$this->Request->post('input')) {
+        if (!$this->Request->post('input', true)) {
             $this->Session->add("flash_message", "Empty input value");
             $this->Redirect->to('level/index');
-            return;
+            return false;
         }
 
         $input = $this->Request->post('input', true);
@@ -104,9 +104,9 @@ class Level extends Controller
         if (!$this->Csrf->isTokenValid($token)) {
             $this->Session->add("flash_error", "Failed to login user.");
             $this->Redirect->to('level/index');
-            return;
+            return false;
         }
-        if ($this->level->getAnswer() == $input) {
+        if ($this->level->getAnswer() === $input) {
             if (!$this->user->incrementPoints($this->level->getQuestionPoints())) {
                 echo 'error points';
                 exit();
@@ -117,5 +117,6 @@ class Level extends Controller
             exit();
         }
         $this->Redirect->to('level/index');
+        return true;
     }
 }

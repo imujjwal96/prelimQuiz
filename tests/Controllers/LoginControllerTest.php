@@ -222,6 +222,4 @@ class LoginControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(true, $this->loginController->action());
     }
-
-
 }
