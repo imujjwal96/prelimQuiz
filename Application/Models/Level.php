@@ -14,11 +14,13 @@ class Level {
     protected $user;
 
     protected $Session;
+    protected $Database;
 
     public function __construct() {
         $this->user = new User();
 
         $this->Session = new Session();
+        $this->Database = (new DatabaseFactory())->getFactory();
     }
 
     /**
@@ -51,8 +53,8 @@ class Level {
      * @return int total number of questions
      */
     public function getTotalQuestions() {
-        $database = DatabaseFactory::getFactory()->getConnectionMongo();
-        $questions = $database->selectCollection("questions");
+        $databaseMongo = $this->Database->getConnectionMongo();
+        $questions = $databaseMongo->selectCollection("questions");
 
         return $questions->count();
     }
@@ -101,7 +103,7 @@ class Level {
      * @return bool true if the question is stored successfully, else false
      */
     public function storeMCQQuestion($questionStatement, $questionCover, $optionA, $optionB, $optionC, $optionD, $answer) {
-        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $databaseMongo = $this->Database->getConnectionMongo();
         $questions = $databaseMongo->selectCollection("questions");
         $document = array(
             "type" => "MCQ",
@@ -131,7 +133,7 @@ class Level {
      * @return bool true if the question is stored successfully, else false.
      */
     public function storeGeneralQuestion($questionStatement, $questionCover, $answer) {
-        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $databaseMongo = $this->Database->getConnectionMongo();
         $questions = $databaseMongo->selectCollection("questions");
         $document = array(
             "type" => "General",
@@ -152,8 +154,8 @@ class Level {
      * @return array
      */
     public function getQuestions() {
-        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
-        $questions = $databaseMongo->selectCollection("questions");
+        // $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $questions = $this->Database->selectCollection("questions");
         return $questions->find()->toArray();
     }
 
@@ -163,7 +165,7 @@ class Level {
      * @return true if question deleted successfully else false
      */
     public function deleteQuestionById($id) {
-        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $databaseMongo = $this->Database->getConnectionMongo();
         $deleteResult = $databaseMongo->selectCollection("questions")->findOneAndDelete(['_id' => new \MongoDB\BSON\ObjectID($id)]);
 
         if ($deleteResult != null) {
@@ -178,7 +180,7 @@ class Level {
      * @return array question if found else empty array
      */
     public function getQuestionById($id) {
-        $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
+        $databaseMongo = $this->Database->getConnectionMongo();
         $question = $databaseMongo->selectCollection("questions")->findOne(['_id' => new \MongoDB\BSON\ObjectID($id)]);
 
         if ($question != null) {
