@@ -33,6 +33,7 @@ class Application {
         $this->Redirect = new Redirect();
         $this->Request = new Request();
         $this->Session = new Session();
+        $this->Mail = new Mail();
 
         $this->level = new Level();
         $this->login = new Login();
@@ -62,11 +63,12 @@ class Application {
                 $this->Redirect,
                 $this->Request,
                 $this->Session,
-
+              
                 $this->level,
                 $this->login,
                 $this->register,
                 $this->user
+                $this->Mail
             );
 
             if (method_exists($this->controller, $this->method)) {

@@ -204,4 +204,20 @@ class User {
         }
         return false;
     }
+
+    public function setPassword($userId, $password) {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $query = $database->prepare("UPDATE info SET password = :password WHERE id = :userid");
+        $query->execute([
+            ':password' => $password,
+            ':userid' => $userId
+        ]);
+
+        if ($query->rowCount() === 1) {
+            return true;
+        }
+        return false;
+    }
 }
