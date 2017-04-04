@@ -5,6 +5,7 @@ namespace PQ\Core;
 use PQ\Models\Level;
 use PQ\Models\Login;
 use PQ\Models\Register;
+use PQ\Models\Token;
 use PQ\Models\User;
 
 class Application {
@@ -25,6 +26,7 @@ class Application {
     private $login;
     private $register;
     private $user;
+    private $token;
 
     public function __construct() {
         $this->Config = new Config();
@@ -39,6 +41,7 @@ class Application {
         $this->login = new Login();
         $this->register = new Register();
         $this->user = new User();
+        $this->token = new Token();
 
         $this->parseURL();
 
@@ -59,16 +62,17 @@ class Application {
             $this->controller = new $a(
                 $this->Config,
                 $this->Csrf,
+                $this->Mail,
                 $this->Random,
                 $this->Redirect,
                 $this->Request,
                 $this->Session,
-              
+
                 $this->level,
                 $this->login,
                 $this->register,
-                $this->user
-                $this->Mail
+                $this->user,
+                $this->token
             );
 
             if (method_exists($this->controller, $this->method)) {

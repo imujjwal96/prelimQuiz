@@ -6,6 +6,7 @@ use PQ\Core\Config;
 use PQ\Core\Controller;
 
 use PQ\Core\Csrf;
+use PQ\Core\Mail;
 use PQ\Core\Random;
 use PQ\Core\Redirect;
 use PQ\Core\Request;
@@ -15,6 +16,7 @@ use PQ\Models\Level as LevelModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Register as RegisterModel;
 use PQ\Models\User as UserModel;
+use PQ\Models\Token as TokenModel;
 
 class Index extends Controller
 {
@@ -24,7 +26,7 @@ class Index extends Controller
     private $Config;
     private $Redirect;
 
-    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user)
+    public function __construct(Config $Config, Csrf $Csrf, Mail $Mail, Random $Random, Redirect $Redirect, Request $Request, Session $Session, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user, TokenModel $token)
     {
         $this->user = $user;
         $this->login = $login;

@@ -31,7 +31,7 @@ class Login extends Controller
     private $Mail;
     private $Config;
 
-    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session,  Mail $Mail, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user, TokenModel $token)
+    public function __construct(Config $Config, Csrf $Csrf, Mail $Mail, Random $Random, Redirect $Redirect, Request $Request, Session $Session, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user, TokenModel $token)
     {      
         $this->Request = $Request;
         $this->Redirect = $Redirect;
