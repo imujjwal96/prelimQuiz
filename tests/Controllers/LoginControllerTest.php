@@ -17,6 +17,11 @@ class LoginControllerTest extends \PHPUnit_Framework_TestCase
     private $Csrf;
 
     /**
+     * @var \PQ\Core\Mail | \PHPUnit_Framework_MockObject_MockObject
+     */
+    private $Mail;
+
+    /**
      * @var \PQ\Core\Random | \PHPUnit_Framework_MockObject_MockObject
      */
     private $Random;
@@ -61,10 +66,16 @@ class LoginControllerTest extends \PHPUnit_Framework_TestCase
      */
     private $user;
 
+    /**
+     * @var \PQ\Models\Token | \PHPUnit_Framework_MockObject_MockObject
+     */
+    private $token;
+
     public function setUp() {
         @session_start();
         $this->Config = $this->createMock('\\PQ\\Core\\Config');
         $this->Csrf = $this->createMock('\\PQ\\Core\\Csrf');
+        $this->Mail = $this->createMock('\\PQ\\Core\\Mail');
         $this->Random = $this->createMock('\\PQ\\Core\\Random');
         $this->Redirect = $this->createMock('\\PQ\\Core\\Redirect');
         $this->Request = $this->createMock('\\PQ\\Core\\Request');
@@ -74,18 +85,22 @@ class LoginControllerTest extends \PHPUnit_Framework_TestCase
         $this->login = $this->createMock('\\PQ\\Models\\Login');
         $this->register = $this->createMock('\\PQ\\Models\\Register');
         $this->user = $this->createMock('\\PQ\\Models\\User');
+        $this->token = $this->createMock('\\PQ\\Models\\Token');
 
         $this->loginController = new LoginController(
             $this->Config,
             $this->Csrf,
+            $this->Mail,
             $this->Random,
             $this->Redirect,
             $this->Request,
             $this->Session,
+
             $this->level,
             $this->login,
             $this->register,
-            $this->user
+            $this->user,
+            $this->token
         );
         parent::setUp();
     }
