@@ -10,9 +10,11 @@ use PQ\Core\Redirect;
 use PQ\Core\Request;
 
 use PQ\Core\Session;
+
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Level as LevelModel;
+use PQ\Models\Register as RegisterModel;
 
 class Level extends Controller
 {
@@ -24,11 +26,11 @@ class Level extends Controller
     private $Redirect;
     private $Request;
 
-    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session)
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user)
     {
-        $this->user = new UserModel();
-        $this->login = new LoginModel();
-        $this->level = new LevelModel();
+        $this->user = $user;
+        $this->login = $login;
+        $this->level = $level;
 
         $this->Csrf = $Csrf;
         $this->Redirect = $Redirect;
@@ -87,13 +89,13 @@ class Level extends Controller
     {
         if (!$this->Request->isPost()) {
             $this->Redirect->to('level/index');
-            return;
+            return false;
         }
 
-        if (!$this->Request->post('input')) {
+        if (!$this->Request->post('input', true)) {
             $this->Session->add("flash_message", "Empty input value");
             $this->Redirect->to('level/index');
-            return;
+            return false;
         }
 
         $input = $this->Request->post('input', true);
@@ -102,9 +104,9 @@ class Level extends Controller
         if (!$this->Csrf->isTokenValid($token)) {
             $this->Session->add("flash_error", "Failed to login user.");
             $this->Redirect->to('level/index');
-            return;
+            return false;
         }
-        if ($this->level->getAnswer() == $input) {
+        if ($this->level->getAnswer() === $input) {
             if (!$this->user->incrementPoints($this->level->getQuestionPoints())) {
                 echo 'error points';
                 exit();
@@ -115,5 +117,6 @@ class Level extends Controller
             exit();
         }
         $this->Redirect->to('level/index');
+        return true;
     }
 }

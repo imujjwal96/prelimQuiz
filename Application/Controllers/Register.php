@@ -10,9 +10,12 @@ use PQ\Core\Random;
 use PQ\Core\Redirect;
 use PQ\Core\Request;
 use PQ\Core\Session;
+
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
 use PQ\Models\Register as RegisterModel;
+use PQ\Models\Level as LevelModel;
+
 
 class Register extends Controller 
 {
@@ -24,11 +27,11 @@ class Register extends Controller
     private $Redirect;
     private $Request;
 
-    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session)
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user)
     {
-        $this->user = new UserModel();
-        $this->login = new LoginModel();
-        $this->register = new RegisterModel();
+        $this->user = $user;
+        $this->login = $login;
+        $this->register = $register;
 
         $this->Csrf = $Csrf;
         $this->Redirect = $Redirect;
@@ -51,11 +54,11 @@ class Register extends Controller
     {
         if (!$this->Request->isPost()) {
             $this->Redirect->to('index');
-            return;
+            return false;
         }
         
         $name = $this->Request->post('name', true);
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $email = $this->Request->post('email', true);
         $username = $this->Request->post('username', true);
         $phone = $this->Request->post('phone', true);
         $password = $this->Request->post('password', true);
@@ -68,27 +71,27 @@ class Register extends Controller
         if ($this->user->getUserByEmail($email)) {
             $this->Session->add("flash_error", "User with email: " . $email . " already exists.");
             $this->Redirect->to('register');
-            return;
+            return false;
         }
 
         if ($this->user->getUserByUsername($username)) {
             $this->Session->add("flash_error", "User with username: " . $username . " already exists.");
             $this->Redirect->to('register');
-            return;
+            return false;
         }
 
         $register = $this->register->registerNewUser($name, $email, $username, $phone, $password);
         if (!$register) {
             $this->Redirect->to('register');
-            return;
+            return false;
         }
 
         if (!$this->login->login($username, $password)) {
             $this->Redirect->to('login');
-            return;
+            return false;
         }
 
         $this->Redirect->to('level/index/0');
-        return;
+        return true;
     }
 }

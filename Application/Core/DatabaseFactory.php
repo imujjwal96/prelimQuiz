@@ -3,7 +3,7 @@
 namespace PQ\Core;
 
 class DatabaseFactory {
-    private static $factory;
+    private $factory;
     private $database;
     private $databaseMongo;
     private $Config;
@@ -13,11 +13,11 @@ class DatabaseFactory {
         $this->Config = new Config();
     }
 
-    public static function getFactory() {
-        if (!self::$factory) {
-            self::$factory = new DatabaseFactory();
+    public function getFactory() {
+        if (!$this->factory) {
+            $this->factory = new DatabaseFactory();
         }
-        return self::$factory;
+        return $this->factory;
     }
 
     public function getConnection() {

@@ -17,7 +17,11 @@
     "autoload": {
         "psr-4": {
             "PQ\\Core\\": "Application/Core/",
-            "PQ\\Models\\": "Application/Models/"
+            "PQ\\Models\\": "Application/Models/",
+            "PQ\\Controllers\\": "Application/Controllers",
+
+            "Tests\\Controllers\\": "tests/Controllers"
+
         }
     }
 }

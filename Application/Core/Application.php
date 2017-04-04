@@ -2,6 +2,11 @@
 
 namespace PQ\Core;
 
+use PQ\Models\Level;
+use PQ\Models\Login;
+use PQ\Models\Register;
+use PQ\Models\User;
+
 class Application {
 
     protected $controller;
@@ -16,6 +21,11 @@ class Application {
     private $Request;
     private $Session;
 
+    private $level;
+    private $login;
+    private $register;
+    private $user;
+
     public function __construct() {
         $this->Config = new Config();
         $this->Csrf = new Csrf();
@@ -24,6 +34,11 @@ class Application {
         $this->Request = new Request();
         $this->Session = new Session();
         $this->Mail = new Mail();
+
+        $this->level = new Level();
+        $this->login = new Login();
+        $this->register = new Register();
+        $this->user = new User();
 
         $this->parseURL();
 
@@ -48,6 +63,11 @@ class Application {
                 $this->Redirect,
                 $this->Request,
                 $this->Session,
+              
+                $this->level,
+                $this->login,
+                $this->register,
+                $this->user
                 $this->Mail
             );
 

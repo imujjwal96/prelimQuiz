@@ -27,12 +27,12 @@ class Admin extends Controller
     private $Redirect;
     private $Request;
 
-    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session)
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user)
     {
-        $this->user = new UserModel();
-        $this->login = new LoginModel();
-        $this->register = new RegisterModel();
-        $this->level = new LevelModel();
+        $this->user = $user;
+        $this->login = $login;
+        $this->register = $register;
+        $this->level = $level;
 
         $this->Config = $Config;
         $this->Csrf = $Csrf;

@@ -14,6 +14,9 @@ use PQ\Core\Session;
 use PQ\Models\Token as TokenModel;
 use PQ\Models\User as UserModel;
 use PQ\Models\Login as LoginModel;
+use PQ\Models\Level as LevelModel;
+use PQ\Models\Register as RegisterModel;
+
 
 class Login extends Controller
 {
@@ -28,18 +31,18 @@ class Login extends Controller
     private $Mail;
     private $Config;
 
-    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session, Mail $Mail)
-    {
-        $this->user = new UserModel();
-        $this->login = new LoginModel();
-        $this->token = new TokenModel();
-
+    public function __construct(Config $Config, Csrf $Csrf, Random $Random, Redirect $Redirect, Request $Request, Session $Session,  Mail $Mail, LevelModel $level, LoginModel $login, RegisterModel $register, UserModel $user, TokenModel $token)
+    {      
         $this->Request = $Request;
         $this->Redirect = $Redirect;
         $this->Csrf = $Csrf;
         $this->Random = $Random;
         $this->Mail = $Mail;
         $this->Config = $Config;
+
+        $this->login = $login;
+        $this->user = $user;
+        $this->token = $token;
 
         parent::__construct();
     }
@@ -62,7 +65,7 @@ class Login extends Controller
     {
         if (!$this->Request->isPost()) {
             $this->Redirect->to('login');
-            return;
+            return false;
         }
 
         $username = $this->Request->post('username', true);
@@ -73,31 +76,32 @@ class Login extends Controller
         if (!$this->Csrf->isTokenValid($token)) {
             $this->Session->add("flash_error", "Failed to login user.");
             $this->Redirect->to('login/index');
-            return;
+            return false;
         }
 
         $login = $this->login->login($username, $password);
         if (!$login) {
             $this->Redirect->to('login/index');
-            return;
+            return false;
         }
 
 
         if ($this->user->isAdmin()) {
             $this->Redirect->to('admin/dashboard');
-            return;
+            return true;
         }
 
         $result = $this->user->getUserByUsername($username);
+
         $this->Redirect->to('level/index/' . $result->level);
-        return;
+        return true;
     }
 
     public function logout()
     {
         $this->login->logout();
         $this->Redirect->to('index');
-        return;
+        return true;
     }
 
     public function sendmail()

@@ -12,10 +12,12 @@ use PQ\Core\Session;
 class User {
 
     protected $Session;
+    protected $Database;
 
     public function __construct()
     {
         $this->Session = new Session();
+        $this->Database = (new DatabaseFactory())->getFactory();
     }
 
     /**
@@ -23,10 +25,10 @@ class User {
      * @return bool true if users exist else false
      */
     public function doesUsersExist() {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
         $sql = "SELECT * FROM info";
-        $query = $database->prepare($sql);
+        $query = $databaseSQL->prepare($sql);
         $query->execute();
 
         if ($query->rowCount() != 0) {
@@ -42,10 +44,10 @@ class User {
      * @return bool true if user exists else false
      */
     public function doesUserExist($parameter, $value) {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
         $sql = "SELECT * FROM info WHERE $parameter = :value";
-        $query = $database->prepare($sql);
+        $query = $databaseSQL->prepare($sql);
         $query->execute(array(
             ':value' => $value
         ));
@@ -61,10 +63,10 @@ class User {
      * @return array|bool array of user objects if users exist else false
      */
     public function getUsersByPoints() {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
         $sql = "SELECT * FROM info ORDER BY points DESC";
-        $query = $database->prepare($sql);
+        $query = $databaseSQL->prepare($sql);
         $query->execute();
 
         if ($query->rowCount() != 0) {
@@ -80,10 +82,10 @@ class User {
      * @return bool|mixed object of user's details if user found else false
      */
     public function getUserByID($userID) {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
         $sql = "SELECT * FROM info WHERE id = :userID";
-        $query = $database->prepare($sql);
+        $query = $databaseSQL->prepare($sql);
         $query->execute(array(':userID' => $userID));
 
         if ($query->rowCount() == 1) {
@@ -98,10 +100,10 @@ class User {
      * @return bool|mixed object of user's details if user is found else false
      */
     public function getUserByEmail($email) {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
         $sql = "SELECT * FROM info WHERE email = :email";
-        $query = $database->prepare($sql);
+        $query = $databaseSQL->prepare($sql);
         $query->execute(array(':email' => $email));
 
         if ($query->rowCount() == 1) {
@@ -116,10 +118,10 @@ class User {
      * @return bool|mixed object of user's details if user is found else false
      */
     public function getUserByUsername($userName) {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
         $sql = "SELECT * FROM info WHERE username = :username";
-        $query = $database->prepare($sql);
+        $query = $databaseSQL->prepare($sql);
         $query->execute(array(':username' => $userName));
 
         if ($query->rowCount() == 1) {
@@ -134,9 +136,9 @@ class User {
      * @return bool true if successfully incremented else false
      */
     public function incrementPoints($points) {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
-        $query = $database->prepare("UPDATE info SET points = points + :points WHERE username = :user_name LIMIT 1");
+        $query = $databaseSQL->prepare("UPDATE info SET points = points + :points WHERE username = :user_name LIMIT 1");
         $query->execute(array(
             ':points' => $points,
             ':user_name' => $this->Session->get('user_name')
@@ -153,9 +155,9 @@ class User {
      * @return bool true if incremented successfully else false.
      */
     public function incrementLevel() {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
-        $query = $database->prepare("UPDATE info SET level = level + 1 WHERE username = :user_name LIMIT 1");
+        $query = $databaseSQL->prepare("UPDATE info SET level = level + 1 WHERE username = :user_name LIMIT 1");
         $query->execute(array(
             ':user_name' => $this->Session->get('user_name')
         ));
@@ -171,10 +173,10 @@ class User {
      * @return bool|int The current level of the user else false.
      */
     public function getUserLevel() {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
         $sql = "SELECT level FROM info WHERE username = :username";
-        $query = $database->prepare($sql);
+        $query = $databaseSQL->prepare($sql);
         $query->execute(array(
             ':username' => $this->Session->get('user_name')
         ));
@@ -190,9 +192,9 @@ class User {
      * @return bool true if admin else false
      */
     public function isAdmin() {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
-        $query = $database->prepare("SELECT role FROM info WHERE username = :username");
+        $query = $databaseSQL->prepare("SELECT role FROM info WHERE username = :username");
         $query->execute(array(
             ':username' => $this->Session->get('user_name')
         ));
