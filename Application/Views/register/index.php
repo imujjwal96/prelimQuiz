@@ -35,25 +35,25 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="md-form">
-                                <input type="text" id="form1" class="form-control" name="username">
+                                <input type="text" id="form1" class="form-control" name="username" required>
                                 <label for="form1">Username</label>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="md-form">
-                                <input type="text" id="form2" class="form-control" name="name">
+                                <input type="text" id="form2" class="form-control" name="name" required>
                                 <label for="form2">Name</label>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="md-form">
-                                <input type="text" id="form3" class="form-control" name="email">
+                                <input type="email" id="form3" class="form-control" name="email" required>
                                 <label for="form3">Email</label>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="md-form">
-                                <input type="text" id="form4" class="form-control" name="phone">
+                                <input type="text" id="form4" class="form-control" name="phone" required>
                                 <label for="form4">Phone</label>
                             </div>
                         </div>
