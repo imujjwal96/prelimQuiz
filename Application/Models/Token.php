@@ -6,8 +6,18 @@ use PQ\Core\DatabaseFactory;
 
 class Token
 {
+
+    protected $Database;
+
+    private $DatabaseSQL;
+
+    public function __construct()
+    {
+        $this->Database = (new DatabaseFactory())->getFactory();
+        $this->DatabaseSQL = $this->Database->getConnection();
+    }
+
     public function set($userId, $key, $value) {
-        $database = DatabaseFactory::getFactory()->getConnection();
         if ($this->get($userId, $key) !== false) {
             if ($this->isExpired($userId, $key)) {
                 $this->delete($userId, $key);
@@ -18,7 +28,7 @@ class Token
 
         $timestamp = time();
 
-        $query = $database->prepare("INSERT INTO user_token(id, userid, tokenkey, tokenvalue, timestamp) VALUES (NULL, :userid, :key, :value, :timestamp )");
+        $query = $this->DatabaseSQL->prepare("INSERT INTO user_token(id, userid, tokenkey, tokenvalue, timestamp) VALUES (NULL, :userid, :key, :value, :timestamp )");
         $query->execute([
             ':userid' => $userId,
             ':key' => $key,
@@ -33,9 +43,7 @@ class Token
     }
 
     public function get($userId, $key) {
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $query = $database->prepare("SELECT tokenvalue FROM user_token WHERE userid = :userid AND tokenkey = :key");
+        $query = $this->DatabaseSQL->prepare("SELECT tokenvalue FROM user_token WHERE userid = :userid AND tokenkey = :key");
         $query->execute([
             ':userid' => $userId,
             ':key' => $key
@@ -48,9 +56,7 @@ class Token
     }
 
     public function delete($userId, $key) {
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $query = $database->prepare("DELETE FROM user_token WHERE userid = :userid AND tokenkey = :key");
+        $query = $this->DatabaseSQL->prepare("DELETE FROM user_token WHERE userid = :userid AND tokenkey = :key");
         $query->execute([
             ':userid' => $userId,
             ':key' => $key,
@@ -60,9 +66,7 @@ class Token
     }
 
     public function getTimestamp($userId, $key) {
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $query = $database->prepare("SELECT timestamp FROM user_token WHERE userid = :userid AND tokenkey = :key");
+        $query = $this->DatabaseSQL->prepare("SELECT timestamp FROM user_token WHERE userid = :userid AND tokenkey = :key");
         $query->execute([
             ':userid' => $userId,
             ':key' => $key,

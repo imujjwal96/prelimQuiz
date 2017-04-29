@@ -148,7 +148,7 @@ class Login extends Controller
         return;
     }
 
-    public function resetpassword($username, $token)
+    public function resetPassword($username, $token)
     {
         if (!$this->user->doesUserExist('username', $username)) {
             $this->Redirect->to('login');

@@ -206,10 +206,10 @@ class User {
     }
 
     public function setPassword($userId, $password) {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $databaseSQL = $this->Database->getConnection();
 
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $query = $database->prepare("UPDATE info SET password = :password WHERE id = :userid");
+        $query = $this->Database->prepare("UPDATE info SET password = :password WHERE id = :userid");
         $query->execute([
             ':password' => $password,
             ':userid' => $userId

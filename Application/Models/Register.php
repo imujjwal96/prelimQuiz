@@ -12,10 +12,16 @@ use PQ\Core\Session;
 class Register {
 
     protected $Session;
+    protected $Database;
+
+    private $DatabaseSQL;
 
     public function __construct()
     {
         $this->Session = new Session();
+        $this->Database = (new DatabaseFactory())->getFactory();
+
+        $this->DatabaseSQL = $this->Database->getConnection();
     }
 
     /**
@@ -29,13 +35,9 @@ class Register {
      * @return bool true if user registered successfully, else false
      */
     public function registerNewUser($name, $email, $userName, $phone, $password, $role = 'contestant') {
-
-        $database = DatabaseFactory::getFactory()->getConnection();
-
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO info (name, email, username, phone, password, points, level, role, datetime) VALUES (:name, :email, :username, :phone, :password,  '0', '0', :role, NOW())";
-        $query = $database->prepare($sql);
+        $query = $this->DatabaseSQL->prepare("INSERT INTO info (name, email, username, phone, password, points, level, role, datetime) VALUES (:name, :email, :username, :phone, :password,  '0', '0', :role, NOW())");
         $query->execute(array(
             ':name' => $name,
             ':email' => $email,

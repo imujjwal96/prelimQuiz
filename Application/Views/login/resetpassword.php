@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="md-form">
-                                <input type="text" id="form1" class="form-control" name="password">
+                                <input type="password" id="form1" class="form-control" name="password">
                                 <label for="form1">Password</label>
                             </div>
                         </div>
