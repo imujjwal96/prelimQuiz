@@ -154,8 +154,8 @@ class Level {
      * @return array
      */
     public function getQuestions() {
-        // $databaseMongo = DatabaseFactory::getFactory()->getConnectionMongo();
-        $questions = $this->Database->selectCollection("questions");
+        $databaseMongo = $this->Database->getConnectionMongo();
+        $questions = $databaseMongo->selectCollection("questions");
         return $questions->find()->toArray();
     }
 
