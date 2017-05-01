@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                   `userid` int(11) NOT NULL,
                                   `tokenkey` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
                                   `tokenvalue` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-                                  `timestamp` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+                                  `timestamp` varchar(32) COLLATE utf8_unicode_ci NOT NULL
                                   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
             if (!mysqli_query($database, $create_table_query2)) {
                 die(mysqli_error($database));
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-md-6 left-side" style="background: #9601ff;text-align: center">
             	<div class="branding" >
             	<img src="images/logo.png" class="img-responsive" width="200px"/>
-            	<h1 style="color: #ffffff;font-weight: 100;">An open source, self-hosted quiz script with the backend of Object Oriented PHP</h1>
+            	<h1 style="color: #ffffff;font-weight: 100;">An open source, self-hosted quiz script.</h1>
             	<h1 ><a href="https://github.com/imujjwal96/prelimQuiz" style="color: #ffffff;"><i class="fa fa-github" aria-hidden="true"></i></a></h1>
             	</div>
             </div>
