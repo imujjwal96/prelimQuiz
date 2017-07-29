@@ -1,0 +1,11 @@
+metadata:
+  author: "Ujjwal Bhardwaj"
+  projectname: prelimQuiz
+  version: "0.9.2"
+build:
+  theme: alabaster
+  source: docs
+  logo: images/logo.png
+publish:
+  ghpages:
+    url: prelimquiz.ujjwalbhardwaj.me
