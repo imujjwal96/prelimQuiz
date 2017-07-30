@@ -30,10 +30,6 @@ See also the list of [contributors](https://github.com/imujjwal96/prelimQuiz/con
 
 This project is licensed under the AGPL v3.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
-
-I’d like to say a big thank you to [Syed Saad](https://github.com/syedsaadh) for working on the front end of the website to make it look so vibrant.
-
 Report Bugs: https://github.com/imujjwal96/prelimQuiz/issues
 
 
