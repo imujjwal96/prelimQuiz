@@ -12,6 +12,7 @@ prelimQuiz is an open source, simple and powerful self-hosted quiz platform with
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisities
+
 Before you proceed make sure your server meets the following requirements:
 * PHP >= 5.6.4 
 * PHP Extensions (PDO, SQLite)
