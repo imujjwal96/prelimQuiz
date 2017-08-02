@@ -1,4 +1,4 @@
-# prelimQuiz
+# prelimQui
 
 [![Join the chat at https://gitter.im/prelimQuiz/Lobby](https://badges.gitter.im/prelimQuiz/Lobby.svg)](https://gitter.im/prelimQuiz/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/80233978ad0c45aaa0ea451c0c3a6c97)](https://www.codacy.com/app/ujjwalb1996/prelimQuiz?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=imujjwal96/prelimQuiz&amp;utm_campaign=Badge_Grade)
