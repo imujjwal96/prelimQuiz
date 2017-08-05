@@ -17,7 +17,7 @@ Before you proceed make sure your server meets the following requirements
 * PHP Extensions (PDO, SQLite)
 * PDO compliant database (MySQL)
 * MongoDB
-* Webserver, ie. Apache, nginx
+* Webserver, ie. Apache, NGINX
 
 
 ## Authors
