@@ -26,6 +26,6 @@ before_script:
 script:
 - vendor/bin/phpunit --verbose --coverage-text --coverage-clover=coverage.xml tests/
 - pip install --user virtualenv
-- wget https://raw.githubusercontent.com/pri22296/yaydoc/master/generate.sh
+- wget https://raw.githubusercontent.com/fossasia/yaydoc/master/generate.sh
 - chmod +x ./generate.sh
 - ./generate.sh
