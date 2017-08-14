@@ -24,8 +24,9 @@ before_script:
   - composer install --prefer-source --no-interaction
   
 script:
+- apt install pandoc
 - vendor/bin/phpunit --verbose --coverage-text --coverage-clover=coverage.xml tests/
 - pip install --user virtualenv
-- wget https://raw.githubusercontent.com/pri22296/yaydoc/master/generate.sh
+- wget https://raw.githubusercontent.com/sch00lb0y/yaydoc/pathfix/generate.sh
 - chmod +x ./generate.sh
 - ./generate.sh
