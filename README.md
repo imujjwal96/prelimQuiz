@@ -21,6 +21,7 @@ Before you proceed make sure your server meets the following requirements
 
 ## Authors
 * **Ujjwal Bhardwaj** 
+
 See also the list of [contributors](https://github.com/imujjwal96/prelimQuiz/contributors) who participated in this project.
 
 ## License
