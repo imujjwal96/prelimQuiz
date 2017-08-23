@@ -1,4 +1,4 @@
-# prelimQuiz
+# prelimQuiza
 
 [![Join the chat at https://gitter.im/prelimQuiz/Lobby](https://badges.gitter.im/prelimQuiz/Lobby.svg)](https://gitter.im/prelimQuiz/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://gemnasium.com/badges/github.com/imujjwal96/prelimQuiz.svg)](https://gemnasium.com/github.com/imujjwal96/prelimQuiz)
