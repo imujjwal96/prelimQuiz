@@ -1,5 +1,9 @@
 <?php
 
+if (file_exists ("../Application/Config/config.php")) {
+    die('Installation already completed...');
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["quiz_name"], $_POST["quiz_type"], $_POST["db_name"], $_POST["db_type"],
         $_POST["db_user"], $_POST["db_pass"], $_POST["db_port"])) {
@@ -102,12 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 die(mysqli_error($database));
             }
 
-            // delete install.php after site installation
-            try {
-                unlink('install.php');
-            } catch (Exception $e) {
-                die($e->getMessage());
-            }
 
             header('Location: /');
         } else {
