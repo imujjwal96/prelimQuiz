@@ -102,6 +102,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 die(mysqli_error($database));
             }
 
+            // delete install.php after site installation
+            try {
+                unlink('install.php');
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
 
             header('Location: /');
         } else {
