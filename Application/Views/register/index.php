@@ -9,6 +9,7 @@
     </button>
 
     <div class="container">
+        <?php $this->renderFlashMessages(); ?>
 
         <!--Collapse content-->
         <div class="collapse navbar-toggleable-xs" id="collapseEx2">
