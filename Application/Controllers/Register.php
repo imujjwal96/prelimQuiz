@@ -25,6 +25,7 @@ class Register extends Controller
     protected $register;
 
     private $Csrf;
+    private $Config;
     private $Redirect;
     private $Request;
 
@@ -37,6 +38,8 @@ class Register extends Controller
         $this->Csrf = $Csrf;
         $this->Redirect = $Redirect;
         $this->Request= $Request;
+        $this->Config = $Config;
+
         parent::__construct();
     }
 
@@ -47,7 +50,9 @@ class Register extends Controller
             return;
         }
 
-        $this->View->render('register/index');
+        $this->View->render('register/index', array(
+            'quizName' => $this->Config->get("QUIZ_NAME")
+            ));
         return;
     }
 

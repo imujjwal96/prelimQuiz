@@ -31,7 +31,7 @@
         <form action="/register/action" method="POST">
             <ul  style="margin: 40px">
                 <li style="margin: 40px">
-                    <h1 class="h1-responsive wow fadeInUp title" >Hey, Start your CodeRush Test Level 0</h1></li>
+                    <h1 class="h1-responsive wow fadeInUp title" >Hey, Start your <?= ($this->quizName) ?? "CodeRush" ?> Test Level 0</h1></li>
                 <li>
                     <div class="row">
                         <div class="col-md-2">
