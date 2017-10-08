@@ -1,8 +1,7 @@
 language: php
 php:
   - '7.0'
-  - '7.1'
-  
+
 matrix:
   fast_finish: true
 
@@ -17,7 +16,7 @@ addons:
     - mongodb-3.0-precise
     packages:
     - mongodb-org-server
-    
+
 before_script:
   - pecl install mongodb
   - travis_retry composer self-update
@@ -25,7 +24,3 @@ before_script:
   
 script:
 - vendor/bin/phpunit --verbose --coverage-text --coverage-clover=coverage.xml tests/
-- pip install --user virtualenv
-- wget https://raw.githubusercontent.com/pri22296/yaydoc/master/generate.sh
-- chmod +x ./generate.sh
-- ./generate.sh
