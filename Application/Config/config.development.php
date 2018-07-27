@@ -75,6 +75,11 @@ return array(
     'DB_CHARSET' => 'utf8',
 
     /**
+     * MongoDB host server name with port
+     */
+    'MONGO_HOST' => 'mongodb://localhost:27017',
+
+    /**
      * Configuration for: Cookies
      */
     'COOKIE_RUNTIME' => 1209600,

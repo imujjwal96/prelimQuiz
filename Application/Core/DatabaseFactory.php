@@ -42,7 +42,7 @@ class DatabaseFactory {
 
     public function getConnectionMongo() {
         if (!$this->databaseMongo) {
-            $connection = new \MongoDB\Client("mongodb://localhost:27017");
+            $connection = new \MongoDB\Client($this->Config->get('MONGO_HOST'));
             $this->databaseMongo = $connection->selectDatabase($this->Config->get('DB_NAME'));
         }
         return $this->databaseMongo;
